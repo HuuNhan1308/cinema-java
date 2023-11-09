@@ -1,0 +1,100 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package business;
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.sql.Time;
+
+import org.eclipse.persistence.annotations.UuidGenerator;
+
+/**
+ *
+ * @author Admin
+ */
+@Entity
+public class Movie implements Serializable {
+
+    @OneToMany(mappedBy = "movie")
+    private List<ShowTime> showTimes;
+    
+
+    @Id
+    @UuidGenerator(name = "UUID")
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "movie_id")
+    private String movieID;
+
+    @Column(unique = true)
+    private String title;
+    private String genre;
+    private String director;
+    @Column(name = "main_actor")
+    private String mainActor;
+    private Time duration;
+
+    public String getMainActor() {
+        return mainActor;
+    }
+
+    public void setMainActor(String mainActor) {
+        this.mainActor = mainActor;
+    }
+
+    public String getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(String movieID) {
+        this.movieID = movieID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public java.sql.Time getDuration() {
+        return duration;
+    }
+
+    public void setDuration(java.sql.Time duration) {
+        this.duration = duration;
+    }
+    
+    
+    public List<ShowTime> getShowTimes() {
+        return showTimes;
+    }
+
+    public void setShowTimes(List<ShowTime> showTimes) {
+        this.showTimes = showTimes;
+    }
+
+}
