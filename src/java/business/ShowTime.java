@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.sql.Time;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -26,84 +27,96 @@ import org.eclipse.persistence.annotations.UuidGenerator;
 @Entity
 public class ShowTime implements Serializable {
 
-    @OneToMany(mappedBy = "showtime")
-    private List<Ticket> tickets;
+  @OneToMany(mappedBy = "showtime")
+  private List<Ticket> tickets;
 
-    @ManyToMany
-    @JoinTable(
-            name = "showtime_room",
-            joinColumns = @JoinColumn(name = "showtime_id"),
-            inverseJoinColumns = @JoinColumn(name = "room_id"))
-    private List<Room> rooms;
-    
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+  @ManyToMany
+  @JoinTable(
+          name = "showtime_room",
+          joinColumns = @JoinColumn(name = "showtime_id"),
+          inverseJoinColumns = @JoinColumn(name = "room_id"))
+  private List<Room> rooms;
 
-    @Id
-    @UuidGenerator(name = "UUID")
-    @GeneratedValue(generator = "UUID")
-    private String id;
-    @Column(name = "show_date")
-    private Date date;
-    @Column(name = "start_time")
-    private Time starTime;
-    private int price;
+  @ManyToOne
+  @JoinColumn(name = "movie_id")
+  private Movie movie;
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
+  @Id
+  @UuidGenerator(name = "UUID")
+  @GeneratedValue(generator = "UUID")
+  private String id;
+  @Column(name = "show_date")
+  private Date date;
+  @Column(name = "start_time")
+  private Time startTime;
+  private int price;
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
+  public List<Ticket> getTickets() {
+    return tickets;
+  }
 
-    public List<Room> getRooms() {
-        return rooms;
-    }
+  public void setTickets(List<Ticket> tickets) {
+    this.tickets = tickets;
+  }
 
-    public void setRooms(List<Room> rooms) {
-        this.rooms = rooms;
-    }
+  public List<Room> getRooms() {
+    return rooms;
+  }
 
-    public Movie getMovie() {
-        return movie;
-    }
+  public void setRooms(List<Room> rooms) {
+    this.rooms = rooms;
+  }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
+  public Movie getMovie() {
+    return movie;
+  }
 
-    public Time getStarTime() {
-        return starTime;
-    }
+  public void setMovie(Movie movie) {
+    this.movie = movie;
+  }
 
-    public void setStarTime(Time starTime) {
-        this.starTime = starTime;
-    }
+  public Time getStartTime() {
+    return startTime;
+  }
+  
+  public String getStartTimeStr() {
+    SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+    String startTimeStr = formatter.format(this.startTime);
+    return startTimeStr;
+  }
 
-    public Date getDate() {
-        return date;
-    }
+  public void setStartTime(Time starTime) {
+    this.startTime = starTime;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public int getPrice() {
-        return price;
-    }
+  public String getDateStr() {
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+    String strDate = formatter.format(this.date);
+    return strDate;
+  }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    public String getId() {
-        return id;
-    }
+  public int getPrice() {
+    return price;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
 
 }

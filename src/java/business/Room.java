@@ -12,7 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -21,47 +21,54 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Room implements Serializable {
 
-    @ManyToMany(mappedBy = "rooms")
-    private List<ShowTime> showtimes;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "room_number")
-    private String roomNumber;
-    @Column(name = "max_seats")
-    private int maxSeats;
-    @Column(name = "screen_quality")
-    private String screenQuality;
+  @ManyToMany(mappedBy = "rooms")
+  private List<ShowTime> showtimes;
 
-    public String getRoomNumber() {
-        return roomNumber;
-    }
+  @Id
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "sequence-generator"
+  )
+  @SequenceGenerator(
+          name = "sequence-generator",
+          sequenceName = "the_sequence_name"
+  )
+  @Column(name = "room_number")
+  private int roomNumber;
+  @Column(name = "max_seats")
+  private int maxSeats;
+  @Column(name = "screen_quality")
+  private String screenQuality;
 
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+  public int getRoomNumber() {
+    return roomNumber;
+  }
 
-    public int getMaxSeats() {
-        return maxSeats;
-    }
+  public void setRoomNumber(int roomNumber) {
+    this.roomNumber = roomNumber;
+  }
 
-    public void setMaxSeats(int maxSeats) {
-        this.maxSeats = maxSeats;
-    }
+  public int getMaxSeats() {
+    return maxSeats;
+  }
 
-    public String getScreenQuality() {
-        return screenQuality;
-    }
+  public void setMaxSeats(int maxSeats) {
+    this.maxSeats = maxSeats;
+  }
 
-    public void setScreenQuality(String screenQuality) {
-        this.screenQuality = screenQuality;
-    }
+  public String getScreenQuality() {
+    return screenQuality;
+  }
 
-    public List<ShowTime> getShowtimes() {
-        return showtimes;
-    }
+  public void setScreenQuality(String screenQuality) {
+    this.screenQuality = screenQuality;
+  }
 
-    public void setShowtimes(List<ShowTime> showtimes) {
-        this.showtimes = showtimes;
-    }
+  public List<ShowTime> getShowtimes() {
+    return showtimes;
+  }
+
+  public void setShowtimes(List<ShowTime> showtimes) {
+    this.showtimes = showtimes;
+  }
 }

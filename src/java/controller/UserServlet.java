@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import business.Customer;
 import business.Ticket;
+import data.CustomerDB;
 import data.TicketDB;
-import data.UserDB; 
 
 /**
  *
@@ -54,7 +54,7 @@ public class UserServlet extends HttpServlet {
             myUser.setEmail(email);
             myUser.setFullname(fullname);
             
-            UserDB.insert(myUser);
+            CustomerDB.insert(myUser);
             
             System.out.print("pass");
         }

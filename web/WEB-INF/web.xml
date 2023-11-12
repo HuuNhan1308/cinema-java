@@ -4,9 +4,42 @@
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>controller.UserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminMovieServlet</servlet-name>
+        <servlet-class>controller.admin.AdminMovieServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminRoomServlet</servlet-name>
+        <servlet-class>controller.admin.AdminRoomServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminSeatClassServlet</servlet-name>
+        <servlet-class>controller.admin.AdminSeatClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminShowTimeServlet</servlet-name>
+        <servlet-class>controller.admin.AdminShowTimeServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>UserServlet</servlet-name>
         <url-pattern>/UserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminMovieServlet</servlet-name>
+        <url-pattern>/admin/movies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminRoomServlet</servlet-name>
+        <url-pattern>/admin/rooms</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminSeatClassServlet</servlet-name>
+        <url-pattern>/admin/seatclass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminShowTimeServlet</servlet-name>
+        <url-pattern>/admin/showtimes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
