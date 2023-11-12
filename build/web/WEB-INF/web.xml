@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
-    <servlet>
+<!--    <servlet>
         <servlet-name>UserServlet</servlet-name>
         <servlet-class>controller.UserServlet</servlet-class>
     </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>UserServlet</servlet-name>
+        <url-pattern></url-pattern>
+    </servlet-mapping>-->
+    
     <servlet>
         <servlet-name>AdminMovieServlet</servlet-name>
         <servlet-class>controller.admin.AdminMovieServlet</servlet-class>
@@ -21,10 +27,8 @@
         <servlet-class>controller.admin.AdminShowTimeServlet</servlet-class>
     </servlet>
     
-    <servlet-mapping>
-        <servlet-name>UserServlet</servlet-name>
-        <url-pattern>/UserServlet</url-pattern>
-    </servlet-mapping>
+    
+    
     <servlet-mapping>
         <servlet-name>AdminMovieServlet</servlet-name>
         <url-pattern>/admin/movies</url-pattern>

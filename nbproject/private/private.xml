@@ -3,12 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Web_netbean/FinalWeb/web/admin/seatclass.jsp</file>
-            <file>file:/D:/Web_netbean/FinalWeb/src/java/business/SeatClass.java</file>
-            <file>file:/D:/Web_netbean/FinalWeb/web/AdminComponent/Update/seatclass.jsp</file>
-            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/admin/AdminSeatClassServlet.java</file>
-            <file>file:/D:/Web_netbean/FinalWeb/src/java/business/ShowTime.java</file>
-            <file>file:/D:/Web_netbean/FinalWeb/src/java/data/SeatClassDB.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/UserShowingServlet.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/UserTicketServlet.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/UserLoginServlet.java</file>
         </group>
     </open-files>
 </project-private>
