@@ -21,8 +21,10 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import business.Customer;
 import business.Movie;
+import business.Room;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.List;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_DRIVER;
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_PASSWORD;
@@ -31,54 +33,66 @@ import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_USER;
 
 public class PopulateDatabase {
 
-    private static EntityManagerFactory emf;
+  private static EntityManagerFactory emf;
 
-    public static void insertProduct(Customer user) {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
-        try {
-            em.persist(user);
-            trans.commit();
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            em.close();
-        }
+  public static void insertProduct(Customer user) {
+    EntityManager em = emf.createEntityManager();
+    EntityTransaction trans = em.getTransaction();
+    trans.begin();
+    try {
+      em.persist(user);
+      trans.commit();
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      em.close();
     }
-    
-    public static void insertMovie(Movie movie) {
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction trans = em.getTransaction();
-        trans.begin();
-        try {
-            em.persist(movie);
-            trans.commit();
-        } catch (Exception e) {
-            System.out.println(e);
-        } finally {
-            em.close();
-        }
+  }
+
+  public static void insertMovie(Movie movie) {
+    EntityManager em = emf.createEntityManager();
+    EntityTransaction trans = em.getTransaction();
+    trans.begin();
+    try {
+      em.persist(movie);
+      trans.commit();
+    } catch (Exception e) {
+      System.out.println(e);
+    } finally {
+      em.close();
     }
+  }
 
-    public static void main(String[] args) {
-        Map props = new HashMap();
-        props.put(JDBC_DRIVER, "org.postgresql.Driver");
-        props.put(JDBC_URL,
-                "jdbc:postgresql://dpg-cl4qv5472pts739l9jhg-a.singapore-postgres.render.com:5432/cinema_db_jnzp");
-        props.put(JDBC_USER, "admin");
-        props.put(JDBC_PASSWORD, "cs0d8T87UEpP11wQ5Ce4zlJ05MMWCm4t");
+  public static void main(String[] args) {
+    Map props = new HashMap();
+    props.put(JDBC_DRIVER, "org.postgresql.Driver");
+    props.put(JDBC_URL,
+            "jdbc:postgresql://dpg-cl4qv5472pts739l9jhg-a.singapore-postgres.render.com:5432/cinema_db_jnzp");
+    props.put(JDBC_USER, "admin");
+    props.put(JDBC_PASSWORD, "cs0d8T87UEpP11wQ5Ce4zlJ05MMWCm4t");
 
-        emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
+    emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
+    //        set movie
+//    Movie myMovie = new Movie();
+//    myMovie.setMainActor("Haruma Miura");
+//    myMovie.setDirector("Hajime Isayama");
+//    myMovie.setDuration(Time.valueOf(LocalTime.of(1, 30, 0)));
+//    myMovie.setGenre("Action, Anime, Human");
+//    myMovie.setTitle("Attack on Titan 4 part 2");
+//    myMovie.setImg("AOT.png");
+//
+//    insertMovie(myMovie);
 
-        Movie myMovie = new Movie();
-        myMovie.setMainActor("Holovo");
-        myMovie.setDirector("Holovo");
-        myMovie.setDuration(Time.valueOf(LocalTime.of(1,30,0)));
-        myMovie.setGenre("Action");
-        myMovie.setTitle("Cu lao xac song");
-        insertMovie(myMovie);
-
-//      
-    }
+    //        set Room
+    //        Room myRoom = new Room();
+    //        myRoom.setMaxSeats(40);
+    //        myRoom.setScreenQuality("Full HD");
+    //        RoomDB.insert(myRoom);
+    //
+    //        Room myRoom2 = new Room();
+    //        myRoom2.setMaxSeats(60);
+    //        myRoom2.setScreenQuality("4K");
+    //        RoomDB.insert(myRoom2);
+    //        set Customer
+  }
 }
