@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.showing.film;
 
+import controller.showing.*;
 import business.Movie;
 import data.MovieDB;
 import java.io.IOException;
@@ -24,12 +25,13 @@ public class UserTicketServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-
+    
     String url = "/ticket.jsp";
+    String movieID = request.getParameter("movieID");
+    
+    Movie movie = MovieDB.selectMovie(movieID);
 
-    List<Movie> movies = MovieDB.selectMovies();
-
-    request.setAttribute("movies", movies);
+    request.setAttribute("movie", movie);
     request.getRequestDispatcher(url).forward(request, response);
   }
 

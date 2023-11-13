@@ -43,32 +43,34 @@
             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
             Sign in to your account
           </h1>
-          <form class="space-y-4 md:space-y-6" action="#">
+          <form class="space-y-4 md:space-y-6" method="post" action="<%=root%>/login">
+            <input type="hidden" name="action" value="login"/>
+            
             <div>
-              <label for="email"
-                     class="block mb-2 text-sm font-medium text-gray-900">Your
-                email</label>
-              <input type="email" name="email" id="email"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                     placeholder="name@company.com" required="">
+              <label for="username"
+                     class="block mb-2 text-sm font-medium text-gray-900">Your username</label>
+              <input type="text" name="username" id="username"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                     focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                     required>
             </div>
             <div>
               <label for="password"
                      class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-              <input type="password" name="password" id="password" placeholder="????????"
-                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                     required="">
+              <input type="password" name="password" id="password" 
+                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg 
+                     focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                     required>
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-start">
                 <div class="flex items-center h-5">
-                  <input id="remember" aria-describedby="remember" type="checkbox"
+                  <input id="remember" aria-describedby="remember" type="checkbox" name="remember"
                          class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                         required="">
+                         >
                 </div>
                 <div class="ml-3 text-sm">
-                  <label for="remember" class="text-gray-500">Remember
-                    me</label>
+                  <label for="remember" class="text-gray-500">Remember me</label>
                 </div>
               </div>
               <a href="#"
@@ -77,8 +79,9 @@
             </div>
 
             <button type="submit"
-                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2">Sign
-              in</button>
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
+                    focus:ring-blue-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 
+                    lg:py-2.5 mr-2">Sign in</button>
 
             <p class="text-sm font-light text-gray-500">
               Don?t have an account yet? <a href="#" data-modal-target="default-modal"
@@ -110,20 +113,29 @@
           </button>
           <div class="px-6 py-6 lg:px-8">
             <h3 class="mb-4 text-xl font-medium text-gray-900">Sign up a new account</h3>
-            <form class="space-y-6" action="#">
+            <form class="space-y-6" method="post" action="<%=root%>/login">
+              <input type="hidden" name="action" value="register"/>
+
               <div>
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Fullname</label>
-                <input type="text" name="text" id="fullname"
+                <input type="text" name="fullname" id="fullname"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                        placeholder="Trinh Tran Phuong Tuan" required>
               </div>
               <div>
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-                <input type="text" name="text" id="username"
+                <input type="text" name="username" id="username"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                        placeholder="jackj97" required>
+              </div>
+              <div>
+                <label for="password"
+                       class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                <input type="password" name="password" id="password" placeholder="????????"
+                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                       required>
               </div>
               <div>
                 <label for="email"
@@ -136,29 +148,12 @@
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Phone
                   number</label>
-                <input type="text" name="text" id="phonenumber"
+                <input type="text" name="phoneNumber" id="phonenumber" pattern="[0-9]{10}"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       placeholder="0999999999" required>
+                       placeholder="099112338" required>
               </div>
-              <div>
-                <label for="password"
-                       class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                <input type="password" name="password" id="password" placeholder="????????"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       required>
-              </div>
-              <div class="flex justify-between">
-                <div class="flex items-start">
-                  <div class="flex items-center h-5">
-                    <input id="remember" type="checkbox" value=""
-                           class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                           required>
-                  </div>
-                  <label for="remember"
-                         class="ml-2 text-sm font-medium text-gray-900">Remember
-                    me</label>
-                </div>
-              </div>
+
+
               <button type="submit" href="/index.html"
                       class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign
                 up</button>

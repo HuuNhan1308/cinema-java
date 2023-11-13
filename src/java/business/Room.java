@@ -11,7 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -21,8 +22,8 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Room implements Serializable {
 
-  @ManyToMany(mappedBy = "rooms")
-  private List<ShowTime> showtimes;
+  @OneToMany(mappedBy = "room")
+  private List<ShowTime> showTimes;
 
   @Id
   @GeneratedValue(
@@ -64,11 +65,11 @@ public class Room implements Serializable {
     this.screenQuality = screenQuality;
   }
 
-  public List<ShowTime> getShowtimes() {
-    return showtimes;
+  public List<ShowTime> getShowTimes() {
+    return showTimes;
   }
 
-  public void setShowtimes(List<ShowTime> showtimes) {
-    this.showtimes = showtimes;
+  public void setShowTimes(List<ShowTime> showTimes) {
+    this.showTimes = showTimes;
   }
 }

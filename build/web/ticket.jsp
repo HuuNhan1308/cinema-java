@@ -20,7 +20,6 @@
     <script src="./tailwindcss/tailwindcss-with-aspect-ratio.js"></script>
     <script src="./tailwindcss/tailwindcss-with-line-clamp.js"></script>
     <script src="./tailwindcss/tailwindcss-with-all-plugins.js"></script>
-    <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
     <!-- component header -->

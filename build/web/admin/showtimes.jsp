@@ -249,38 +249,35 @@
                 </thead>
                 <tbody>
                   <c:forEach var="showTime" items="${showTimes}">
-                    <c:forEach var="room" items="${showTime.getRooms()}">
-
-                      <tr class="border-b bg-gray-800 border-gray-700">
-                        <th
-                          scope="row"
-                          class="px-6 py-2 font-medium whitespace-nowrap text-white"
-                          >
-                          ${showTime.getMovie().getTitle()}
-                        </th>
-                        <td class="px-6 py-2">${showTime.getDate()}</td>                    
-                        <td class="px-6 py-2">${showTime.getStartTime()}</td>
-                        <td class="px-6 py-2">${showTime.getPrice()}</td>
-                        <td class="px-6 py-2">${room.getRoomNumber()}</td>
-                        <td class="px-6 py-2">${showTime.getTickets().size()}/${room.getMaxSeats()}</td>
+                    <tr class="border-b bg-gray-800 border-gray-700">
+                      <th
+                        scope="row"
+                        class="px-6 py-2 font-medium whitespace-nowrap text-white"
+                        >
+                        ${showTime.getMovie().getTitle()}
+                      </th>
+                      <td class="px-6 py-2">${showTime.getDate()}</td>                    
+                      <td class="px-6 py-2">${showTime.getStartTime()}</td>
+                      <td class="px-6 py-2">${showTime.getPrice()}</td>
+                      <td class="px-6 py-2">${showTime.getRoom().getRoomNumber()}</td>
+                      <td class="px-6 py-2">${showTime.getTickets().size()}/${showTime.getRoom().getMaxSeats()}</td>
 
 
-<!--                        <td class="px-6 py-2">
-                          <a href="<%=root%>/admin/showtimes?action=update&id=${showTime.getId()}" class="font-medium text-blue-500 hover:underline"
-                             >Edit</a
-                          >
-                        </td>-->
-                        <td class="px-6 py-2">
-                          <button data-modal-target="delete_modal" data-showtime-id=${showTime.getId()} 
-                                  data-room-number=${room.getRoomNumber()} data-modal-toggle="delete_modal" 
-                                  class="block text-white focus:ring-4 focus:outline-none font-medium rounded-lg 
-                                  text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" 
-                                  type="button">
-                            Delete
-                          </button>
-                        </td>
-                      </tr>
-                    </c:forEach>
+                      <!--                        <td class="px-6 py-2">
+                                                <a href="<%=root%>/admin/showtimes?action=update&id=${showTime.getId()}" class="font-medium text-blue-500 hover:underline"
+                                                   >Edit</a
+                                                >
+                                              </td>-->
+                      <td class="px-6 py-2">
+                        <button data-modal-target="delete_modal" data-showtime-id="${showTime.getId()}" 
+                                data-modal-toggle="delete_modal" class="block text-white focus:ring-4 
+                                focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 
+                                text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" 
+                                type="button">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
 
                   </c:forEach>
                 </tbody>
@@ -317,7 +314,6 @@
                     <form method="post" action="<%=root%>/admin/showtimes">
                       <input type="hidden" name="action" value="delete"/>
                       <input type="hidden" name="showTimeID" value=""/>                     
-                      <input type="hidden" name="roomNumber" value=""/>
 
                       <button data-modal-hide="delete_modal" type="submit" class="text-white bg-red-600 px-5 py-2.5 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center text-center me-2">
                         Yes, I'm sure
@@ -347,18 +343,15 @@
 
       // get data and save to input field from delete action
       const showTimeDeleteButtons = document.querySelectorAll('[data-showtime-id]');
-      const showTimeIDInput = document.querySelector('[name="showTimeID"]');     
-      const roomNumberInput = document.querySelector('[name="roomNumber"]');
+      const showTimeIDInput = document.querySelector('[name="showTimeID"]');
 
 
       for (let showTimeDeleteButton of showTimeDeleteButtons) {
         showTimeDeleteButton.addEventListener("click", (e) => {
           //Get data room from element
-          let showTimeID = showTimeDeleteButton.getAttribute("data-showtime-id"); 
-          let roomNumber = showTimeDeleteButton.getAttribute("data-room-number");
+          let showTimeID = showTimeDeleteButton.getAttribute("data-showtime-id");
 
           showTimeIDInput.value = showTimeID;
-          roomNumberInput.value = roomNumber;
         });
       }
 

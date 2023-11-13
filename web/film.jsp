@@ -14,12 +14,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="<%=root%>/tailwindcss/tailwindcss.js"></script>
-    <script src="<%=root%>/tailwindcss/tailwindcss-with-forms.js"></script>
-    <script src="<%=root%>/tailwindcss/tailwindcss-with-typography.js"></script>
-    <script src="<%=root%>/tailwindcss/tailwindcss-with-aspect-ratio.js"></script>
-    <script src="<%=root%>/tailwindcss/tailwindcss-with-line-clamp.js"></script>
-    <script src="<%=root%>/tailwindcss/tailwindcss-with-all-plugins.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <!-- component header -->
@@ -80,9 +75,6 @@
             </div>
             <div class="film-genres xl:text-lg xl:font-bold font-medium">
               Genre: ${movie.getGenre()}
-            </div>
-            <div class="film-showtime xl:text-lg xl:font-bold font-medium">
-              Release on Dec 22, 2023
             </div>
             <a
               href="<%=root%>/showing/film/seat?movieID=${movie.getMovieID()}"

@@ -15,8 +15,6 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import org.eclipse.persistence.annotations.UuidGenerator;
 
@@ -30,16 +28,13 @@ public class ShowTime implements Serializable {
   @OneToMany(mappedBy = "showtime")
   private List<Ticket> tickets;
 
-  @ManyToMany
-  @JoinTable(
-          name = "showtime_room",
-          joinColumns = @JoinColumn(name = "showtime_id"),
-          inverseJoinColumns = @JoinColumn(name = "room_id"))
-  private List<Room> rooms;
-
   @ManyToOne
   @JoinColumn(name = "movie_id")
   private Movie movie;
+
+  @ManyToOne
+  @JoinColumn(name = "room_number")
+  private Room room;
 
   @Id
   @UuidGenerator(name = "UUID")
@@ -59,12 +54,12 @@ public class ShowTime implements Serializable {
     this.tickets = tickets;
   }
 
-  public List<Room> getRooms() {
-    return rooms;
+  public Room getRoom() {
+    return room;
   }
 
-  public void setRooms(List<Room> rooms) {
-    this.rooms = rooms;
+  public void setRoom(Room room) {
+    this.room = room;
   }
 
   public Movie getMovie() {
@@ -78,7 +73,7 @@ public class ShowTime implements Serializable {
   public Time getStartTime() {
     return startTime;
   }
-  
+
   public String getStartTimeStr() {
     SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
     String startTimeStr = formatter.format(this.startTime);
