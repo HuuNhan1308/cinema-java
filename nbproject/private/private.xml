@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/data/PopulateDatabase.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/web/login.jsp</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/data/MovieDB.java</file>
             <file>file:/D:/Web_netbean/FinalWeb/web/film.jsp</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/showing/UserFilmServlet.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/data/ShowTimeDB.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/conf/persistence.xml</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/data/CustomerDB.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/business/Movie.java</file>
+            <file>file:/D:/Web_netbean/FinalWeb/src/java/controller/UserLoginServlet.java</file>
         </group>
     </open-files>
 </project-private>

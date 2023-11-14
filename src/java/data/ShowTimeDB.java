@@ -10,6 +10,8 @@ import javax.persistence.TypedQuery;
 import business.ShowTime;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 /**
  *
@@ -66,6 +68,57 @@ public class ShowTimeDB {
     }
   }
 
+  public static List<Date> selectComingDate_byMovieId(String movieID) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT DISTINCT s.date FROM ShowTime s "
+            + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
+            + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime)"
+            + "ORDER BY s.date";
+
+    TypedQuery<Date> q = em.createQuery(qString, Date.class);
+    q.setParameter("movieID", movieID);
+    q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
+    q.setParameter("currentTime", Time.valueOf(LocalTime.now()));
+
+    q.setParameter("nextWeek", Date.valueOf(LocalDate.now().plusWeeks(1)));
+
+    List<Date> dates;
+
+    try {
+      dates = q.getResultList();
+      if (dates == null || dates.isEmpty()) {
+        dates = null;
+      }
+    } finally {
+      em.close();
+    }
+    return dates;
+  }
+
+  public static List<ShowTime> selectComingShowTime_ByMovieID(String movieID) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT DISTINCT s FROM ShowTime s "
+            + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
+            + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime) "
+            + "ORDER BY s.date, s.startTime";
+
+    TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
+    q.setParameter("movieID", movieID);
+    q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
+    q.setParameter("nextWeek", Date.valueOf(LocalDate.now().plusWeeks(1)));
+    q.setParameter("currentTime", Time.valueOf(LocalTime.now()));
+
+    List<ShowTime> showtimes;
+    try {
+      showtimes = q.getResultList();
+      if (showtimes == null || showtimes.isEmpty()) {
+        showtimes = null;
+      }
+    } finally {
+      em.close();
+    }
+    return showtimes;
+  }
 
   public static List<ShowTime> selectShowTimes() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();

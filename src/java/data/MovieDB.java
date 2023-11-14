@@ -3,6 +3,8 @@ package data;
 import business.Movie;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -100,8 +102,11 @@ public class MovieDB {
             + "WHERE (s.date >= :currentDate) OR (s.date = :currentDate AND s.startTime >= :currentTime)";
 
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
-    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
-    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
+//    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
+//    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
+
+    q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
+    q.setParameter("currentTime", Time.valueOf(LocalTime.now()));
 
     List<Movie> movies;
     try {
