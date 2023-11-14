@@ -28,6 +28,8 @@ public class UserLoginServlet extends HttpServlet {
     String password = request.getParameter("password");
     String email = request.getParameter("email");
     String phoneNumber = request.getParameter("phoneNumber");
+    
+    System.out.println(username);
 
     // set value to new customer object
     Customer customer = new Customer();

@@ -13,7 +13,11 @@ import javax.persistence.ManyToOne;
 import java.sql.Time;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.time.format.TextStyle;
 import java.util.List;
+import java.util.Locale;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import org.eclipse.persistence.annotations.UuidGenerator;
@@ -74,6 +78,20 @@ public class ShowTime implements Serializable {
     return startTime;
   }
 
+  public LocalTime getStartTime_ToMinute() {
+    return startTime.toLocalTime().withSecond(0);
+  }
+
+  public LocalTime getEndTime_ToMinute() {
+    LocalTime endTime = startTime.toLocalTime();
+    LocalTime duration = movie.getDuration().toLocalTime();
+    
+    endTime = endTime.plusHours(duration.getHour());
+    endTime = endTime.plusMinutes(duration.getMinute());
+    
+    return endTime;
+  }
+
   public String getStartTimeStr() {
     SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
     String startTimeStr = formatter.format(this.startTime);
@@ -86,6 +104,12 @@ public class ShowTime implements Serializable {
 
   public Date getDate() {
     return date;
+  }
+  
+  public String getDayOfWeek() {
+    return date.toLocalDate()
+            .getDayOfWeek()
+            .getDisplayName(TextStyle.FULL, Locale.getDefault());
   }
 
   public String getDateStr() {

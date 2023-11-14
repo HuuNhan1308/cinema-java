@@ -5,7 +5,9 @@
 package controller.showing;
 
 import business.Movie;
+import business.ShowTime;
 import data.MovieDB;
+import data.ShowTimeDB;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -13,6 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 /**
  *
@@ -24,13 +29,19 @@ public class UserFilmServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    
+
     String url = "/film.jsp";
     String movieID = request.getParameter("movieID");
-    
+
     Movie movie = MovieDB.selectMovie(movieID);
 
+    List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
+    List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
+
     request.setAttribute("movie", movie);
+    request.setAttribute("comingDates", comingDates);
+    request.setAttribute("comingShowTimes", comingShowTimes);
+
     request.getRequestDispatcher(url).forward(request, response);
   }
 

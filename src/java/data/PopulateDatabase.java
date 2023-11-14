@@ -25,6 +25,8 @@ import business.Room;
 import business.ShowTime;
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import javax.persistence.TypedQuery;
@@ -76,17 +78,7 @@ public class PopulateDatabase {
 
     emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
 
-    String qString = "SELECT DISTINCT s.movie FROM ShowTime s "
-            + "WHERE s.date >= :currentDate AND s.startTime >= :currentTime";
 
-    TypedQuery<Movie> q = emf.createEntityManager()
-            .createQuery(qString, Movie.class);
-    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
-    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
-
-    System.out.println(q.getResultList().get(0).getTitle());
-
-    System.out.println("Hello world");
 
     //        set movie
 //    Movie myMovie = new Movie();

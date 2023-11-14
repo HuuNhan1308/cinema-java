@@ -1,3 +1,8 @@
+<%@ page import="java.time.format.TextStyle" %>
+<%@ page import="java.util.Locale" %>
+<%@ page import="java.sql.Date" %>
+
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%
@@ -6,6 +11,8 @@
   // delete ".jsp"
   String URI = request.getRequestURI();
   URI = URI.substring(0, URI.length() - 4);
+
+
 %>
 
 <!DOCTYPE html>
@@ -23,7 +30,9 @@
     </jsp:include>
 
     <!--content-->
-    <div class="film-wrapper">
+    <div class="film-wrapper pb-[60px]">
+
+      <!--Show movie-->
       <div class="bg-slate-700 text-white py-14">
         <div class="film-wrapper-content md:mx-64 mx:-32 flex gap-16">
           <div class="film-thumbnail border-2 border-white rounded-lg">
@@ -85,177 +94,110 @@
           </div>
         </div>
       </div>
+
+      <!--Showtime--> 
       <div id="show-time-movie" class="xl:mx-64 mx-32 mt-7">
         <div class="show-time-detail">
           <h1 class="xl:text-3xl text-2xl font-bold mb-3">
             Showtime ${movie.getTitle()}
           </h1>
           <div class="border-2 rounded p-3 flex flex-col gap-4">
-            <div
-              class="show-days show-rooms grid grid-cols-7 text-center gap-4"
-              >
-              <input
-                type="radio"
-                id="day1"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day1"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Monday <br />
-                (11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day2"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day2"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Tuesday <br />(11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day3"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day3"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Wednesday <br />
-                (11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day4"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day4"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Thursday <br />(11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day5"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day5"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Friday <br />(11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day6"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day6"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Saturday <br />(11-10-2023)
-              </label>
-              <input
-                type="radio"
-                id="day7"
-                name="group-day"
-                class="day-btn hidden"
-                />
-              <label
-                for="day7"
-                class="border-2 rounded xl:p-3 cursor-pointer xl:font-bold font-semmibold"
-                >
-                Sunday<br />(11-10-2023)
-              </label>
+            <!--Choose date-->
+            <div class="show-days show-rooms grid grid-cols-7 text-center gap-4">
+              <c:forEach var="comingDate" items="${comingDates}">
+                <c:set var = "dayOfWeek" value = "${comingDate.toLocalDate().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault())}"/>
+
+                <div>
+                  <input type="radio" id="${dayOfWeek}" name="dayOfWeek" value="${comingDate}" class="hidden peer">
+                  <label for="${dayOfWeek}" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold 
+                         border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 
+                         hover:text-gray-700 hover:bg-gray-100">                           
+                    <div class="block">
+                      ${dayOfWeek} <br />
+                      (${comingDate})
+                    </div>
+                  </label>
+                </div>
+              </c:forEach>
+              <!--              <input type="radio" id="hosting-small" name="hosting" value="hosting-small" class="hidden peer">
+                            <label for="hosting-small" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold 
+                                   border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 
+                                   hover:text-gray-700 hover:bg-gray-100 ">                           
+                              <div class="block">
+                                Monday <br />
+                                (11-10-2023)
+                              </div>
+                            </label>-->
             </div>
+
+            <!--Choose Time-->
             <div class="show-times flex flex-col">
               <div class="text-xl font-bold mb-3">2D</div>
               <div class="grid grid-cols-5 text-center gap-2">
-                <input
-                  type="radio"
-                  id="time1"
-                  name="group-time"
-                  class="time-btn hidden"
-                  />
-                <label
-                  for="time1"
-                  class="border-2 rounded py-3 cursor-pointer font-bold"
-                  >
-                  <span class="text-xl"> 13:10 </span> ~ 15:22
-                </label>
-
-                <input
-                  type="radio"
-                  id="time2"
-                  name="group-time"
-                  class="time-btn hidden"
-                  />
-                <label
-                  for="time2"
-                  class="border-2 rounded py-3 cursor-pointer font-bold"
-                  >
-                  <span class="text-xl"> 13:10 </span> ~ 15:22
-                </label>
-
-                <input
-                  type="radio"
-                  id="time3"
-                  name="group-time"
-                  class="time-btn hidden"
-                  />
-                <label
-                  for="time3"
-                  class="border-2 rounded py-3 cursor-pointer font-bold"
-                  >
-                  <span class="text-xl"> 13:10 </span> ~ 15:22
-                </label>
-
-                <input
-                  type="radio"
-                  id="time4"
-                  name="group-time"
-                  class="time-btn hidden"
-                  />
-                <label
-                  for="time4"
-                  class="border-2 rounded py-3 cursor-pointer font-bold"
-                  >
-                  <span class="text-xl"> 13:10 </span> ~ 15:22
-                </label>
-
-                <input
-                  type="radio"
-                  id="time5"
-                  name="group-time"
-                  class="time-btn hidden"
-                  />
-                <label
-                  for="time5"
-                  class="border-2 rounded py-3 cursor-pointer font-bold"
-                  >
-                  <span class="text-xl"> 13:10 </span> ~ 15:22
-                </label>
+                <c:forEach var="comingShowTime" items="${comingShowTimes}" varStatus="loop">           
+                  <div>
+                    <input
+                      type="radio"
+                      id="time_${loop.index + 1}"
+                      name="time"
+                      value="${comingShowTime.getStartTime()}"
+                      -data-day-of-week="${comingShowTime.getDayOfWeek()}"
+                      class="hidden peer"
+                      />
+                    <label
+                      for="time_${loop.index + 1}"
+                      class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 
+                      peer-checked:text-blue-600 hover:text-gray-700 hover:bg-gray-100">
+                      <span class="text-xl"> ${comingShowTime.getStartTime_ToMinute()} </span> ~ ${comingShowTime.getEndTime_ToMinute()}
+                    </label>
+                  </div>
+                </c:forEach>
+                <!--                <div>
+                                  <input
+                                    type="radio"
+                                    id="time_1"
+                                    name="time"
+                                    value=""
+                                    -data-dayOfWeek="Monday"
+                                    class="hidden peer"
+                                    />
+                                  <label
+                                    for="time_1"
+                                    class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 peer-checked:text-blue-600 
+                                    hover:text-gray-700 hover:bg-gray-100">
+                                    <span class="text-xl"> 13:50 </span> ~ 16:00
+                                  </label>
+                                </div>-->
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
-
+          
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+    
+    <script>
+      const dateInputs = [...document.querySelectorAll("[name='dayOfWeek']")];
+      const timeInputs = [...document.querySelectorAll("[name='time']")];
+      let dayOfWeek_atDateInput, dayOfWeek_atTimeInput;
+      
+      dateInputs.forEach((dateInput) => {
+        dateInput.addEventListener("click", (e) => {
+          dayOfWeek_atDateInput = e.target.getAttribute("id");
+          
+          // show times by day of week hide times not in day of week
+          timeInputs.forEach((timeInput) => {
+            dayOfWeek_atTimeInput = timeInput.getAttribute("-data-day-of-week");
+            
+            if(dayOfWeek_atDateInput === dayOfWeek_atTimeInput)
+              timeInput.parentElement.style.display = "block";
+            else
+              timeInput.parentElement.style.display = "none";
+          });
+        });
+      });
+    </script>
 
   </body>
 </html>

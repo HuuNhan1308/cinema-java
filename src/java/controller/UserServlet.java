@@ -46,9 +46,6 @@ public class UserServlet extends HttpServlet {
           throws ServletException, IOException {
     HttpSession session = request.getSession();
     
-    Customer a = (Customer) session.getAttribute("customer");
-    System.out.println(a);
-    
     //Check cookie and assign to session
     Cookie[] cookies = request.getCookies();
     String customerId = CookieUtil.getCookieValue(cookies, "customerId");
@@ -91,8 +88,6 @@ public class UserServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     String url = "/index.jsp";
-
-    System.out.println("do post");
 
     //add balance
     HttpSession session = request.getSession();
