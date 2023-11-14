@@ -1,5 +1,6 @@
 package data;
 
+import business.Movie;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -7,6 +8,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import business.ShowTime;
+import java.sql.Date;
+import java.sql.Time;
 
 /**
  *
@@ -62,6 +65,7 @@ public class ShowTimeDB {
       em.close();
     }
   }
+
 
   public static List<ShowTime> selectShowTimes() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();

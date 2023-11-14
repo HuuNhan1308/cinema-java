@@ -22,9 +22,12 @@ import javax.persistence.Persistence;
 import business.Customer;
 import business.Movie;
 import business.Room;
+import business.ShowTime;
+import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_DRIVER;
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_PASSWORD;
@@ -72,6 +75,19 @@ public class PopulateDatabase {
     props.put(JDBC_PASSWORD, "cs0d8T87UEpP11wQ5Ce4zlJ05MMWCm4t");
 
     emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
+
+    String qString = "SELECT DISTINCT s.movie FROM ShowTime s "
+            + "WHERE s.date >= :currentDate AND s.startTime >= :currentTime";
+
+    TypedQuery<Movie> q = emf.createEntityManager()
+            .createQuery(qString, Movie.class);
+    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
+    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
+
+    System.out.println(q.getResultList().get(0).getTitle());
+
+    System.out.println("Hello world");
+
     //        set movie
 //    Movie myMovie = new Movie();
 //    myMovie.setMainActor("Haruma Miura");
@@ -82,7 +98,6 @@ public class PopulateDatabase {
 //    myMovie.setImg("AOT.png");
 //
 //    insertMovie(myMovie);
-
     //        set Room
     //        Room myRoom = new Room();
     //        myRoom.setMaxSeats(40);

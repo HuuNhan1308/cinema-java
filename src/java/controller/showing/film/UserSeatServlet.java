@@ -4,7 +4,6 @@
  */
 package controller.showing.film;
 
-import controller.showing.*;
 import business.Movie;
 import data.MovieDB;
 import java.io.IOException;

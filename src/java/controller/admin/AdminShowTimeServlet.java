@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.util.List;
 import java.sql.Time;
 import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -82,8 +80,7 @@ public class AdminShowTimeServlet extends HttpServlet {
     showTime.setMovie(movie);
 
     Room room = RoomDB.selectRoom(roomNumber);
-    List<Room> rooms = List.of(room);
-    showTime.setRooms(rooms);
+    showTime.setRoom(room);
 
     ShowTimeDB.insert(showTime);
     //edirect to movies page
@@ -104,13 +101,11 @@ public class AdminShowTimeServlet extends HttpServlet {
   protected void deleteShowTime(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
     String showTimeID = request.getParameter("showTimeID");
-    int roomNumber = Integer.parseInt(request.getParameter("roomNumber"));
     
-    //handle delete showtime and room specifically
+    //handle delete showtime
     ShowTime showTime = ShowTimeDB.selectShowTime(showTimeID);
-    Room room = RoomDB.selectRoom(roomNumber);
-
     ShowTimeDB.delete(showTime);
+
     //redirect to movies page
     String showTimePage = request.getRequestURI();
     response.sendRedirect(showTimePage);
