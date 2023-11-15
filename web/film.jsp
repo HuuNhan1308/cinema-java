@@ -144,12 +144,13 @@
                       -data-day-of-week="${comingShowTime.getDayOfWeek()}"
                       class="hidden peer"
                       />
-                    <label
+                    <a
                       for="time_${loop.index + 1}"
+                      href="<%=root%>/showing/film/seat?showtimeId=${comingShowTime.getId()}"
                       class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 
                       peer-checked:text-blue-600 hover:text-gray-700 hover:bg-gray-100">
                       <span class="text-xl"> ${comingShowTime.getStartTime_ToMinute()} </span> ~ ${comingShowTime.getEndTime_ToMinute()}
-                    </label>
+                    </a>
                   </div>
                 </c:forEach>
                 <!--                <div>

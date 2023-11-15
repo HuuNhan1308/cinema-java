@@ -4,8 +4,8 @@
  */
 package controller.showing.film;
 
-import business.Movie;
-import data.MovieDB;
+import business.Ticket;
+import data.ShowTimeSeatDB;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -26,11 +26,11 @@ public class UserSeatServlet extends HttpServlet {
           throws ServletException, IOException {
     
     String url = "/seat.jsp";
-    String movieID = request.getParameter("movieID");
+    String showtimeId = request.getParameter("showtimeId");
+    List<Ticket> choosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
+    request.setAttribute("choosenSeats", choosenSeats);
+    System.out.println(choosenSeats.size());
     
-    Movie movie = MovieDB.selectMovie(movieID);
-
-    request.setAttribute("movie", movie);
     request.getRequestDispatcher(url).forward(request, response);
   }
 
