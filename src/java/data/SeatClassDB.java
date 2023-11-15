@@ -108,4 +108,18 @@ public class SeatClassDB {
         }
         return seatClasses;
     }
+    
+//    public static List<int> selectedSeats(){
+//        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+//        String qString = "SELECT s FROM SeatClass s";
+//        TypedQuery<SeatClass> q = em.createQuery(qString, SeatClass.class);
+//        List<int> selectedSeats;
+//        try {
+//            
+//        } finally {
+//            em.close();
+//        }
+//        
+//        return selectedSeats;
+//    }
 }
