@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/src/java/business/Ticket.java</file>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/web/film.jsp</file>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/src/java/controller/showing/film/UserSeatServlet.java</file>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/src/java/data/ShowTimeSeatDB.java</file>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/web/ticket.jsp</file>
-            <file>file:/C:/Users/QuangTrieu's%20PC/OneDrive/Desktop/cinema-java/web/seat.jsp</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/web/showing.jsp</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/src/java/controller/UserTicketServlet.java</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/web/login.jsp</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/src/java/controller/showing/UserFilmServlet.java</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/src/java/controller/UserShowingServlet.java</file>
+            <file>file:/C:/Users/LongVu/Desktop/cinema-java/web/Component/header.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -61,7 +61,7 @@ public class TicketDB {
         }
     }
 
-    public static List<Ticket> selectTickets() {
+    public static List<Ticket> selectTickets(String customerId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT t FROM Ticket t";
         TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);
