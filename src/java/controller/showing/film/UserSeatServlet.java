@@ -26,19 +26,20 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "UserSeatServlet", urlPatterns = {"/showing/film/seat"})
+@WebServlet(name = "UserSeatServlet", urlPatterns = { "/showing/film/seat" })
 public class UserSeatServlet extends HttpServlet {
 
     protected void bookingSeats(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "/seat.jsp";
 
-//        get seats
+        // get seats
         String seatNumbers = request.getParameter("seatNumbers");
         String[] seatNumbersArray = seatNumbers.split(",");
         int[] seatNumbersInt = new int[seatNumbersArray.length];
@@ -47,21 +48,19 @@ public class UserSeatServlet extends HttpServlet {
 
         }
 
-//        get customer
-        Customer customer = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("customerId")) {
-                    customer = CustomerDB.selectCustomer_byId(cookie.getValue());
-                }
-            }
+        // get customer
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        if (customer == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         }
+        // get tickets
 
         List<Ticket> tickets = new ArrayList<Ticket>();
         String showtimeId = request.getParameter("showtimeId");
 
-//      create invoice
+        // create invoice
         String invoiceId = UUID.randomUUID().toString();
         Invoice invoice = new Invoice();
         invoice.setCustomer(customer);
@@ -69,7 +68,7 @@ public class UserSeatServlet extends HttpServlet {
         invoice.setBoughDate((java.sql.Date) date);
         invoice.setInvoiceID(invoiceId);
 
-//      persist the invoice first
+        // persist the invoice first
         InvoiceDB.insert(invoice);
 
         for (int i = 0; i < seatNumbersInt.length; i++) {
@@ -93,11 +92,11 @@ public class UserSeatServlet extends HttpServlet {
             TicketDB.insert(ticket);
         }
 
-//      update the invoice with the tickets
+        // update the invoice with the tickets
         invoice.setTickets(tickets);
         InvoiceDB.update(invoice);
 
-//      check condition tickets and balance
+        // check condition tickets and balance
         double total = 0;
         SeatClass seatClass;
         List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
@@ -123,8 +122,7 @@ public class UserSeatServlet extends HttpServlet {
 
         // get customer
         // Check if customer is not null before redirecting
-        if (customer
-                != null) {
+        if (customer != null) {
             request.getRequestDispatcher(url).forward(request, response);
         } else {
             response.sendRedirect(request.getRequestURI());

@@ -29,113 +29,114 @@ import org.eclipse.persistence.annotations.UuidGenerator;
 @Entity
 public class ShowTime implements Serializable {
 
-  @OneToMany(mappedBy = "showtime")
-  private List<Ticket> tickets;
+    @OneToMany(mappedBy = "showtime")
+    private List<Ticket> tickets;
 
-  @ManyToOne
-  @JoinColumn(name = "movie_id")
-  private Movie movie;
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 
-  @ManyToOne
-  @JoinColumn(name = "room_number")
-  private Room room;
+    @ManyToOne
+    @JoinColumn(name = "room_number")
+    private Room room;
 
-  @Id
-  @UuidGenerator(name = "UUID")
-  @GeneratedValue(generator = "UUID")
-  private String id;
-  @Column(name = "show_date")
-  private Date date;
-  @Column(name = "start_time")
-  private Time startTime;
-  private int price;
+    @Id
+    @UuidGenerator(name = "UUID")
+    @GeneratedValue(generator = "UUID")
+    @Column(name = "showtime_id")
+    private String showtimeId;
+    @Column(name = "show_date")
+    private Date date;
+    @Column(name = "start_time")
+    private Time startTime;
+    private int price;
 
-  public List<Ticket> getTickets() {
-    return tickets;
-  }
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
 
-  public void setTickets(List<Ticket> tickets) {
-    this.tickets = tickets;
-  }
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 
-  public Room getRoom() {
-    return room;
-  }
+    public String getShowtimeId() {
+        return showtimeId;
+    }
 
-  public void setRoom(Room room) {
-    this.room = room;
-  }
+    public void setShowtimeId(String showtimeId) {
+        this.showtimeId = showtimeId;
+    }
 
-  public Movie getMovie() {
-    return movie;
-  }
+    public Room getRoom() {
+        return room;
+    }
 
-  public void setMovie(Movie movie) {
-    this.movie = movie;
-  }
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
-  public Time getStartTime() {
-    return startTime;
-  }
+    public Movie getMovie() {
+        return movie;
+    }
 
-  public LocalTime getStartTime_ToMinute() {
-    return startTime.toLocalTime().withSecond(0);
-  }
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
 
-  public LocalTime getEndTime_ToMinute() {
-    LocalTime endTime = startTime.toLocalTime();
-    LocalTime duration = movie.getDuration().toLocalTime();
+    public Time getStartTime() {
+        return startTime;
+    }
 
-    endTime = endTime.plusHours(duration.getHour());
-    endTime = endTime.plusMinutes(duration.getMinute());
+    public LocalTime getStartTime_ToMinute() {
+        return startTime.toLocalTime().withSecond(0);
+    }
 
-    return endTime;
-  }
+    public LocalTime getEndTime_ToMinute() {
+        LocalTime endTime = startTime.toLocalTime();
+        LocalTime duration = movie.getDuration().toLocalTime();
 
-  public String getStartTimeStr() {
-    SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
-    String startTimeStr = formatter.format(this.startTime);
-    return startTimeStr;
-  }
+        endTime = endTime.plusHours(duration.getHour());
+        endTime = endTime.plusMinutes(duration.getMinute());
 
-  public void setStartTime(Time starTime) {
-    this.startTime = starTime;
-  }
+        return endTime;
+    }
 
-  public Date getDate() {
-    return date;
-  }
+    public String getStartTimeStr() {
+        SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+        String startTimeStr = formatter.format(this.startTime);
+        return startTimeStr;
+    }
 
-  public String getDayOfWeek() {
-    return date.toLocalDate()
-        .getDayOfWeek()
-        .getDisplayName(TextStyle.FULL, Locale.getDefault());
-  }
+    public void setStartTime(Time starTime) {
+        this.startTime = starTime;
+    }
 
-  public String getDateStr() {
-    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-    String strDate = formatter.format(this.date);
-    return strDate;
-  }
+    public Date getDate() {
+        return date;
+    }
 
-  public void setDate(Date date) {
-    this.date = date;
-  }
+    public String getDayOfWeek() {
+        return date.toLocalDate()
+                .getDayOfWeek()
+                .getDisplayName(TextStyle.FULL, Locale.getDefault());
+    }
 
-  public int getPrice() {
-    return price;
-  }
+    public String getDateStr() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        String strDate = formatter.format(this.date);
+        return strDate;
+    }
 
-  public void setPrice(int price) {
-    this.price = price;
-  }
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-  public String getId() {
-    return id;
-  }
+    public int getPrice() {
+        return price;
+    }
 
-  public void setId(String id) {
-    this.id = id;
-  }
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
 }
