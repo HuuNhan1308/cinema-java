@@ -93,4 +93,23 @@ public class InvoiceDB {
         }
         return invoices;
     }
+
+    public static List<Invoice> selectInvoices(String customerId) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT i FROM Invoice i WHERE i.customer.customerId = :customerId";
+        TypedQuery<Invoice> q = em.createQuery(qString, Invoice.class);
+
+        q.setParameter("customerId", customerId);
+
+        List<Invoice> invoices;
+        try {
+            invoices = q.getResultList();
+            if (invoices == null || invoices.isEmpty()) {
+                invoices = null;
+            }
+        } finally {
+            em.close();
+        }
+        return invoices;
+    }
 }
