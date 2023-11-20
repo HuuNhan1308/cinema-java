@@ -4,6 +4,7 @@
  */
 package controller;
 
+import business.Customer;
 import business.Invoice;
 import data.InvoiceDB;
 import java.io.IOException;
@@ -14,8 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "UserTicketServlet", urlPatterns = { "/ticket" })
+@WebServlet(name = "UserTicketServlet", urlPatterns = {"/ticket"})
 public class UserTicketServlet extends HttpServlet {
 
     @Override
@@ -25,25 +27,18 @@ public class UserTicketServlet extends HttpServlet {
         String url = "/ticket.jsp";
 
         // Get all cookies
-        Cookie[] cookies = request.getCookies();
         String customerId = null;
 
         // If there are no cookies, this would be null
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("customerId")) {
-                    customerId = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        if (customerId == null) {
-            url = "/login.jsp";
-            request.getRequestDispatcher(url).forward(request, response);
+        HttpSession session = request.getSession();
+        Customer customer = (Customer) session.getAttribute("customer");
+        if (customer == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
         }
 
         // Select all ticket with this customerId
-        List<Invoice> invoices = InvoiceDB.selectInvoices(customerId);
+        List<Invoice> invoices = InvoiceDB.selectInvoices(customer.getCustomerId());
 
         // Query all ticket with this customerId
         request.setAttribute("invoices", invoices);
