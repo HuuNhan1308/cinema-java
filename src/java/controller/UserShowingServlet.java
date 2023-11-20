@@ -5,12 +5,8 @@
 package controller;
 
 import business.Movie;
-import business.ShowTime;
 import data.MovieDB;
-import data.ShowTimeDB;
 import java.io.IOException;
-import java.sql.Time;
-import java.sql.Date;
 
 import java.util.List;
 import javax.servlet.ServletException;

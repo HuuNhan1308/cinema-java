@@ -14,13 +14,8 @@
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <script src="./tailwindcss/tailwindcss.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-forms.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-typography.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-aspect-ratio.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-line-clamp.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-all-plugins.js"></script>
+        <title>Ticket</title>
+        <script src="<%=root%>/tailwind/tailwind.js"></script>
       </head>
 
       <body>
@@ -124,7 +119,7 @@
         </div>
 
 
-        <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+        <script src="<%=root%>/tailwind/flowbite.min.js"></script>
       </body>
 
       </html>

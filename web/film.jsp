@@ -12,7 +12,6 @@
   String URI = request.getRequestURI();
   URI = URI.substring(0, URI.length() - 4);
 
-
 %>
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="<%=root%>/tailwind/tailwind.js"></script>
   </head>
   <body>
     <!-- component header -->
@@ -178,7 +177,7 @@
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+    <script src="<%=root%>/tailwind/flowbite.min.js"></script>
 
     <script>
       const dateInputs = [...document.querySelectorAll("[name='dayOfWeek']")];

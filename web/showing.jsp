@@ -14,12 +14,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Showing</title>
-        <script src="./tailwindcss/tailwindcss.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-forms.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-typography.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-aspect-ratio.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-line-clamp.js"></script>
-        <script src="./tailwindcss/tailwindcss-with-all-plugins.js"></script>
+        <script src="<%=root%>/tailwind/tailwind.js"></script>
     </head>
 
     <body>
@@ -86,7 +81,7 @@
             </div>
         </footer>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
+        <script src="<%=root%>/tailwind/flowbite.min.js"></script>
     </div>
 </body>
 

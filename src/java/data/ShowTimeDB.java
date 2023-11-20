@@ -1,6 +1,5 @@
 package data;
 
-import business.Movie;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

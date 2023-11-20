@@ -1,13 +1,9 @@
 package data;
 
 import business.Ticket;
-import business.Customer;
 import business.SeatClass;
 import javax.persistence.EntityManager;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 /*

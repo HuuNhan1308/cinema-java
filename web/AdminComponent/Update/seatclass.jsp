@@ -1,9 +1,3 @@
-<%-- 
-    Document   : update
-    Created on : Nov 11, 2023, 10:38:47 AM
-    Author     : Admin
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <% 

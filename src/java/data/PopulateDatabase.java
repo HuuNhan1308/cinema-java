@@ -21,15 +21,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import business.Customer;
 import business.Movie;
-import business.Room;
-import business.ShowTime;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.List;
-import javax.persistence.TypedQuery;
 
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_DRIVER;
 import static org.eclipse.persistence.config.EntityManagerProperties.JDBC_PASSWORD;
@@ -76,7 +67,7 @@ public class PopulateDatabase {
     props.put(JDBC_USER, "admin");
     props.put(JDBC_PASSWORD, "cs0d8T87UEpP11wQ5Ce4zlJ05MMWCm4t");
 
-    emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
+    emf = Persistence.createEntityManagerFactory("CinemaPU", props);
 
     // set movie
     // Movie myMovie = new Movie();
