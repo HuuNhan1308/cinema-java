@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import org.eclipse.persistence.annotations.UuidGenerator;
 import java.sql.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
@@ -24,7 +25,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Invoice implements Serializable {
 
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.PERSIST)
     private List<Ticket> tickets;
     
     @ManyToOne
@@ -69,6 +70,7 @@ public class Invoice implements Serializable {
     public void setBoughDate(Date boughDate) {
         this.boughtDate = boughDate;
     }
-    
-    
+
+
+
 }
