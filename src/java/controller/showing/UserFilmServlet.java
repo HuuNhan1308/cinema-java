@@ -4,8 +4,10 @@
  */
 package controller.showing;
 
+import business.Customer;
 import business.Movie;
 import business.ShowTime;
+import data.CustomerDB;
 import data.MovieDB;
 import data.ShowTimeDB;
 import java.io.IOException;
@@ -18,37 +20,54 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import javax.servlet.http.Cookie;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "UserFilmServlet", urlPatterns = { "/showing/film" })
+@WebServlet(name = "UserFilmServlet", urlPatterns = {"/showing/film"})
 public class UserFilmServlet extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-    String url = "/film.jsp";
-    String movieID = request.getParameter("movieID");
+        String url = "/film.jsp";
 
-    Movie movie = MovieDB.selectMovie(movieID);
+        String movieID = request.getParameter("movieID");
 
-    List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
-    List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
+        Movie movie = MovieDB.selectMovie(movieID);
 
-    request.setAttribute("movie", movie);
-    request.setAttribute("comingDates", comingDates);
-    request.setAttribute("comingShowTimes", comingShowTimes);
+        List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
+        List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
 
-    request.getRequestDispatcher(url).forward(request, response);
-  }
+        request.setAttribute("movie", movie);
+        request.setAttribute("comingDates", comingDates);
+        request.setAttribute("comingShowTimes", comingShowTimes);
 
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+        Customer customer = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("customerId")) {
+                    customer = CustomerDB.selectCustomer_byId(cookie.getValue());
+                }
+            }
+        }
+        request.setAttribute("cusomer", customer);
+//        if (customerId == null) {
+//            url = "/login.jsp";
+////            request.getRequestDispatcher(url).forward(request, response);
+//        }
 
-  }
+        request.getRequestDispatcher(url).forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
 
 }
