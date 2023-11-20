@@ -85,12 +85,12 @@
             <div class="film-genres xl:text-lg xl:font-bold font-medium">
               Genre: ${movie.getGenre()}
             </div>
-            <a
+<!--            <a
               href="<%=root%>/showing/film/seat?movieID=${movie.getMovieID()}"
               class="book-tickets xl:py-3 xl:px-8 bg-red-600 uppercase xl:font-bold py-2 px-4 font-medium my-5 rounded shadow-lg hover:shadow-white hover:cursor-pointer"
               >
               book tickets
-            </a>
+            </a>-->
           </div>
         </div>
       </div>
