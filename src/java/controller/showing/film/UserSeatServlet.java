@@ -91,8 +91,10 @@ public class UserSeatServlet extends HttpServlet {
             total += ticket.getShowtime().getPrice() * seatClass.getFactor();
         }
 
+        List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
+
         // Check if customer has enough balance
-        if (customer.getBalance() >= total) {
+        if (customer.getBalance() >= total || chosenSeats != tickets) {
             InvoiceDB.insert(invoice);
             double newBalance = customer.getBalance() - total;
             CustomerDB.updateBalance(customer, newBalance);
@@ -106,6 +108,7 @@ public class UserSeatServlet extends HttpServlet {
             tickets.clear();
             InvoiceDB.delete(invoice);
             session.setAttribute("state", "book_fail");
+            return;
         }
 
         // Forward to the same page
