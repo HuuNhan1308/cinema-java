@@ -25,7 +25,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Invoice implements Serializable {
 
-    @OneToMany(mappedBy = "invoice", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "invoice")
     private List<Ticket> tickets;
     
     @ManyToOne

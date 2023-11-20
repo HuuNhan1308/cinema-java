@@ -17,6 +17,7 @@ import data.ShowTimeDB;
 import data.TicketDB;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Date;
 import java.util.UUID;
@@ -31,101 +32,85 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "UserSeatServlet", urlPatterns = { "/showing/film/seat" })
+@WebServlet(name = "UserSeatServlet", urlPatterns = {"/showing/film/seat"})
 public class UserSeatServlet extends HttpServlet {
 
     protected void bookingSeats(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = "/seat.jsp";
 
-        // get seats
-        String seatNumbers = request.getParameter("seatNumbers");
-        String[] seatNumbersArray = seatNumbers.split(",");
-        int[] seatNumbersInt = new int[seatNumbersArray.length];
-        for (int i = 0; i < seatNumbersArray.length; i++) {
-            seatNumbersInt[i] = Integer.parseInt(seatNumbersArray[i]);
+        // Get seats
+        String[] seatNumbersArray = request.getParameter("seatNumbers").split(",");
+        int[] seatNumbersInt = Arrays.stream(seatNumbersArray).mapToInt(Integer::parseInt).toArray();
 
-        }
-
-        // get customer
+        // Get customer
         HttpSession session = request.getSession();
         Customer customer = (Customer) session.getAttribute("customer");
         if (customer == null) {
             response.sendRedirect(request.getContextPath() + "/login");
             return;
         }
-        // get tickets
 
-        List<Ticket> tickets = new ArrayList<Ticket>();
+        // Get showtimeId
         String showtimeId = request.getParameter("showtimeId");
 
-        // create invoice
+        // Create invoice
         String invoiceId = UUID.randomUUID().toString();
         Invoice invoice = new Invoice();
         invoice.setCustomer(customer);
-        Date date = java.sql.Date.valueOf(java.time.LocalDate.now());
-        invoice.setBoughDate((java.sql.Date) date);
+        invoice.setBoughDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
         invoice.setInvoiceID(invoiceId);
 
-        // persist the invoice first
+        // Persist the invoice first
         InvoiceDB.insert(invoice);
 
-        for (int i = 0; i < seatNumbersInt.length; i++) {
+        // Create tickets
+        List<Ticket> tickets = new ArrayList<>();
+        for (int seatNumber : seatNumbersInt) {
             String ticketId = UUID.randomUUID().toString();
             Ticket ticket = new Ticket();
             ticket.setTicketID(ticketId);
-            ticket.setSeatNumber(seatNumbersInt[i]);
+            ticket.setSeatNumber(seatNumber);
             ticket.setInvoice(invoice);
             ticket.setShowtime(ShowTimeDB.selectShowTime(showtimeId));
-            SeatClass seatClass;
-            if (seatNumbersInt[i] >= 31 && seatNumbersInt[i] <= 60) {
-                seatClass = SeatClassDB.selectSeatClass(3);
-            } else {
-                seatClass = SeatClassDB.selectSeatClass(2);
-            }
+
+            // Determine seat class based on seat number
+            int seatClassId = (seatNumber >= 31 && seatNumber <= 60) ? 3 : 2;
+            SeatClass seatClass = SeatClassDB.selectSeatClass(seatClassId);
             ticket.setSeatClass(seatClass);
+
             tickets.add(ticket);
         }
 
-        for (Ticket ticket : tickets) {
-            TicketDB.insert(ticket);
-        }
-
-        // update the invoice with the tickets
-        invoice.setTickets(tickets);
-        InvoiceDB.update(invoice);
-
-        // check condition tickets and balance
+        // Insert tickets
+        // Update the invoice with the tickets
+        // Calculate total cost
         double total = 0;
-        SeatClass seatClass;
-        List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
-
         for (Ticket ticket : tickets) {
-            seatClass = ShowTimeSeatDB.getSeatClass(ticket.getSeatClass().getId());
+            SeatClass seatClass = ShowTimeSeatDB.getSeatClass(ticket.getSeatClass().getId());
             total += ticket.getShowtime().getPrice() * seatClass.getFactor();
         }
 
+        // Check if customer has enough balance
         if (customer.getBalance() >= total) {
             InvoiceDB.insert(invoice);
             double newBalance = customer.getBalance() - total;
             CustomerDB.updateBalance(customer, newBalance);
-            if (tickets != chosenSeats) {
-                for (Ticket ticket : tickets) {
-                    TicketDB.insert(ticket);
-                }
+            for (Ticket ticket : tickets) {
+                TicketDB.insert(ticket);
             }
-
+            invoice.setTickets(tickets);
+            InvoiceDB.update(invoice);
+            session.setAttribute("state", "book_success");
         } else {
             tickets.clear();
+            InvoiceDB.delete(invoice);
+            session.setAttribute("state", "book_fail");
         }
 
-        // get customer
-        // Check if customer is not null before redirecting
-        if (customer != null) {
-            request.getRequestDispatcher(url).forward(request, response);
-        } else {
-            response.sendRedirect(request.getRequestURI());
-        }
+        // Forward to the same page
+        response.sendRedirect(request.getHeader("Referer"));
+
     }
 
     @Override
@@ -134,11 +119,11 @@ public class UserSeatServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = "/seat.jsp";
         String showtimeId = request.getParameter("showtimeId");
-        
+
         if (showtimeId != null && !showtimeId.isEmpty()) {
             ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
-            List<Ticket> chosenSeats = showtime.getTickets();
-            
+            List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
+
             if (showtime != null) {
                 request.setAttribute("showtime", showtime);
                 request.setAttribute("chosenSeats", chosenSeats);
