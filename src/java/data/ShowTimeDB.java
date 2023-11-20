@@ -52,7 +52,7 @@ public class ShowTimeDB {
   public static ShowTime selectShowTime(String showTimeID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT s FROM ShowTime s "
-            + "WHERE s.id = :showTimeID";
+        + "WHERE s.id = :showTimeID";
 
     TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
     q.setParameter("showTimeID", showTimeID);
@@ -71,9 +71,9 @@ public class ShowTimeDB {
   public static List<Date> selectComingDate_byMovieId(String movieID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT DISTINCT s.date FROM ShowTime s "
-            + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
-            + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime)"
-            + "ORDER BY s.date";
+        + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
+        + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime)"
+        + "ORDER BY s.date";
 
     TypedQuery<Date> q = em.createQuery(qString, Date.class);
     q.setParameter("movieID", movieID);
@@ -98,9 +98,9 @@ public class ShowTimeDB {
   public static List<ShowTime> selectComingShowTime_ByMovieID(String movieID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT DISTINCT s FROM ShowTime s "
-            + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
-            + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime) "
-            + "ORDER BY s.date, s.startTime";
+        + "WHERE (s.movie.movieID = :movieID AND s.date > :currentDate AND s.date < :nextWeek) "
+        + "OR (s.movie.movieID = :movieID AND s.date = :currentDate AND s.startTime >= :currentTime) "
+        + "ORDER BY s.date, s.startTime";
 
     TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
     q.setParameter("movieID", movieID);

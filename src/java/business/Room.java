@@ -26,14 +26,8 @@ public class Room implements Serializable {
   private List<ShowTime> showTimes;
 
   @Id
-  @GeneratedValue(
-          strategy = GenerationType.SEQUENCE,
-          generator = "sequence-generator"
-  )
-  @SequenceGenerator(
-          name = "sequence-generator",
-          sequenceName = "the_sequence_name"
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-generator")
+  @SequenceGenerator(name = "sequence-generator", sequenceName = "the_sequence_name")
   @Column(name = "room_number")
   private int roomNumber;
   @Column(name = "max_seats")

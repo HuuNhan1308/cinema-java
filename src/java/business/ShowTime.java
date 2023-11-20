@@ -85,10 +85,10 @@ public class ShowTime implements Serializable {
   public LocalTime getEndTime_ToMinute() {
     LocalTime endTime = startTime.toLocalTime();
     LocalTime duration = movie.getDuration().toLocalTime();
-    
+
     endTime = endTime.plusHours(duration.getHour());
     endTime = endTime.plusMinutes(duration.getMinute());
-    
+
     return endTime;
   }
 
@@ -105,11 +105,11 @@ public class ShowTime implements Serializable {
   public Date getDate() {
     return date;
   }
-  
+
   public String getDayOfWeek() {
     return date.toLocalDate()
-            .getDayOfWeek()
-            .getDisplayName(TextStyle.FULL, Locale.getDefault());
+        .getDayOfWeek()
+        .getDisplayName(TextStyle.FULL, Locale.getDefault());
   }
 
   public String getDateStr() {

@@ -72,34 +72,32 @@ public class PopulateDatabase {
     Map props = new HashMap();
     props.put(JDBC_DRIVER, "org.postgresql.Driver");
     props.put(JDBC_URL,
-            "jdbc:postgresql://dpg-cl4qv5472pts739l9jhg-a.singapore-postgres.render.com:5432/cinema_db_jnzp");
+        "jdbc:postgresql://dpg-cl4qv5472pts739l9jhg-a.singapore-postgres.render.com:5432/cinema_db_jnzp");
     props.put(JDBC_USER, "admin");
     props.put(JDBC_PASSWORD, "cs0d8T87UEpP11wQ5Ce4zlJ05MMWCm4t");
 
     emf = Persistence.createEntityManagerFactory("FinalWebPU", props);
 
-
-
-    //        set movie
-//    Movie myMovie = new Movie();
-//    myMovie.setMainActor("Haruma Miura");
-//    myMovie.setDirector("Hajime Isayama");
-//    myMovie.setDuration(Time.valueOf(LocalTime.of(1, 30, 0)));
-//    myMovie.setGenre("Action, Anime, Human");
-//    myMovie.setTitle("Attack on Titan 4 part 2");
-//    myMovie.setImg("AOT.png");
-//
-//    insertMovie(myMovie);
-    //        set Room
-    //        Room myRoom = new Room();
-    //        myRoom.setMaxSeats(40);
-    //        myRoom.setScreenQuality("Full HD");
-    //        RoomDB.insert(myRoom);
+    // set movie
+    // Movie myMovie = new Movie();
+    // myMovie.setMainActor("Haruma Miura");
+    // myMovie.setDirector("Hajime Isayama");
+    // myMovie.setDuration(Time.valueOf(LocalTime.of(1, 30, 0)));
+    // myMovie.setGenre("Action, Anime, Human");
+    // myMovie.setTitle("Attack on Titan 4 part 2");
+    // myMovie.setImg("AOT.png");
     //
-    //        Room myRoom2 = new Room();
-    //        myRoom2.setMaxSeats(60);
-    //        myRoom2.setScreenQuality("4K");
-    //        RoomDB.insert(myRoom2);
-    //        set Customer
+    // insertMovie(myMovie);
+    // set Room
+    // Room myRoom = new Room();
+    // myRoom.setMaxSeats(40);
+    // myRoom.setScreenQuality("Full HD");
+    // RoomDB.insert(myRoom);
+    //
+    // Room myRoom2 = new Room();
+    // myRoom2.setMaxSeats(60);
+    // myRoom2.setScreenQuality("4K");
+    // RoomDB.insert(myRoom2);
+    // set Customer
   }
 }
