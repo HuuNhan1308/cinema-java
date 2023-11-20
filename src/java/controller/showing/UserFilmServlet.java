@@ -23,12 +23,12 @@ import java.util.Locale;
  *
  * @author Admin
  */
-@WebServlet(name = "UserFilmServlet", urlPatterns = {"/showing/film"})
+@WebServlet(name = "UserFilmServlet", urlPatterns = { "/showing/film" })
 public class UserFilmServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String url = "/film.jsp";
     String movieID = request.getParameter("movieID");
@@ -47,7 +47,7 @@ public class UserFilmServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
   }
 

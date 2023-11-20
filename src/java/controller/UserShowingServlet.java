@@ -19,17 +19,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "UserShowingServlet", urlPatterns = {"/showing"})
+@WebServlet(name = "UserShowingServlet", urlPatterns = { "/showing" })
 public class UserShowingServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String url = "/showing.jsp";
 
     List<Movie> movies = MovieDB.selectComingMovies();
-    
+
     request.setAttribute("movies", movies);
 
     request.getRequestDispatcher(url).forward(request, response);
@@ -37,7 +37,7 @@ public class UserShowingServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
   }
 
