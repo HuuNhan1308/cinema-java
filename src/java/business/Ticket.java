@@ -21,61 +21,64 @@ import org.eclipse.persistence.annotations.UuidGenerator;
 @Entity
 public class Ticket implements Serializable {
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private ShowTime showtime;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "seatclass_id")
-    private SeatClass seatClass;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "invoice_id")
-    private Invoice invoice;
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "showtime_id")
+  private ShowTime showtime;
 
-    @Id
-    @UuidGenerator(name = "UUID")
-    @GeneratedValue(generator = "UUID")
-    @Column(name = "ticket_id")
-    private String ticketID;
-    @Column(name = "seat_number")
-    private int seatNumber;
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "seatclass_id")
+  private SeatClass seatClass;
 
-    public String getTicketID() {
-        return ticketID;
-    }
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "invoice_id")
+  private Invoice invoice;
 
-    public void setTicketID(String ticketID) {
-        this.ticketID = ticketID;
-    }
+  @Id
+  @UuidGenerator(name = "UUID")
+  @GeneratedValue(generator = "UUID")
+  @Column(name = "ticket_id")
+  private String ticketID;
+  @Column(name = "seat_number")
+  private int seatNumber;
 
-    public ShowTime getShowtime() {
-        return showtime;
-    }
+  public String getTicketID() {
+    return ticketID;
+  }
 
-    public void setShowtime(ShowTime showtime) {
-        this.showtime = showtime;
-    }
+  public void setTicketID(String ticketID) {
+    this.ticketID = ticketID;
+  }
 
-    public SeatClass getSeatClass() {
-        return seatClass;
-    }
+  public ShowTime getShowtime() {
+    return showtime;
+  }
 
-    public void setSeatClass(SeatClass seatClass) {
-        this.seatClass = seatClass;
-    }
+  public void setShowtime(ShowTime showtime) {
+    this.showtime = showtime;
+  }
 
-    public Invoice getInvoice() {
-        return invoice;
-    }
+  public SeatClass getSeatClass() {
+    return seatClass;
+  }
 
-    public void setInvoice(Invoice invoice) {
-        this.invoice = invoice;
-    }
+  public void setSeatClass(SeatClass seatClass) {
+    this.seatClass = seatClass;
+  }
 
-    public int getSeatNumber() {
-        return seatNumber;
-    }
+  public Invoice getInvoice() {
+    return invoice;
+  }
 
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
+  public void setInvoice(Invoice invoice) {
+    this.invoice = invoice;
+  }
+
+  public int getSeatNumber() {
+    return seatNumber;
+  }
+
+  public void setSeatNumber(int seatNumber) {
+    this.seatNumber = seatNumber;
+  }
 
 }

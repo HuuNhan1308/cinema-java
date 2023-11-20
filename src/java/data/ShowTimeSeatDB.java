@@ -23,7 +23,7 @@ public class ShowTimeSeatDB {
     public static List<Ticket> getSeatsOfShowTime(String showTimeID) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT s FROM Ticket s "
-                + "WHERE s.showtime.id = :showTimeID";
+                + "WHERE s.showtime.showtimeId = :showTimeID";
 
         TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);
         q.setParameter("showTimeID", showTimeID);

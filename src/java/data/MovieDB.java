@@ -1,6 +1,7 @@
 package data;
 
 import business.Movie;
+import business.ShowTime;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -99,13 +100,15 @@ public class MovieDB {
   public static List<Movie> selectComingMovies() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT DISTINCT s.movie FROM ShowTime s "
-            + "WHERE (s.date >= :currentDate) OR (s.date = :currentDate AND s.startTime >= :currentTime)";
+            + "WHERE (s.date > :currentDate AND s.date < :nextWeek) "
+            + "OR (s.date = :currentDate AND s.startTime >= :currentTime)";
 
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
 //    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
 //    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
 
     q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
+    q.setParameter("nextWeek", Date.valueOf(LocalDate.now().plusWeeks(1)));
     q.setParameter("currentTime", Time.valueOf(LocalTime.now()));
 
     List<Movie> movies;

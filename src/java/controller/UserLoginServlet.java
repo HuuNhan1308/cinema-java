@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
 
 import business.Customer;
@@ -15,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "UserLoginServlet", urlPatterns = {"/login"})
+@WebServlet(name = "UserLoginServlet", urlPatterns = { "/login" })
 public class UserLoginServlet extends HttpServlet {
 
   protected void register(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/login.jsp";
+    request.setCharacterEncoding("UTF-8");
 
     // get value
     String fullname = request.getParameter("fullname");
@@ -28,8 +25,7 @@ public class UserLoginServlet extends HttpServlet {
     String password = request.getParameter("password");
     String email = request.getParameter("email");
     String phoneNumber = request.getParameter("phoneNumber");
-    
-    System.out.println(username);
+    System.out.println(fullname);
 
     // set value to new customer object
     Customer customer = new Customer();
@@ -40,15 +36,17 @@ public class UserLoginServlet extends HttpServlet {
     customer.setPhoneNumber(phoneNumber);
     customer.setUsername(username);
 
+    System.out.println(customer.getFullname());
+
     // insert to db
     CustomerDB.insert(customer);
 
-    request.setAttribute("state", "Register Success");
+    request.setAttribute("state", "register_success");
     request.getRequestDispatcher(url).forward(request, response);
   }
 
   protected void login(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/login.jsp";
 
     // get value
@@ -60,6 +58,7 @@ public class UserLoginServlet extends HttpServlet {
     Customer customer = CustomerDB.selectCustomer(username, password);
 
     if (null != customer) {
+      // if login success --> find out
       // Store customer to the session
       HttpSession session = request.getSession();
       final Object lock = request.getSession().getId().intern();
@@ -77,7 +76,7 @@ public class UserLoginServlet extends HttpServlet {
 
       response.sendRedirect(request.getContextPath());
     } else {
-      request.setAttribute("state", "Login fail");
+      request.setAttribute("state", "fail");
       request.getRequestDispatcher(url).forward(request, response);
     }
 
@@ -85,7 +84,7 @@ public class UserLoginServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/login.jsp";
 
     request.getRequestDispatcher(url).forward(request, response);
@@ -93,12 +92,12 @@ public class UserLoginServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String action = request.getParameter("action");
 
     if (null != action) {
       switch (action) {
-        case "regisgter" ->
+        case "register" ->
           this.register(request, response);
         case "login" ->
           this.login(request, response);

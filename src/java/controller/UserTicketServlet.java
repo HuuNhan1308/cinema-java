@@ -6,6 +6,8 @@ package controller;
 
 import business.Customer;
 import business.Invoice;
+import data.CookieUtil;
+import data.CustomerDB;
 import data.InvoiceDB;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -20,36 +22,61 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "UserTicketServlet", urlPatterns = {"/ticket"})
 public class UserTicketServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  protected void show(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+    String url = "/ticket.jsp";
 
-        String url = "/ticket.jsp";
+    // Get user from session
+    HttpSession session = request.getSession();
+    final Object lock = request.getSession().getId().intern();
+    Customer customer;
 
-        // Get all cookies
-        String customerId = null;
-
-        // If there are no cookies, this would be null
-        HttpSession session = request.getSession();
-        Customer customer = (Customer) session.getAttribute("customer");
-        if (customer == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
-            return;
-        }
-
-        // Select all ticket with this customerId
-        List<Invoice> invoices = InvoiceDB.selectInvoices(customer.getCustomerId());
-
-        // Query all ticket with this customerId
-        request.setAttribute("invoices", invoices);
-
-        request.getRequestDispatcher(url).forward(request, response);
+    // Get customer from session
+    synchronized (lock) {
+      customer = (Customer) session.getAttribute("customer");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    System.out.println(customer);
+    
+    // Dont have in session? check in cookie
+    if (customer == null) {
+      // Get all cookies
+      Cookie[] cookies = request.getCookies();
+      String customerId = CookieUtil.getCookieValue(cookies, "customerId");
 
+      if (customerId.isEmpty() || customerId == null) {
+        //check if customerId not exist in cookie --> redirect to login page
+        response.sendRedirect(request.getContextPath() + "/login");
+        return;
+      } else {
+        // if contain cookie --> move to page
+        customer = CustomerDB.selectCustomer_byId(customerId);
+      }
     }
+
+    
+    String customerId = customer.getCustomerId();
+    // Select all ticket with this customerId
+    List<Invoice> invoices = InvoiceDB.selectInvoices(customerId);
+
+    // Query all ticket with this customerId
+    request.setAttribute("invoices", invoices);
+
+    request.getRequestDispatcher(url).forward(request, response);
+
+  }
+
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+
+    this.show(request, response);
+  }
+
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+
+  }
 
 }

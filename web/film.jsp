@@ -95,23 +95,25 @@
         </div>
       </div>
 
-      <!--Showtime--> 
+      <!--Showtime-->
       <div id="show-time-movie" class="xl:mx-64 mx-32 mt-7">
         <div class="show-time-detail">
           <h1 class="xl:text-3xl text-2xl font-bold mb-3">
             Showtime ${movie.getTitle()}
           </h1>
+
           <div class="border-2 rounded p-3 flex flex-col gap-4">
             <!--Choose date-->
             <div class="show-days show-rooms grid grid-cols-7 text-center gap-4">
+
               <c:forEach var="comingDate" items="${comingDates}">
                 <c:set var = "dayOfWeek" value = "${comingDate.toLocalDate().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault())}"/>
 
                 <div>
                   <input type="radio" id="${dayOfWeek}" name="dayOfWeek" value="${comingDate}" class="hidden peer">
-                  <label for="${dayOfWeek}" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold 
-                         border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 
-                         hover:text-gray-700 hover:bg-gray-100">                           
+                  <label for="${dayOfWeek}" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold
+                         border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600
+                         hover:text-gray-700 hover:bg-gray-100">
                     <div class="block">
                       ${dayOfWeek} <br />
                       (${comingDate})
@@ -120,9 +122,9 @@
                 </div>
               </c:forEach>
               <!--              <input type="radio" id="hosting-small" name="hosting" value="hosting-small" class="hidden peer">
-                            <label for="hosting-small" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold 
-                                   border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600 
-                                   hover:text-gray-700 hover:bg-gray-100 ">                           
+                            <label for="hosting-small" class="inline-flex items-center justify-between w-full p-3 xl:font-bold font-semmibold
+                                   border-2 border-gray-200 rounded cursor-pointer peer-checked:border-blue-600 peer-checked:text-blue-600
+                                   hover:text-gray-700 hover:bg-gray-100 ">
                               <div class="block">
                                 Monday <br />
                                 (11-10-2023)
@@ -134,7 +136,7 @@
             <div class="show-times flex flex-col">
               <div class="text-xl font-bold mb-3">2D</div>
               <div class="grid grid-cols-5 text-center gap-2">
-                <c:forEach var="comingShowTime" items="${comingShowTimes}" varStatus="loop">           
+                <c:forEach var="comingShowTime" items="${comingShowTimes}" varStatus="loop">
                   <div>
                     <input
                       type="radio"
@@ -146,8 +148,8 @@
                       />
                     <a
                       for="time_${loop.index + 1}"
-                      href="<%=root%>/showing/film/seat?showtimeId=${comingShowTime.getId()}"
-                      class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 
+                      href="<%=root%>/showing/film/seat?showtimeId=${comingShowTime.getShowtimeId()}"
+                      class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600
                       peer-checked:text-blue-600 hover:text-gray-700 hover:bg-gray-100">
                       <span class="text-xl"> ${comingShowTime.getStartTime_ToMinute()} </span> ~ ${comingShowTime.getEndTime_ToMinute()}
                     </a>
@@ -164,7 +166,7 @@
                                     />
                                   <label
                                     for="time_1"
-                                    class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 peer-checked:text-blue-600 
+                                    class="block border-2 rounded py-3 cursor-pointer font-bold peer-checked:border-blue-600 peer-checked:text-blue-600
                                     hover:text-gray-700 hover:bg-gray-100">
                                     <span class="text-xl"> 13:50 </span> ~ 16:00
                                   </label>
@@ -175,23 +177,23 @@
         </div>
       </div>
     </div>
-          
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
-    
+
     <script>
       const dateInputs = [...document.querySelectorAll("[name='dayOfWeek']")];
       const timeInputs = [...document.querySelectorAll("[name='time']")];
       let dayOfWeek_atDateInput, dayOfWeek_atTimeInput;
-      
+
       dateInputs.forEach((dateInput) => {
         dateInput.addEventListener("click", (e) => {
           dayOfWeek_atDateInput = e.target.getAttribute("id");
-          
+
           // show times by day of week hide times not in day of week
           timeInputs.forEach((timeInput) => {
             dayOfWeek_atTimeInput = timeInput.getAttribute("-data-day-of-week");
-            
-            if(dayOfWeek_atDateInput === dayOfWeek_atTimeInput)
+
+            if (dayOfWeek_atDateInput === dayOfWeek_atTimeInput)
               timeInput.parentElement.style.display = "block";
             else
               timeInput.parentElement.style.display = "none";
