@@ -10,27 +10,31 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import business.Ticket;
+
 /**
  *
  * @author Admin
  */
 public class TicketDB {
+
     public static void insert(Ticket ticket) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        trans.begin();    
         try {
+            trans.begin();
             System.out.println("Try add Ticket");
             em.persist(ticket);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
-            trans.rollback();
+            if (trans.isActive()) {
+                trans.rollback();
+            }
         } finally {
             em.close();
         }
     }
-    
+
     public static void update(Ticket ticket) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
@@ -61,7 +65,7 @@ public class TicketDB {
         }
     }
 
-    public static List<Ticket> selectTickets(String customerId) {
+    public static List<Ticket> selectTickets() {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT t FROM Ticket t";
         TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);

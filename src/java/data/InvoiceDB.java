@@ -16,13 +16,15 @@ public class InvoiceDB {
     public static void insert(Invoice invoice) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         EntityTransaction trans = em.getTransaction();
-        trans.begin();
         try {
+            trans.begin();
             em.persist(invoice);
             trans.commit();
         } catch (Exception e) {
             System.out.println(e);
-            trans.rollback();
+            if (trans.isActive()) {
+                trans.rollback();
+            }
         } finally {
             em.close();
         }
@@ -79,7 +81,7 @@ public class InvoiceDB {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT i FROM Invoice i";
         TypedQuery<Invoice> q = em.createQuery(qString, Invoice.class);
-        
+
         List<Invoice> invoices;
         try {
             invoices = q.getResultList();

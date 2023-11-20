@@ -76,7 +76,7 @@ public class CustomerDB {
             em.close();
         }
     }
-    
+
     public static Customer selectCustomer_byId(String customerId) {
         EntityManager em = DBUtil.getEmFactory().createEntityManager();
         String qString = "SELECT c FROM Customer c "
@@ -109,5 +109,23 @@ public class CustomerDB {
             em.close();
         }
         return customers;
+    }
+
+    public static void updateBalance(Customer customer, double newBalance) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        EntityTransaction trans = em.getTransaction();
+        try {
+            trans.begin();
+            customer.setBalance(newBalance);
+            em.merge(customer);
+            trans.commit();
+        } catch (Exception e) {
+            System.out.println(e);
+            if (trans.isActive()) {
+                trans.rollback();
+            }
+        } finally {
+            em.close();
+        }
     }
 }

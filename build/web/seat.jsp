@@ -55,63 +55,63 @@
         </div>
         <div class="screen-seats mt-12">
             <span
-                class="bg-slate-600 text-center text-white text-xl uppercase font-bold py-2 rounded lg:px-64 lg:mx-40 px-[180px] mx-[70px]"
+                class="bg-slate-600 text-center text-white text-xl uppercase font-bold py-2 rounded lg:px-64 lg:mx-40 px-[188px] mx-[70px]"
                 >Screen
             </span>
         </div>
 
-        <div class="flex flex-row lg:gap-4 lg:mt-8 gap-2">
+        <div class="flex flex-row lg:gap-2 lg:mt-8 mt-[5px] gap-2">
             <div
-                class="name-seats grid grid-cols-1 gap-1 text-white text-center lg:mt-1"
+                class="name-seats grid grid-cols-1 gap-[8px] text-black text-center font-bold lg:mt-[2.5px]"
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-white lg:border-1 rounded select-none "
-                    >O</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] text-white lg:border-1  rounded select-none "
+                    >O</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >A</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >A</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >B</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >B</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >C</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >C</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >D</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >D</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >E</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >E</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >F</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >F</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >G</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >G</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >H</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >H</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >I</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >I</label
                 >
-                <span
-                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-2 py-1 bg-slate-600 lg:border-1 rounded"
-                    >J</span
+                <label
+                    class="lg:w-12 lg:p-4 w-8 h-fit lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] rounded select-none"
+                    >J</label
                 >
             </div>
 
             <div
-                class="name-detail-seats h-fit grid grid-cols-10 xl:gap-2 xl:ml-[115px] 2xl:gap-2 2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 text-white text-center"
+                class="name-detail-seats h-fit grid grid-cols-10 xl:gap-2 xl:ml-[115px] 2xl:gap-2 2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 mt-[3px] text-center"
                 >
                 <input
                     type="checkbox"
@@ -121,7 +121,7 @@
                     />
                 <label
                     for="A"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >1</label
                 >
                 <input
@@ -132,7 +132,7 @@
                     />
                 <label
                     for="B"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >2</label
                 >
                 <input
@@ -143,7 +143,7 @@
                     />
                 <label
                     for="C"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >3</label
                 >
                 <input
@@ -154,7 +154,7 @@
                     />
                 <label
                     for="D"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >4</label
                 >
                 <input
@@ -165,7 +165,7 @@
                     />
                 <label
                     for="E"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >5</label
                 >
                 <input
@@ -176,7 +176,7 @@
                     />
                 <label
                     for="F"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >6</label
                 >
                 <input
@@ -187,7 +187,7 @@
                     />
                 <label
                     for="G"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >7</label
                 >
                 <input
@@ -198,7 +198,7 @@
                     />
                 <label
                     for="H"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >8</label
                 >
                 <input
@@ -209,7 +209,7 @@
                     />
                 <label
                     for="I"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >9</label
                 >
                 <input
@@ -220,58 +220,133 @@
                     />
                 <label
                     for="J"
-                    class="lg:w-12 lg:p-4 w-8 lg:py-2 py-1 bg-black lg:border-1 rounded cursor-pointer"
+                    class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1  lg:border-1 border-gray-500 border-[1px] rounded cursor-pointer font-bold"
                     >10</label
                 >
-
 
                 <c:set var="SeatName" value="ABCDEFGHIJ" />
                 <c:forEach var="i" begin="0" end="99">
                     <c:set var="found" value="false" />
-                    <c:forEach var="seat" items="${choosenSeats}" varStatus="loop">
+                    <c:forEach var="seat" items="${chosenSeats}" varStatus="loop">
                         <c:if test="${!found && i == seat.getSeatNumber()- 1}">
-                            <label for="${SeatName.charAt(i/10)}${i%10 + 1}"
-                                   class="lg:w-12 w-8 lg:py-2 py-1 bg-red-600 lg:border-1 rounded cursor-pointer text-center">
-                                ${SeatName.charAt(i/10)}${i%10 + 1}
-                            </label>
+                            <input type="hidden" name="seatNumber" value="${i}" />
+                            <input type="submit" 
+                                   class="lg:w-12 w-8 lg:py-[9px] lg:ml-[2px] py-1 bg-red-600 lg:border-1 rounded cursor-pointer text-white text-center select-none"
+                                   value="${SeatName.charAt(i/10)}${i%10 + 1}" />                                 
                             <c:set var="found" value="true" />
                         </c:if>
                     </c:forEach>
+                    <c:if test="${!found && i >= 30 && i <= 60 - 1}">
+                        <input type="hidden" name="seatNumber" id="seatNumber" value="${i}" />
+                        <input type="submit" 
+                               class="lg:w-12 w-8 lg:py-[9px] lg:ml-[2px] py-1 bg-purple-600 lg:border-1 rounded cursor-pointer text-white text-center select-none"
+                               value="${SeatName.charAt(i/10)}${i%10 + 1}" 
+                               onclick="changeColor(this, ${i + 1})"
+                               />
+                        <c:set var="found" value="true" />
+                    </c:if>
                     <c:if test="${!found}">
-                        <label for="${SeatName.charAt(i/10)}${i%10 + 1}"
-                               class="lg:w-12 w-8 lg:py-2 py-1 bg-slate-600 lg:border-1 rounded cursor-pointer text-center">
-                            ${SeatName.charAt(i/10)}${i%10 + 1}
-                        </label>
+                        <input type="hidden" name="seatNumber" value="${i}" />
+                        <input type="submit" 
+                               class="lg:w-12 w-8 lg:py-[9px] lg:ml-[2px] py-1 bg-slate-600 lg:border-1 rounded cursor-pointer text-white text-center select-none"
+                               value="${SeatName.charAt(i/10)}${i%10 + 1}" 
+                               onclick="changeColor(this, ${i + 1})"
+                               />
                     </c:if>
                 </c:forEach>
-
-
-
-
             </div>
+
 
             <div
                 class="info-film ml-[110px] md:mx-16 lg:mx-20 xl:mx-16 flex flex-col gap-4"
                 >
                 <div class="shadow-2xl p-10 px-20 flex flex-col gap-2">
-                    <h1 class="xl:text-4xl lg:text-2xl font-bold">${movie.getTitle()}</h1>
-                    <div class="text-sm xl:text-lg lg:text-lg">
-                        Retail Price: 100.000
+                    <h1 class="xl:text-4xl lg:text-2xl font-bold">${showtime.getMovie().getTitle()}</h1>
+                    <div class="text-sm xl:text-lg lg:text-lg text-center">
+                        Retail: <span  class="font-bold"> ${showtime.getPrice()}đ</span>  
                     </div>
-                    <div class="text-sm xl:text-lg lg:text-lg">Seat(s)</div>
                 </div>
                 <div class="shadow-2xl p-8 text-center">
                     <h3 class="font-bold text-lg">Total Price</h3>
                     <div>Od</div>
                 </div>
-                <button
-                    class="bg-red-600 rounded text-center text-white mx-16 p-3 hover:shadow-2xl shadow-black text-lg font-bold uppercase"
-                    >
-                    Buy ticket
-                </button>
+                <form action="<%=root%>/bookingSeats" method="POST" class="flex justify-center" onsubmit="prepareData(); setTimeout(function () {
+            location.reload();
+        }, 3500);">
+                    <input type="hidden" name="action" value="bookingSeats">
+                    <input type="hidden" name="seatNumbers" id="seatNumbersInput">
+                    <input type="hidden" name="showtimeId" value="${showtime.getId()}">
+                    <button class="bg-red-600 rounded w-1/2 text-center text-white p-3 hover:shadow-2xl shadow-black text-lg font-bold uppercase" type="submit">
+                        Buy ticket
+                    </button>
+                </form>
+
+
             </div>
         </div>
     </div>
+
+    <script>
+        var listSeatNumber = [];
+        function changeColor(input, seatNumber) {
+            if (input.classList.contains('bg-green-600')) {
+                input.classList.remove('bg-green-600');
+                input.classList.add('bg-slate-600');
+                const index = listSeatNumber.indexOf(seatNumber);
+                if (index > -1) {
+                    listSeatNumber.splice(index, 1);
+                }
+
+//                console.log(listSeatNumber);
+
+            } else {
+                input.classList.remove('bg-slate-600');
+                input.classList.add('bg-green-600');
+                const index = listSeatNumber.indexOf(seatNumber);
+                if (!listSeatNumber.includes(seatNumber)) {
+                    listSeatNumber.push(seatNumber);
+                }
+//                console.log(listSeatNumber);
+
+            }
+
+            var purpleRangeStart = 31;
+            var purpleRangeEnd = 60;
+
+            if (seatNumber >= purpleRangeStart && seatNumber <= purpleRangeEnd) {
+                if (input.classList.contains('bg-purple-600')) {
+                    input.classList.remove('bg-purple-600');
+                    input.classList.add('bg-green-600');
+                    if (!listSeatNumber.includes(seatNumber)) {
+                        listSeatNumber.push(seatNumber);
+                    }
+
+//                    console.log(listSeatNumber);
+
+                } else {
+                    input.classList.remove('bg-green-600');
+                    input.classList.remove('bg-slate-600');
+                    input.classList.add('bg-purple-600');
+                    const index = listSeatNumber.indexOf(seatNumber);
+                    if (index > -1) {
+                        listSeatNumber.splice(index, 1);
+                    }
+//                    console.log(listSeatNumber);
+                }
+            } else {
+                if (input.classList.contains('bg-purple-600' || 'bg-slate-600')) {
+                    input.classList.remove('bg-slate-600');
+                    input.classList.add('bg-green-600');
+                }
+            }
+            console.log(listSeatNumber);
+        }
+        function prepareData() {
+            document.getElementById('seatNumbersInput').value = listSeatNumber.join(',');
+        }
+
+
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.1.1/flowbite.min.js"></script>
 </div>
 </body>

@@ -1,6 +1,8 @@
 package data;
 
 import business.Ticket;
+import business.Customer;
+import business.SeatClass;
 import javax.persistence.EntityManager;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -12,7 +14,6 @@ import javax.persistence.TypedQuery;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author QuangTrieu's PC
@@ -38,4 +39,27 @@ public class ShowTimeSeatDB {
         }
         return tickets;
     }
+
+    public static SeatClass getSeatClass(int seatClassID) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT s FROM SeatClass s "
+                + "WHERE s.id = :seatClassID";
+
+        TypedQuery<SeatClass> q = em.createQuery(qString, SeatClass.class);
+        q.setParameter("seatClassID", seatClassID);
+
+        SeatClass seatclass;
+        try {
+            seatclass = q.getSingleResult();
+            if (seatclass == null) {
+                seatclass = null;
+            }
+        } finally {
+            em.close();
+        }
+        return seatclass;
+
+    }
+    
+
 }

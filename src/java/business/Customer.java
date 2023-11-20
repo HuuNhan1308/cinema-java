@@ -33,7 +33,7 @@ public class Customer implements Serializable {
     private String email;
     @Column(name = "phone_number")
     private String phoneNumber;
-    private int balance;
+    private double balance;
 
     @Id
     @UuidGenerator(name = "UUID")
@@ -97,11 +97,11 @@ public class Customer implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 

@@ -5,6 +5,7 @@
 package business;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,12 +21,12 @@ import org.eclipse.persistence.annotations.UuidGenerator;
 @Entity
 public class Ticket implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private ShowTime showtime;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "seatclass_id")
     private SeatClass seatClass;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
 

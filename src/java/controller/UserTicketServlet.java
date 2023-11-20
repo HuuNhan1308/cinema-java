@@ -47,7 +47,7 @@ public class UserTicketServlet extends HttpServlet {
 
         // Query all ticket with this customerId
         request.setAttribute("invoices", invoices);
-            
+
         request.getRequestDispatcher(url).forward(request, response);
     }
 
