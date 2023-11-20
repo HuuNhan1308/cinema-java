@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -135,11 +134,12 @@ public class UserSeatServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = "/seat.jsp";
         String showtimeId = request.getParameter("showtimeId");
+        
         if (showtimeId != null && !showtimeId.isEmpty()) {
-            List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
             ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
-
-            if (chosenSeats != null && showtime != null) {
+            List<Ticket> chosenSeats = showtime.getTickets();
+            
+            if (showtime != null) {
                 request.setAttribute("showtime", showtime);
                 request.setAttribute("chosenSeats", chosenSeats);
                 request.getRequestDispatcher(url).forward(request, response);

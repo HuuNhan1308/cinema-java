@@ -29,45 +29,32 @@ import javax.servlet.http.Cookie;
 @WebServlet(name = "UserFilmServlet", urlPatterns = {"/showing/film"})
 public class UserFilmServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
 
-        String url = "/film.jsp";
+    String url = "/film.jsp";
 
-        String movieID = request.getParameter("movieID");
+    String movieID = request.getParameter("movieID");
 
-        Movie movie = MovieDB.selectMovie(movieID);
+    Movie movie = MovieDB.selectMovie(movieID);
 
-        List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
-        List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
+    List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
+    List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
 
-        request.setAttribute("movie", movie);
-        request.setAttribute("comingDates", comingDates);
-        request.setAttribute("comingShowTimes", comingShowTimes);
+    System.out.println(comingShowTimes);
+    
+    request.setAttribute("movie", movie);
+    request.setAttribute("comingDates", comingDates);
+    request.setAttribute("comingShowTimes", comingShowTimes);
 
-        Customer customer = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("customerId")) {
-                    customer = CustomerDB.selectCustomer_byId(cookie.getValue());
-                }
-            }
-        }
-        request.setAttribute("cusomer", customer);
-//        if (customerId == null) {
-//            url = "/login.jsp";
-////            request.getRequestDispatcher(url).forward(request, response);
-//        }
+    request.getRequestDispatcher(url).forward(request, response);
+  }
 
-        request.getRequestDispatcher(url).forward(request, response);
-    }
+  @Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-    }
+  }
 
 }

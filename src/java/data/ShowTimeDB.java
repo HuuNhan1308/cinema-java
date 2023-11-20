@@ -52,7 +52,7 @@ public class ShowTimeDB {
   public static ShowTime selectShowTime(String showTimeID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT s FROM ShowTime s "
-        + "WHERE s.id = :showTimeID";
+        + "WHERE s.showtimeId = :showTimeID";
 
     TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
     q.setParameter("showTimeID", showTimeID);

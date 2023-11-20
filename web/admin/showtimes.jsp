@@ -226,7 +226,7 @@
           <c:when test="${action == 'update' || action == 'add'}">
             <!-- update form -->
             <c:import url="${root}/AdminComponent/Update/showtime.jsp"/>
-          </c:when>    
+          </c:when>
           <c:otherwise>
             <!-- Movies table -->
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -238,9 +238,9 @@
                     <th scope="col" class="px-6 py-3">Movie</th>
                     <th scope="col" class="px-6 py-3">Date</th>
                     <th scope="col" class="px-6 py-3">Start time</th>
-                    <th scope="col" class="px-6 py-3">Price</th> 
+                    <th scope="col" class="px-6 py-3">Price</th>
                     <th scope="col" class="px-6 py-3">Room number</th>
-                    <th scope="col" class="px-6 py-3">Tickets</th>                    
+                    <th scope="col" class="px-6 py-3">Tickets</th>
                     <!--<th scope="col" class="px-6 py-3"></th>-->
                     <th scope="col" class="px-6 py-3"></th>
 
@@ -256,7 +256,7 @@
                         >
                         ${showTime.getMovie().getTitle()}
                       </th>
-                      <td class="px-6 py-2">${showTime.getDate()}</td>                    
+                      <td class="px-6 py-2">${showTime.getDate()}</td>
                       <td class="px-6 py-2">${showTime.getStartTime()}</td>
                       <td class="px-6 py-2">${showTime.getPrice()}</td>
                       <td class="px-6 py-2">${showTime.getRoom().getRoomNumber()}</td>
@@ -264,15 +264,15 @@
 
 
                       <!--                        <td class="px-6 py-2">
-                                                <a href="<%=root%>/admin/showtimes?action=update&id=${showTime.getId()}" class="font-medium text-blue-500 hover:underline"
+                                                <a href="<%=root%>/admin/showtimes?action=update&id=${showTime.getShowtimeId()}" class="font-medium text-blue-500 hover:underline"
                                                    >Edit</a
                                                 >
                                               </td>-->
                       <td class="px-6 py-2">
-                        <button data-modal-target="delete_modal" data-showtime-id="${showTime.getId()}" 
-                                data-modal-toggle="delete_modal" class="block text-white focus:ring-4 
-                                focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 
-                                text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" 
+                        <button data-modal-target="delete_modal" data-showtime-id="${showTime.getShowtimeId()}"
+                                data-modal-toggle="delete_modal" class="block text-white focus:ring-4
+                                focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5
+                                text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
                                 type="button">
                           Delete
                         </button>
@@ -287,8 +287,8 @@
             <!--Add Movie-->
             <form method="get" action="<%=root%>/admin/showtimes">
               <input type="hidden" name="action" value="add"/>
-              <button type="submit" class="mt-4 focus:outline-none text-white bg-purple-700 
-                      hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg 
+              <button type="submit" class="mt-4 focus:outline-none text-white bg-purple-700
+                      hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg
                       text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
                 Add show time
               </button>
@@ -313,7 +313,7 @@
                     <!--FORM TO DELETE SERVLET-->
                     <form method="post" action="<%=root%>/admin/showtimes">
                       <input type="hidden" name="action" value="delete"/>
-                      <input type="hidden" name="showTimeID" value=""/>                     
+                      <input type="hidden" name="showTimeID" value=""/>
 
                       <button data-modal-hide="delete_modal" type="submit" class="text-white bg-red-600 px-5 py-2.5 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center text-center me-2">
                         Yes, I'm sure
@@ -350,7 +350,6 @@
         showTimeDeleteButton.addEventListener("click", (e) => {
           //Get data room from element
           let showTimeID = showTimeDeleteButton.getAttribute("data-showtime-id");
-
           showTimeIDInput.value = showTimeID;
         });
       }

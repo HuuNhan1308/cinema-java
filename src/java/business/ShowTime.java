@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import java.sql.Time;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.TextStyle;
 import java.util.List;

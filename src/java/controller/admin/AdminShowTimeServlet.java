@@ -84,8 +84,8 @@ public class AdminShowTimeServlet extends HttpServlet {
 
     ShowTimeDB.insert(showTime);
     //edirect to movies page
-    String seatClassPage = request.getRequestURI();
-    response.sendRedirect(seatClassPage);
+    String showTimePage = request.getRequestURI();
+    response.sendRedirect(showTimePage);
   }
 
   //Handle update movie
@@ -93,8 +93,8 @@ public class AdminShowTimeServlet extends HttpServlet {
           throws ServletException, IOException {
 
     //edirect to movies page
-    String seatClassPage = request.getRequestURI();
-    response.sendRedirect(seatClassPage);
+    String showTimePage = request.getRequestURI();
+    response.sendRedirect(showTimePage);
   }
 
   //Handle delete movie

@@ -23,34 +23,34 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "UserServlet", urlPatterns = {""})
+@WebServlet(name = "UserServlet", urlPatterns = { "" })
 public class UserServlet extends HttpServlet {
 
   protected void logOut(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     HttpSession session = request.getSession();
 
-    //delete customerId cookies
+    // delete customerId cookies
     Cookie c = new Cookie("customerId", "");
     c.setMaxAge(0);
     response.addCookie(c);
 
-    //delete all session
+    // delete all session
     session.invalidate();
-    
+
     System.out.println("invalidate session");
     response.sendRedirect(request.getContextPath());
   }
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     HttpSession session = request.getSession();
-    
-    //Check cookie and assign to session
+
+    // Check cookie and assign to session
     Cookie[] cookies = request.getCookies();
     String customerId = CookieUtil.getCookieValue(cookies, "customerId");
     if (customerId != null && !customerId.isEmpty()) {
-      //If exist customer Id in cookie ==> create customer obj
+      // If exist customer Id in cookie ==> create customer obj
       Customer customer = CustomerDB.selectCustomer_byId(customerId);
       session.setAttribute("customer", customer);
     }
@@ -65,11 +65,11 @@ public class UserServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String action = request.getParameter("action");
 
-    //if invoke action logout 
+    // if invoke action logout
     if (action == null) {
       this.show(request, response);
     } else {
@@ -86,10 +86,10 @@ public class UserServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/index.jsp";
 
-    //add balance
+    // add balance
     HttpSession session = request.getSession();
     Customer customer = (Customer) session.getAttribute("customer");
     int addedBalance = Integer.parseInt(request.getParameter("balance"));
@@ -97,7 +97,7 @@ public class UserServlet extends HttpServlet {
 
     CustomerDB.update(customer);
 
-    request.getRequestDispatcher(url).forward(request, response);
+    response.sendRedirect(request.getContextPath());
 
   }
 
