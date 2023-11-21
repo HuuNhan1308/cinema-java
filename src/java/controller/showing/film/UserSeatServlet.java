@@ -51,36 +51,51 @@ public class UserSeatServlet extends HttpServlet {
             return;
         }
 
-        // Get showtimeId
+        // Get showtime
         String showtimeId = request.getParameter("showtimeId");
+        ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
 
         // Create invoice
-        String invoiceId = UUID.randomUUID().toString();
         Invoice invoice = new Invoice();
         invoice.setCustomer(customer);
         invoice.setBoughDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
-        invoice.setInvoiceID(invoiceId);
 
-        // Persist the invoice first
-        InvoiceDB.insert(invoice);
-
-        // Create tickets
-        List<Ticket> tickets = new ArrayList<>();
         for (int seatNumber : seatNumbersInt) {
-            String ticketId = UUID.randomUUID().toString();
             Ticket ticket = new Ticket();
-            ticket.setTicketID(ticketId);
-            ticket.setSeatNumber(seatNumber);
             ticket.setInvoice(invoice);
-            ticket.setShowtime(ShowTimeDB.selectShowTime(showtimeId));
+            ticket.setSeatNumber(seatNumber);
+            ticket.setShowtime(showtime);
 
             // Determine seat class based on seat number
             int seatClassId = (seatNumber >= 31 && seatNumber <= 60) ? 3 : 2;
             SeatClass seatClass = SeatClassDB.selectSeatClass(seatClassId);
             ticket.setSeatClass(seatClass);
 
-            tickets.add(ticket);
+            invoice.getTickets().add(ticket);
         }
+        
+        // Persist the invoice first
+        InvoiceDB.insert(invoice);
+
+//        // Create tickets
+//        List<Ticket> tickets = new ArrayList<>();
+//        for (int seatNumber : seatNumbersInt) {
+//            String ticketId = UUID.randomUUID().toString();
+//            Ticket ticket = new Ticket();
+//            ticket.setTicketID(ticketId);
+//            ticket.setSeatNumber(seatNumber);
+//            ticket.setInvoice(invoice);
+//            ticket.setShowtime(ShowTimeDB.selectShowTime(showtimeId));
+//
+//            // Determine seat class based on seat number
+//            int seatClassId = (seatNumber >= 31 && seatNumber <= 60) ? 3 : 2;
+//            SeatClass seatClass = SeatClassDB.selectSeatClass(seatClassId);
+//            ticket.setSeatClass(seatClass);
+//
+//            tickets.add(ticket);
+//        }
+
+        List<Ticket> tickets = invoice.getTickets();
 
         // Insert tickets
         // Update the invoice with the tickets
@@ -91,7 +106,7 @@ public class UserSeatServlet extends HttpServlet {
             total += ticket.getShowtime().getPrice() * seatClass.getFactor();
         }
 
-        List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
+        List<Ticket> chosenSeats = showtime.getTickets();
 
         // Check if customer has enough balance
         if (customer.getBalance() >= total || chosenSeats != tickets) {
@@ -125,11 +140,13 @@ public class UserSeatServlet extends HttpServlet {
 
         if (showtimeId != null && !showtimeId.isEmpty()) {
             ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
-            List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
+            List<Ticket> chosenSeats = showtime.getTickets();
 
             if (showtime != null) {
                 request.setAttribute("showtime", showtime);
                 request.setAttribute("chosenSeats", chosenSeats);
+                
+                System.out.println(chosenSeats.get(3).getSeatNumber());
                 request.getRequestDispatcher(url).forward(request, response);
             } else {
                 System.out.println("Error retrieving chosenSeats or showtime from database.");

@@ -24,52 +24,51 @@ import javax.persistence.OneToMany;
 @Entity
 public class Invoice implements Serializable {
 
-    @OneToMany(mappedBy = "invoice")
-    private List<Ticket> tickets;
-    
-    @ManyToOne
-    @JoinColumn(name="customer_id")
-    private Customer customer;
-    
-    @Id
-    @UuidGenerator(name = "UUID")
-    @GeneratedValue(generator = "UUID")
-    @Column(name = "invoice_id")
-    private String invoiceID;
-    private Date boughtDate;
+  @OneToMany(mappedBy = "invoice")
+  private List<Ticket> tickets;
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
+  @Id
+  @UuidGenerator(name = "UUID")
+  @GeneratedValue(generator = "UUID")
+  @Column(name = "invoice_id")
+  private String invoiceID;
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
+  @ManyToOne
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
-    public Customer getCustomer() {
-        return customer;
-    }
+  private Date boughtDate;
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+  public List<Ticket> getTickets() {
+    return tickets;
+  }
 
-    public String getInvoiceID() {
-        return invoiceID;
-    }
+  public void setTickets(List<Ticket> tickets) {
+    this.tickets = tickets;
+  }
 
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
-    }
+  public Customer getCustomer() {
+    return customer;
+  }
 
-    public Date getBoughDate() {
-        return boughtDate;
-    }
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
 
-    public void setBoughDate(Date boughDate) {
-        this.boughtDate = boughDate;
-    }
+  public String getInvoiceID() {
+    return invoiceID;
+  }
 
+  public void setInvoiceID(String invoiceID) {
+    this.invoiceID = invoiceID;
+  }
 
+  public Date getBoughDate() {
+    return boughtDate;
+  }
+
+  public void setBoughDate(Date boughDate) {
+    this.boughtDate = boughDate;
+  }
 
 }
