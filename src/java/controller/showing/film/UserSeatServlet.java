@@ -91,24 +91,30 @@ public class UserSeatServlet extends HttpServlet {
             total += ticket.getShowtime().getPrice() * seatClass.getFactor();
         }
 
-        List<Ticket> chosenSeats = ShowTimeSeatDB.getSeatsOfShowTime(showtimeId);
-
         // Check if customer has enough balance
-        if (customer.getBalance() >= total || chosenSeats != tickets) {
-            InvoiceDB.insert(invoice);
-            double newBalance = customer.getBalance() - total;
-            CustomerDB.updateBalance(customer, newBalance);
-            for (Ticket ticket : tickets) {
-                TicketDB.insert(ticket);
+        try {
+            // Check if customer has enough balance
+            if (customer.getBalance() >= total) {
+                double newBalance = customer.getBalance() - total;
+                CustomerDB.updateBalance(customer, newBalance);
+                for (Ticket ticket : tickets) {
+                    TicketDB.insert(ticket);
+                }
+                invoice.setTickets(tickets);
+                InvoiceDB.update(invoice);
+                session.setAttribute("state", "book_success");
+            } else {
+                tickets.clear();
+                InvoiceDB.delete(invoice);
+                session.setAttribute("state", "book_fail");
             }
-            invoice.setTickets(tickets);
-            InvoiceDB.update(invoice);
-            session.setAttribute("state", "book_success");
-        } else {
-            tickets.clear();
-            InvoiceDB.delete(invoice);
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+            
+            // Redirect to home page
+            response.sendRedirect(request.getHeader("Referer"));
             session.setAttribute("state", "book_fail");
-            return;
         }
 
         // Forward to the same page
