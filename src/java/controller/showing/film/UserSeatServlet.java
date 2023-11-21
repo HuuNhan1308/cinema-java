@@ -32,7 +32,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "UserSeatServlet", urlPatterns = {"/showing/film/seat"})
+@WebServlet(name = "UserSeatServlet", urlPatterns = { "/showing/film/seat" })
 public class UserSeatServlet extends HttpServlet {
 
     protected void bookingSeats(HttpServletRequest request, HttpServletResponse response)
@@ -73,27 +73,27 @@ public class UserSeatServlet extends HttpServlet {
 
             invoice.getTickets().add(ticket);
         }
-        
+
         // Persist the invoice first
         InvoiceDB.insert(invoice);
 
-//        // Create tickets
-//        List<Ticket> tickets = new ArrayList<>();
-//        for (int seatNumber : seatNumbersInt) {
-//            String ticketId = UUID.randomUUID().toString();
-//            Ticket ticket = new Ticket();
-//            ticket.setTicketID(ticketId);
-//            ticket.setSeatNumber(seatNumber);
-//            ticket.setInvoice(invoice);
-//            ticket.setShowtime(ShowTimeDB.selectShowTime(showtimeId));
-//
-//            // Determine seat class based on seat number
-//            int seatClassId = (seatNumber >= 31 && seatNumber <= 60) ? 3 : 2;
-//            SeatClass seatClass = SeatClassDB.selectSeatClass(seatClassId);
-//            ticket.setSeatClass(seatClass);
-//
-//            tickets.add(ticket);
-//        }
+        // // Create tickets
+        // List<Ticket> tickets = new ArrayList<>();
+        // for (int seatNumber : seatNumbersInt) {
+        // String ticketId = UUID.randomUUID().toString();
+        // Ticket ticket = new Ticket();
+        // ticket.setTicketID(ticketId);
+        // ticket.setSeatNumber(seatNumber);
+        // ticket.setInvoice(invoice);
+        // ticket.setShowtime(ShowTimeDB.selectShowTime(showtimeId));
+        //
+        // // Determine seat class based on seat number
+        // int seatClassId = (seatNumber >= 31 && seatNumber <= 60) ? 3 : 2;
+        // SeatClass seatClass = SeatClassDB.selectSeatClass(seatClassId);
+        // ticket.setSeatClass(seatClass);
+        //
+        // tickets.add(ticket);
+        // }
 
         List<Ticket> tickets = invoice.getTickets();
 
@@ -106,24 +106,30 @@ public class UserSeatServlet extends HttpServlet {
             total += ticket.getShowtime().getPrice() * seatClass.getFactor();
         }
 
-        List<Ticket> chosenSeats = showtime.getTickets();
-
         // Check if customer has enough balance
-        if (customer.getBalance() >= total || chosenSeats != tickets) {
-            InvoiceDB.insert(invoice);
-            double newBalance = customer.getBalance() - total;
-            CustomerDB.updateBalance(customer, newBalance);
-            for (Ticket ticket : tickets) {
-                TicketDB.insert(ticket);
+        try {
+            // Check if customer has enough balance
+            if (customer.getBalance() >= total) {
+                double newBalance = customer.getBalance() - total;
+                CustomerDB.updateBalance(customer, newBalance);
+                for (Ticket ticket : tickets) {
+                    TicketDB.insert(ticket);
+                }
+                invoice.setTickets(tickets);
+                InvoiceDB.update(invoice);
+                session.setAttribute("state", "book_success");
+            } else {
+                tickets.clear();
+                InvoiceDB.delete(invoice);
+                session.setAttribute("state", "book_fail");
             }
-            invoice.setTickets(tickets);
-            InvoiceDB.update(invoice);
-            session.setAttribute("state", "book_success");
-        } else {
-            tickets.clear();
-            InvoiceDB.delete(invoice);
+        } catch (Exception e) {
+            // Log the exception
+            e.printStackTrace();
+
+            // Redirect to home page
+            response.sendRedirect(request.getHeader("Referer"));
             session.setAttribute("state", "book_fail");
-            return;
         }
 
         // Forward to the same page
@@ -145,7 +151,7 @@ public class UserSeatServlet extends HttpServlet {
             if (showtime != null) {
                 request.setAttribute("showtime", showtime);
                 request.setAttribute("chosenSeats", chosenSeats);
-                
+
                 System.out.println(chosenSeats.get(3).getSeatNumber());
                 request.getRequestDispatcher(url).forward(request, response);
             } else {
