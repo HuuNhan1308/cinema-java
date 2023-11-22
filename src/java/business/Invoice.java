@@ -6,6 +6,8 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +26,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Invoice implements Serializable {
 
-    @OneToMany(mappedBy = "invoice")
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
     
     @ManyToOne

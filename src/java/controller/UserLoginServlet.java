@@ -74,6 +74,9 @@ public class UserLoginServlet extends HttpServlet {
         response.addCookie(c);
       }
 
+      System.out.println("login success: " + customer.getFullname());
+
+
       response.sendRedirect(request.getContextPath());
     } else {
       request.setAttribute("state", "fail");

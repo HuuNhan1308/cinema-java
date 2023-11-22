@@ -82,4 +82,22 @@ public class TicketDB {
         return tickets;
     }
 
+    public static List<Ticket> selectTicketsByInvoiceID(String InvoiceID) {
+        EntityManager em = DBUtil.getEmFactory().createEntityManager();
+        String qString = "SELECT t FROM Ticket t WHERE t.invoice.invoiceID = :InvoiceID";
+        TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);
+        q.setParameter("InvoiceID", InvoiceID);
+    
+        List<Ticket> tickets;
+        try {
+            tickets = q.getResultList();
+            if (tickets == null || tickets.isEmpty()) {
+                tickets = null;
+            }
+        } finally {
+            em.close();
+        }
+        return tickets;
+    }
+
 }
