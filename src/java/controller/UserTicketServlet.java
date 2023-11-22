@@ -35,8 +35,6 @@ public class UserTicketServlet extends HttpServlet {
     synchronized (lock) {
       customer = (Customer) session.getAttribute("customer");
     }
-
-    System.out.println(customer);
     
     // Dont have in session? check in cookie
     if (customer == null) {

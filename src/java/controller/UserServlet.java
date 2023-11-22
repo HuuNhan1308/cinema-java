@@ -53,11 +53,13 @@ public class UserServlet extends HttpServlet {
       // If exist customer Id in cookie ==> create customer obj
       Customer customer = CustomerDB.selectCustomer_byId(customerId);
       session.setAttribute("customer", customer);
+      customer = CustomerDB.selectCustomer_byId(customerId);
     }
 
     String url = "/index.jsp";
 
     List<Movie> movies = MovieDB.selectMovies();
+    
 
     request.setAttribute("movies", movies);
     request.getRequestDispatcher(url).forward(request, response);

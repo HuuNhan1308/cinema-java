@@ -6,6 +6,8 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,19 +26,18 @@ import javax.persistence.OneToMany;
 @Entity
 public class Invoice implements Serializable {
 
-  @OneToMany(mappedBy = "invoice")
+  @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL)
   private List<Ticket> tickets;
+
+  @ManyToOne
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
   @Id
   @UuidGenerator(name = "UUID")
   @GeneratedValue(generator = "UUID")
   @Column(name = "invoice_id")
   private String invoiceID;
-
-  @ManyToOne
-  @JoinColumn(name = "customer_id")
-  private Customer customer;
-
   private Date boughtDate;
 
   public List<Ticket> getTickets() {
