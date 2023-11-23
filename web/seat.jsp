@@ -213,6 +213,10 @@
     const toggleElement = (arr, val) =>
       arr.includes(val) ? arr.filter(el => el !== val) : [...arr, val];
 
+    const prepareData = () => {
+      document.getElementById('seatNumbersInput').value = listSeatNumber.join(',');
+    }
+
     var listSeatNumber = [];
 
 
@@ -231,82 +235,6 @@
       }
 
       listSeatNumber = toggleElement(listSeatNumber, seatNumber);
-
-      console.log(seatNumber, listSeatNumber);
-
-
-
-//      if (input.classList.contains('bg-green-600')) {
-//        //TO COLOR STATE
-//        if (seatClass === 'normal')
-//          toggleMultipleClasses(input, 'bg-green-600', 'bg-slate-600');
-//        else if (seatClass === 'vip')
-//          toggleMultipleClasses(input, 'bg-green-600', 'bg-purple-600');
-//
-//        const index = listSeatNumber.indexOf(seatNumber);
-//
-//        if (index > -1)
-//          listSeatNumber.splice(index, 1);
-//      } else {
-//        //TO ACITVE STATE
-//        if (seatClass === 'normal')
-//          toggleMultipleClasses(input, 'bg-green-600', 'bg-slate-600');
-//        else if (seatClass === 'vip')
-//          toggleMultipleClasses(input, 'bg-green-600', 'bg-purple-600');
-//
-//        const index = listSeatNumber.indexOf(seatNumber);
-//
-//        if (!listSeatNumber.includes(seatNumber))
-//          listSeatNumber.push(seatNumber);
-//      }
-
-
-//      // if normal seat
-//      if (input.classList.contains('bg-green-600')) {
-//        // in active state --> not chosen state
-//        toggleMultipleClasses(input, 'bg-green-600', 'bg-slate-600');
-//        const index = listSeatNumber.indexOf(seatNumber);
-//
-//        if (index > -1)
-//          listSeatNumber.splice(index, 1);
-//      } else {
-//        // in not chosen state --> not active state
-//        toggleMultipleClasses(input, 'bg-green-600', 'bg-slate-600');
-//        const index = listSeatNumber.indexOf(seatNumber);
-//
-//        if (!listSeatNumber.includes(seatNumber))
-//          listSeatNumber.push(seatNumber);
-//      }
-//
-//      // in the range of purple seat
-//      if (seatNumber >= purpleRangeStart && seatNumber <= purpleRangeEnd) {
-//        //change state to choosen
-//        if (input.classList.contains('bg-purple-600')) {
-//          toggleMultipleClasses(input, 'bg-purple-600', 'bg-green-600');
-//          // seat number is not in the list seat number --> add to list
-//          if (!listSeatNumber.includes(seatNumber)) {
-//            listSeatNumber.push(seatNumber);
-//          }
-//        }
-//        //change state to not choosen
-//        else {
-//          toggleMultipleClasses(input, 'bg-purple-600', 'bg-green-600');
-//          const index = listSeatNumber.indexOf(seatNumber);
-//
-//          //remove from list
-//          if (index > -1) {
-//            listSeatNumber.splice(index, 1);
-//          }
-//        }
-//      } else {
-//        if (input.classList.contains('bg-purple-600' || 'bg-slate-600')) {
-//          input.classList.remove('bg-slate-600');
-//          input.classList.add('bg-green-600');
-//        }
-//      }
-    }
-    function prepareData() {
-      document.getElementById('seatNumbersInput').value = listSeatNumber.join(',');
     }
 
 
