@@ -29,10 +29,8 @@ import javax.servlet.http.Cookie;
 @WebServlet(name = "UserFilmServlet", urlPatterns = {"/showing/film"})
 public class UserFilmServlet extends HttpServlet {
 
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+  protected void show(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-
     String url = "/film.jsp";
 
     String movieID = request.getParameter("movieID");
@@ -42,13 +40,18 @@ public class UserFilmServlet extends HttpServlet {
     List<Date> comingDates = ShowTimeDB.selectComingDate_byMovieId(movieID);
     List<ShowTime> comingShowTimes = ShowTimeDB.selectComingShowTime_ByMovieID(movieID);
 
-    System.out.println(comingShowTimes);
-    
     request.setAttribute("movie", movie);
     request.setAttribute("comingDates", comingDates);
     request.setAttribute("comingShowTimes", comingShowTimes);
 
     request.getRequestDispatcher(url).forward(request, response);
+  }
+
+  @Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+          throws ServletException, IOException {
+
+    this.show(request, response);
   }
 
   @Override

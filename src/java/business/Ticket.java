@@ -21,15 +21,15 @@ import org.eclipse.persistence.annotations.UuidGenerator;
 @Entity
 public class Ticket implements Serializable {
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   @JoinColumn(name = "showtime_id")
   private ShowTime showtime;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   @JoinColumn(name = "seatclass_id")
   private SeatClass seatClass;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
+  @ManyToOne
   @JoinColumn(name = "invoice_id")
   private Invoice invoice;
 

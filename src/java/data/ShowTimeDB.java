@@ -48,6 +48,21 @@ public class ShowTimeDB {
     }
   }
 
+  public static void update(ShowTime showTime) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    EntityTransaction trans = em.getTransaction();
+    trans.begin();
+    try {
+      em.merge(showTime);
+      trans.commit();
+    } catch (Exception e) {
+      System.out.println(e);
+      trans.rollback();
+    } finally {
+      em.close();
+    }
+  }
+
   public static ShowTime selectShowTime(String showTimeID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT s FROM ShowTime s "

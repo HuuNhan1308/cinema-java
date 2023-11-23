@@ -48,6 +48,14 @@ public class Invoice implements Serializable {
     this.tickets = tickets;
   }
 
+  public int getTotalPrice() {
+    int totalPrice = 0;
+    for (Ticket ticket : tickets) {
+      totalPrice += ticket.getShowtime().getPrice();
+    }
+    return totalPrice;
+  }
+
   public Customer getCustomer() {
     return customer;
   }

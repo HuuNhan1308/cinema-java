@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Date;
-import java.util.UUID;
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,11 +32,11 @@ import javax.servlet.http.HttpSession;
  *
  * @author Admin
  */
-@WebServlet(name = "UserSeatServlet", urlPatterns = {"/showing/film/seat"})
+@WebServlet(name = "UserSeatServlet", urlPatterns = { "/showing/film/seat" })
 public class UserSeatServlet extends HttpServlet {
 
   protected void bookingSeats(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/seat.jsp";
 
     // Get seats
@@ -45,7 +45,13 @@ public class UserSeatServlet extends HttpServlet {
 
     // Get customer
     HttpSession session = request.getSession();
-    Customer customer = (Customer) session.getAttribute("customer");
+    final Object lock = request.getSession().getId().intern();
+    Customer customer;
+    synchronized (lock) {
+      customer = (Customer) session.getAttribute("customer");
+    }
+
+    // Not exist customer --> login
     if (customer == null) {
       response.sendRedirect(request.getContextPath() + "/login");
       return;
@@ -58,9 +64,9 @@ public class UserSeatServlet extends HttpServlet {
     // Create invoice
     Invoice invoice = new Invoice();
     invoice.setCustomer(customer);
-    invoice.setBoughDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+    invoice.setBoughDate(Date.valueOf(LocalDate.now()));
     invoice.setTickets(new ArrayList<Ticket>());
-    
+
     // Create ticket and add to the new invoice
     for (int seatNumber : seatNumbersInt) {
       Ticket ticket = new Ticket();
@@ -77,79 +83,82 @@ public class UserSeatServlet extends HttpServlet {
     }
 
     List<Ticket> tickets = invoice.getTickets();
-    
+
     // Insert tickets
     // Update the invoice with the tickets
-    // Calculate total cost
-    double total = 0;
-    for (Ticket ticket : tickets) {
-      SeatClass seatClass = ShowTimeSeatDB.getSeatClass(ticket.getSeatClass().getId());
-      total += ticket.getShowtime().getPrice() * seatClass.getFactor();
-    }
 
     // Check if customer has enough balance
     try {
       // Check if customer has enough balance
+      int total = invoice.getTotalPrice();
       if (customer.getBalance() >= total) {
         double newBalance = customer.getBalance() - total;
         customer.setBalance(newBalance);
         CustomerDB.update(customer);
-        
-        for (Ticket ticket : tickets) {
-          TicketDB.insert(ticket);
-        }
-        
+
+        // add tickets to invoice
         invoice.setTickets(tickets);
         InvoiceDB.insert(invoice);
+
+        // add ticket to movie
+        List<Ticket> showtimeTicket = showtime.getTickets();
+        showtimeTicket.addAll(tickets);
+        showtime.setTickets(showtimeTicket);
+        ShowTimeDB.update(showtime);
+
         session.setAttribute("state", "book_success");
+
+        // Forward to the same page
       } else {
-        tickets = null; //remove tickets
-        invoice = null; //remove invoice
+        tickets = null; // remove tickets
+        invoice = null; // remove invoice
         session.setAttribute("state", "book_fail");
       }
+
+      response.sendRedirect(request.getHeader("Referer"));
+
     } catch (Exception e) {
       // Log the exception
       e.printStackTrace();
 
+      session.setAttribute("state", "book_fail");
       // Redirect to home page
       response.sendRedirect(request.getHeader("Referer"));
-      session.setAttribute("state", "book_fail");
     }
 
-    // Forward to the same page
-    response.sendRedirect(request.getHeader("Referer"));
+  }
 
+  protected void show(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    String url = "/seat.jsp";
+    String showtimeId = request.getParameter("showtimeId");
+    ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
+
+    if (showtime == null) {
+      response.sendRedirect(request.getContextPath() + "/showing");
+      return;
+    }
+
+    List<Ticket> chosenSeats = showtime.getTickets();
+
+    System.out.println(chosenSeats.size());
+    System.out.println(showtime);
+
+    request.setAttribute("showtime", showtime);
+    request.setAttribute("chosenSeats", chosenSeats);
+    request.getRequestDispatcher(url).forward(request, response);
   }
 
   @Override
   @SuppressWarnings("empty-statement")
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    String url = "/seat.jsp";
-    String showtimeId = request.getParameter("showtimeId");
-
-    if (showtimeId != null && !showtimeId.isEmpty()) {
-      ShowTime showtime = ShowTimeDB.selectShowTime(showtimeId);
-      List<Ticket> chosenSeats = showtime.getTickets();
-
-      if (showtime != null) {
-        request.setAttribute("showtime", showtime);
-        request.setAttribute("chosenSeats", chosenSeats);
-
-        System.out.println(showtime);
-        System.out.println(chosenSeats);
-        request.getRequestDispatcher(url).forward(request, response);
-      } else {
-        System.out.println("Error retrieving chosenSeats or showtime from database.");
-      }
-    } else {
-      System.out.println("showtimeId is not set correctly.");
-    }
+      throws ServletException, IOException {
+    this.show(request, response);
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String action = request.getParameter("action");
     if ("bookingSeats".equals(action)) {
       this.bookingSeats(request, response);

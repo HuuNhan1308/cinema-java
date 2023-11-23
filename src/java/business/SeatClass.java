@@ -6,6 +6,7 @@ package business;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +21,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class SeatClass implements Serializable {
 
-  @OneToMany(mappedBy = "seatClass")
+  @OneToMany(mappedBy = "seatClass", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
   private List<Ticket> tickets;
   @Id
   @GeneratedValue(
