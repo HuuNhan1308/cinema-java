@@ -12,15 +12,16 @@ import business.Ticket;
 import data.SeatClassDB;
 import data.CustomerDB;
 import data.InvoiceDB;
-import data.ShowTimeSeatDB;
+
 import data.ShowTimeDB;
-import data.TicketDB;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,15 +38,24 @@ public class UserSeatServlet extends HttpServlet {
 
   protected void bookingSeats(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String url = "/seat.jsp";
-
-    // Get seats
-    String[] seatNumbersArray = request.getParameter("seatNumbers").split(",");
-    int[] seatNumbersInt = Arrays.stream(seatNumbersArray).mapToInt(Integer::parseInt).toArray();
 
     // Get customer
     HttpSession session = request.getSession();
     final Object lock = request.getSession().getId().intern();
+
+    // Get seats
+    String numbersString = request.getParameter("seatNumbers");
+
+    // ensure user choose at least seat
+    if (numbersString.isEmpty()) {
+      session.setAttribute("state", "book_fail");
+      response.sendRedirect(request.getHeader("Referer"));
+      return;
+    }
+
+    String[] seatNumbersArray = numbersString.split(",");
+    int[] seatNumbersInt = Arrays.stream(seatNumbersArray).mapToInt(Integer::parseInt).toArray();
+
     Customer customer;
     synchronized (lock) {
       customer = (Customer) session.getAttribute("customer");
@@ -53,7 +63,8 @@ public class UserSeatServlet extends HttpServlet {
 
     // Not exist customer --> login
     if (customer == null) {
-      response.sendRedirect(request.getContextPath() + "/login");
+      // Redirect to home page
+      response.sendRedirect(request.getHeader("Referer"));
       return;
     }
 
@@ -86,11 +97,10 @@ public class UserSeatServlet extends HttpServlet {
 
     // Insert tickets
     // Update the invoice with the tickets
-
     // Check if customer has enough balance
     try {
       // Check if customer has enough balance
-      int total = invoice.getTotalPrice();
+      double total = invoice.getTotalPrice();
       if (customer.getBalance() >= total) {
         double newBalance = customer.getBalance() - total;
         customer.setBalance(newBalance);
@@ -99,12 +109,6 @@ public class UserSeatServlet extends HttpServlet {
         // add tickets to invoice
         invoice.setTickets(tickets);
         InvoiceDB.insert(invoice);
-
-        // add ticket to movie
-        List<Ticket> showtimeTicket = showtime.getTickets();
-        showtimeTicket.addAll(tickets);
-        showtime.setTickets(showtimeTicket);
-        ShowTimeDB.update(showtime);
 
         session.setAttribute("state", "book_success");
 
@@ -141,16 +145,12 @@ public class UserSeatServlet extends HttpServlet {
 
     List<Ticket> chosenSeats = showtime.getTickets();
 
-    System.out.println(chosenSeats.size());
-    System.out.println(showtime);
-
     request.setAttribute("showtime", showtime);
     request.setAttribute("chosenSeats", chosenSeats);
     request.getRequestDispatcher(url).forward(request, response);
   }
 
   @Override
-  @SuppressWarnings("empty-statement")
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     this.show(request, response);

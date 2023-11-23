@@ -48,10 +48,10 @@ public class Invoice implements Serializable {
     this.tickets = tickets;
   }
 
-  public int getTotalPrice() {
-    int totalPrice = 0;
+  public double getTotalPrice() {
+    double totalPrice = 0;
     for (Ticket ticket : tickets) {
-      totalPrice += ticket.getShowtime().getPrice();
+      totalPrice += ticket.getShowtime().getPrice() * ticket.getSeatClass().getFactor();
     }
     return totalPrice;
   }

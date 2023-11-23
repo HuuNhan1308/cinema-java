@@ -93,7 +93,7 @@ public class Movie implements Serializable {
   }
 
   public int getMins() {
-    int mins = this.duration.getHours() * 60 + this.duration.getMinutes();
+    int mins = this.duration.toLocalTime().getHour() * 60 + this.duration.toLocalTime().getMinute();
     return mins;
   }
 

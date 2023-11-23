@@ -21,7 +21,7 @@ public class AdminRoomServlet extends HttpServlet {
 
   // Navigate to update room page
   protected void update(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/rooms.jsp";
 
     // get room
@@ -37,7 +37,7 @@ public class AdminRoomServlet extends HttpServlet {
 
   // Navigate to add movie page
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/rooms.jsp";
 
     List<Room> rooms = RoomDB.selectRooms();
@@ -48,17 +48,17 @@ public class AdminRoomServlet extends HttpServlet {
 
   // Navigate to add movie page
   protected void add(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/rooms.jsp";
 
     request.setAttribute("action", "add");
     request.getRequestDispatcher(url).forward(request, response);
   }
 
-  //Handle add movie
+  // Handle add movie
   protected void addRoom(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //      handle logic
+      throws ServletException, IOException {
+    // handle logic
     int maxSeats = Integer.parseInt(request.getParameter("maxSeats"));
     String screenQuality = request.getParameter("screenQuality");
 
@@ -75,9 +75,9 @@ public class AdminRoomServlet extends HttpServlet {
     response.sendRedirect(roomsPage);
   }
 
-  //Handle update room
+  // Handle update room
   protected void updateRoom(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String roomsPage = request.getRequestURI();
 
@@ -97,9 +97,9 @@ public class AdminRoomServlet extends HttpServlet {
     response.sendRedirect(roomsPage);
   }
 
-  //Handle delete room
+  // Handle delete room
   protected void deleteRoom(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String roomsPage = request.getRequestURI();
 
@@ -115,7 +115,7 @@ public class AdminRoomServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String action = request.getParameter("action");
     if (null == action) {
@@ -134,9 +134,8 @@ public class AdminRoomServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String action = request.getParameter("action");
-    String roomsPage = request.getRequestURI();
 
     if (null != action) {
       switch (action) {

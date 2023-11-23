@@ -59,7 +59,6 @@ public class UserServlet extends HttpServlet {
     String url = "/index.jsp";
 
     List<Movie> movies = MovieDB.selectMovies();
-    
 
     request.setAttribute("movies", movies);
     request.getRequestDispatcher(url).forward(request, response);
@@ -89,7 +88,6 @@ public class UserServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String url = "/index.jsp";
 
     // add balance
     HttpSession session = request.getSession();

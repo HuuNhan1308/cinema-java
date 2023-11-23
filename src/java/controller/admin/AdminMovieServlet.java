@@ -22,8 +22,8 @@ import java.time.LocalTime;
 public class AdminMovieServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-//    Navigate to edit movie page
+      throws ServletException, IOException {
+    // Navigate to edit movie page
     String url = "/admin/movies.jsp";
 
     String movieID = request.getParameter("movieID");
@@ -36,7 +36,7 @@ public class AdminMovieServlet extends HttpServlet {
   }
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/movies.jsp";
 
     List<Movie> movies = MovieDB.selectMovies();
@@ -46,17 +46,17 @@ public class AdminMovieServlet extends HttpServlet {
 
   // Navigate to add movie page
   protected void add(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/movies.jsp";
 
     request.setAttribute("action", "add");
     request.getRequestDispatcher(url).forward(request, response);
   }
 
-  //Handle add movie
+  // Handle add movie
   protected void addMovie(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //      handle logic
+      throws ServletException, IOException {
+    // handle logic
     String title = request.getParameter("title");
     String director = request.getParameter("director");
     String mainActor = request.getParameter("mainActor");
@@ -64,10 +64,10 @@ public class AdminMovieServlet extends HttpServlet {
     int mins = Integer.parseInt(request.getParameter("duration"));
     String img = request.getParameter("img");
 
-//      handle change min to hh::mm::ss
+    // handle change min to hh::mm::ss
     Time duration = Time.valueOf(LocalTime.of(mins / 60, mins % 60));
 
-//      update movie
+    // update movie
     Movie movie = new Movie();
     movie.setTitle(title);
     movie.setDirector(director);
@@ -76,86 +76,87 @@ public class AdminMovieServlet extends HttpServlet {
     movie.setImg(img);
     movie.setDuration(duration);
 
-//      commit change
+    // commit change
     MovieDB.insert(movie);
 
-//    redirect to movies page
+    // redirect to movies page
     String moviesPage = request.getRequestURI();
     response.sendRedirect(moviesPage);
   }
-  
-  //Handle update movie
+
+  // Handle update movie
   protected void updateMovie(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-      // handle logic
-      String movieID = request.getParameter("movieID");
-      String title = request.getParameter("title");
-      String director = request.getParameter("director");
-      String mainActor = request.getParameter("mainActor");
-      String genre = request.getParameter("genre");
-      int mins = Integer.parseInt(request.getParameter("duration"));
-      String img = request.getParameter("img");
+      throws ServletException, IOException {
+    // handle logic
+    String movieID = request.getParameter("movieID");
+    String title = request.getParameter("title");
+    String director = request.getParameter("director");
+    String mainActor = request.getParameter("mainActor");
+    String genre = request.getParameter("genre");
+    int mins = Integer.parseInt(request.getParameter("duration"));
+    String img = request.getParameter("img");
 
-//      handle change min to hh::mm::ss
-      Time duration = Time.valueOf(LocalTime.of(mins / 60, mins % 60));
+    // handle change min to hh::mm::ss
+    Time duration = Time.valueOf(LocalTime.of(mins / 60, mins % 60));
 
-//      update movie
-      Movie movie = MovieDB.selectMovie(movieID);
-      movie.setTitle(title);
-      movie.setDirector(director);
-      movie.setGenre(genre);
-      movie.setMainActor(mainActor);
-      movie.setImg(img);
-      movie.setDuration(duration);
+    // update movie
+    Movie movie = MovieDB.selectMovie(movieID);
+    movie.setTitle(title);
+    movie.setDirector(director);
+    movie.setGenre(genre);
+    movie.setMainActor(mainActor);
+    movie.setImg(img);
+    movie.setDuration(duration);
 
-//      commit change
-      MovieDB.update(movie);
+    // commit change
+    MovieDB.update(movie);
 
-      String moviesPage = request.getRequestURI();
-      response.sendRedirect(moviesPage);
+    String moviesPage = request.getRequestURI();
+    response.sendRedirect(moviesPage);
   }
-  
-  //Handle delete movie
-  protected void deleteMovie(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-      String movieID = request.getParameter("movieID");
-      Movie movie = MovieDB.selectMovie(movieID);
 
-      MovieDB.delete(movie);
-      
-      String moviesPage = request.getRequestURI();
-      response.sendRedirect(moviesPage);
+  // Handle delete movie
+  protected void deleteMovie(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    String movieID = request.getParameter("movieID");
+    Movie movie = MovieDB.selectMovie(movieID);
+
+    MovieDB.delete(movie);
+
+    String moviesPage = request.getRequestURI();
+    response.sendRedirect(moviesPage);
 
   }
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String action = request.getParameter("action");
     if (null == action) {
       this.show(request, response);
-    } else switch (action) {
-      case "update" -> this.update(request, response);
-      case "add" -> this.add(request, response);
-      default -> {
+    } else
+      switch (action) {
+        case "update" -> this.update(request, response);
+        case "add" -> this.add(request, response);
+        default -> {
+        }
       }
-    }
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String action = request.getParameter("action");
-    String moviesPage = request.getRequestURI();
 
-    if (null != action) switch (action) {
-      case "update" -> this.updateMovie(request, response);
-      case "delete" -> this.deleteMovie(request, response);
-      case "add" -> this.addMovie(request, response);
-      default -> {
+    if (null != action)
+      switch (action) {
+        case "update" -> this.updateMovie(request, response);
+        case "delete" -> this.deleteMovie(request, response);
+        case "add" -> this.addMovie(request, response);
+        default -> {
+        }
       }
-    }
   }
 
   @Override

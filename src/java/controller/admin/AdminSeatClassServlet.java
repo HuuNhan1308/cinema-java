@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminSeatClassServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-//    Navigate to edit movie page
+      throws ServletException, IOException {
+    // Navigate to edit movie page
     String url = "/admin/seatclass.jsp";
     String action = request.getParameter("action");
     int id = Integer.parseInt(request.getParameter("id"));
@@ -35,7 +35,7 @@ public class AdminSeatClassServlet extends HttpServlet {
   }
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/seatclass.jsp";
 
     List<SeatClass> seatClasses = SeatClassDB.selectSeatClasses();
@@ -45,72 +45,72 @@ public class AdminSeatClassServlet extends HttpServlet {
 
   // Navigate to add movie page
   protected void add(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/seatclass.jsp";
 
     request.setAttribute("action", "add");
     request.getRequestDispatcher(url).forward(request, response);
   }
 
-  //Handle add movie
+  // Handle add movie
   protected void addSeatClass(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //get value
+      throws ServletException, IOException {
+    // get value
     String category = request.getParameter("category");
     float factor = Float.parseFloat(request.getParameter("factor"));
 
-    //creat obj
+    // creat obj
     SeatClass seatClass = new SeatClass();
     seatClass.setCategory(category);
     seatClass.setFactor(factor);
 
-    //add to db
+    // add to db
     SeatClassDB.insert(seatClass);
 
-    //edirect to movies page
+    // edirect to movies page
     String seatClassPage = request.getRequestURI();
     response.sendRedirect(seatClassPage);
   }
 
-  //Handle update movie
+  // Handle update movie
   protected void updateSeatClass(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //handle logic
+      throws ServletException, IOException {
+    // handle logic
     int id = Integer.parseInt(request.getParameter("id"));
     String category = request.getParameter("category");
     float factor = Float.parseFloat(request.getParameter("factor"));
 
-    //update seat class
+    // update seat class
     SeatClass seatClass = SeatClassDB.selectSeatClass(id);
     seatClass.setCategory(category);
     seatClass.setFactor(factor);
 
-    //commit change
+    // commit change
     SeatClassDB.update(seatClass);
 
-    //edirect to movies page
+    // edirect to movies page
     String seatClassPage = request.getRequestURI();
     response.sendRedirect(seatClassPage);
   }
 
-  //Handle delete movie
+  // Handle delete movie
   protected void deleteSeatClass(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //handle logic
+      throws ServletException, IOException {
+    // handle logic
     int id = Integer.parseInt(request.getParameter("seatClassID"));
 
-    //del seat class
+    // del seat class
     SeatClass seatClass = SeatClassDB.selectSeatClass(id);
     SeatClassDB.delete(seatClass);
 
-    //edirect to movies page
+    // edirect to movies page
     String seatClassPage = request.getRequestURI();
     response.sendRedirect(seatClassPage);
   }
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String action = request.getParameter("action");
     if (null == action) {
@@ -129,9 +129,8 @@ public class AdminSeatClassServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String action = request.getParameter("action");
-    String moviesPage = request.getRequestURI();
 
     if (null != action) {
       switch (action) {

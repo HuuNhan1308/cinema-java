@@ -4,10 +4,9 @@
  */
 package controller.showing;
 
-import business.Customer;
 import business.Movie;
 import business.ShowTime;
-import data.CustomerDB;
+
 import data.MovieDB;
 import data.ShowTimeDB;
 import java.io.IOException;
@@ -18,19 +17,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
-import java.time.format.TextStyle;
-import java.util.Locale;
-import javax.servlet.http.Cookie;
 
-/**
- *
- * @author Admin
- */
-@WebServlet(name = "UserFilmServlet", urlPatterns = {"/showing/film"})
+@WebServlet(name = "UserFilmServlet", urlPatterns = { "/showing/film" })
 public class UserFilmServlet extends HttpServlet {
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/film.jsp";
 
     String movieID = request.getParameter("movieID");
@@ -49,14 +41,14 @@ public class UserFilmServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     this.show(request, response);
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
   }
 

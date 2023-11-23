@@ -49,6 +49,7 @@ public class InvoiceDB {
     trans.begin();
     try {
       em.remove(em.merge(invoice));
+      em.getEntityManagerFactory().getCache().evictAll();
       trans.commit();
     } catch (Exception e) {
       System.out.println(e);
@@ -61,7 +62,7 @@ public class InvoiceDB {
   public static Invoice selectInvoice(String invoiceID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT i FROM Invoice i  "
-            + "WHERE i.invoiceID = :invoiceID";
+        + "WHERE i.invoiceID = :invoiceID";
     TypedQuery<Invoice> q = em.createQuery(qString, Invoice.class);
     q.setParameter("invoiceID", invoiceID);
 
