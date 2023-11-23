@@ -212,6 +212,10 @@
     const toggleElement = (arr, val) =>
       arr.includes(val) ? arr.filter(el => el !== val) : [...arr, val];
 
+    const prepareData = () => {
+      document.getElementById('seatNumbersInput').value = listSeatNumber.join(',');
+    }
+
     var listSeatNumber = [];
 
 
@@ -230,10 +234,6 @@
       }
 
       listSeatNumber = toggleElement(listSeatNumber, seatNumber);
-    }
-    
-    function prepareData() {
-      document.getElementById('seatNumbersInput').value = listSeatNumber.join(',');
     }
 
 

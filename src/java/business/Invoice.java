@@ -80,4 +80,53 @@ public class Invoice implements Serializable {
     this.boughtDate = boughDate;
   }
 
+  public String getStandardSeats() {
+    String standardSeat = "";
+    String SeatName = "ABCDEFGHIJ";
+    for (Ticket ticket : tickets) {
+      if (ticket.getSeatClass().getId() == 2) {
+        standardSeat += String.valueOf(SeatName.charAt((ticket.getSeatNumber() - 1) / 10))
+            + String.valueOf((ticket.getSeatNumber() - 1) % 10 + 1) + "-";
+      }
+    }
+    if (standardSeat.length() > 0) {
+      standardSeat = standardSeat.substring(0, standardSeat.length() - 1);
+    }
+    return standardSeat;
+  }
+
+  public String getVipSeats() {
+    String VipSeat = "";
+    String SeatName = "ABCDEFGHIJ";
+    for (Ticket ticket : tickets) {
+      if (ticket.getSeatClass().getId() == 3) {
+        VipSeat += String.valueOf(SeatName.charAt((ticket.getSeatNumber() - 1) / 10))
+            + String.valueOf((ticket.getSeatNumber() - 1) % 10 + 1) + "-";
+      }
+    }
+    if (VipSeat.length() > 0) {
+      VipSeat = VipSeat.substring(0, VipSeat.length() - 1);
+    }
+    return VipSeat;
+  }
+  
+  public int getStandardTotalPrice() {
+    int totalPrice = 0;
+    for (Ticket ticket : tickets) {
+      if (ticket.getSeatClass().getId() == 2) {
+        totalPrice += ticket.getShowtime().getPrice() * ticket.getSeatClass().getFactor();
+      }
+    }
+    return totalPrice;
+  }
+
+  public int getVipTotalPrice() {
+    int totalPrice = 0;
+    for (Ticket ticket : tickets) {
+      if (ticket.getSeatClass().getId() == 3) {
+        totalPrice += ticket.getShowtime().getPrice() * ticket.getSeatClass().getFactor();
+      }
+    }
+    return totalPrice;
+  }
 }
