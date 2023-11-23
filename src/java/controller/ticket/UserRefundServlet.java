@@ -35,6 +35,7 @@ public class UserRefundServlet extends HttpServlet {
 
         Customer customer = (Customer) request.getSession().getAttribute("customer");
         String InvoiceID = request.getParameter("InvoiceID");
+        System.out.println(InvoiceID);
         Invoice invoice = InvoiceDB.selectInvoice(InvoiceID);
 
         // compare with current date
