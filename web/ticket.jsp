@@ -247,6 +247,7 @@
         </div>
 
         <script src="<%=root%>/tailwind/flowbite.min.js"></script>
+        
         <script>
           document.querySelectorAll('[data-modal-target="refund_modal"]').forEach(item => {
             item.addEventListener('click', event => {
