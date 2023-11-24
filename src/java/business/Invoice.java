@@ -72,12 +72,12 @@ public class Invoice implements Serializable {
     this.invoiceID = invoiceID;
   }
 
-  public Date getBoughDate() {
+  public Date getboughtDate() {
     return boughtDate;
   }
 
-  public void setBoughDate(Date boughDate) {
-    this.boughtDate = boughDate;
+  public void setboughtDate(Date boughtDate) {
+    this.boughtDate = boughtDate;
   }
 
   public String getStandardSeats() {
