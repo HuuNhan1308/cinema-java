@@ -2,7 +2,13 @@ package controller;
 
 import business.Customer;
 import data.CustomerDB;
+import data.MailUtilGmailDB;
+
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,7 +21,7 @@ import javax.servlet.http.HttpSession;
 public class UserLoginServlet extends HttpServlet {
 
   protected void register(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+      throws ServletException, IOException, MessagingException {
     String url = "/login.jsp";
     request.setCharacterEncoding("UTF-8");
 
@@ -40,6 +46,23 @@ public class UserLoginServlet extends HttpServlet {
 
     // insert to db
     CustomerDB.insert(customer);
+
+    // send mail
+    String from = "nhanhohuunhan7398@gmail.com";
+    String to = email;
+    String subject = "Welcome to Nhan Ho Shop";
+    String body = "Dear " + fullname + ",\n\n"
+        + "Thank you for creating an account with us. Your account is ready for use. "
+        + "You can now start shopping at Nhan Ho Shop.\n\n"
+        + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
+        + "Sincerely,\n\n" + "Nhan Ho Shop Team";
+    boolean isBodyHTML = false;
+
+    try {
+      MailUtilGmailDB.sendMail(to, subject, body);
+    } catch (jakarta.mail.MessagingException ex) {
+      Logger.getLogger(UserLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
     request.setAttribute("state", "register_success");
     request.getRequestDispatcher(url).forward(request, response);
@@ -74,9 +97,6 @@ public class UserLoginServlet extends HttpServlet {
         response.addCookie(c);
       }
 
-      System.out.println("login success: " + customer.getFullname());
-
-
       response.sendRedirect(request.getContextPath());
     } else {
       request.setAttribute("state", "fail");
@@ -101,10 +121,17 @@ public class UserLoginServlet extends HttpServlet {
 
     if (null != action) {
       switch (action) {
-        case "register" ->
-          this.register(request, response);
-        case "login" ->
+        case "register" -> {
+          try {
+            this.register(request, response);
+          } catch (MessagingException e) {
+            // Handle the exception here
+            e.printStackTrace();
+          }
+        }
+        case "login" -> {
           this.login(request, response);
+        }
         default -> {
         }
       }
