@@ -82,7 +82,7 @@
                         ${invoice.getInvoiceID()}
                       </th>
                       <th scope="row"
-                          class="px-6 py-2 font-medium whitespace-nowrap text-gray-700">
+                          class="px-6 py-2 font-bold">
                         ${invoice.getTickets().get(0).showtime.movie.getTitle()}
                       </th>
                       <th scope="row"
@@ -107,7 +107,7 @@
                       </th>
                       <th scope="row"
                           class="px-6 py-2 font-medium whitespace-nowrap text-gray-700">
-                        ${invoice.getTotalPrice()}
+                        ${invoice.getTotalPrice()} VND
                       </th>
                       <td class="px-6 py-2">
                         <button class="detail-button block text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800"
@@ -123,6 +123,14 @@
                                  value=${invoice.getStandardTotalPrice()}>
                           <input type="hidden" name="vipPrice"
                                  value=${invoice.getVipTotalPrice()}>
+                          <input type="hidden" name="movieImg"
+                                 value="<%=root%>/assets/images/${invoice.getTickets().get(0).showtime.movie.getImg()}">
+                          <input type="hidden" name="director"
+                                 value="${invoice.getTickets().get(0).showtime.movie.getDirector()}">
+                          <input type="hidden" name="mainActor"
+                                 value="${invoice.getTickets().get(0).showtime.movie.getMainActor()}">
+                          <input type="hidden" name="genre"
+                                 value="${invoice.getTickets().get(0).showtime.movie.getGenre()}">
                           Detail
                         </button>
                       </td>
@@ -145,11 +153,10 @@
 
         <div id="detail_modal" tabindex="-1"
              class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-          <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="relative w-full max-w-md max-h-full">
             <div class="relative bg-white rounded-lg shadow">
               <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
-                <h3 id="modalMovieTitle" class="text-lg font-semibold text-gray-900">
-
+                <h3 id="modalMovieTitle" class="text-lg font-bold text-gray-900">
                 </h3>
                 <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center"
@@ -161,6 +168,17 @@
                   </svg>
                   <span class="sr-only">Close modal</span>
                 </button>
+              </div>
+              <div
+                   class="flex flex-col items-center bg-white border border-gray-200 shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+                <img id="modalImg"
+                     class="object-cover w-full h-96 md:h-auto md:w-48"
+                     src="" alt="">
+                <div class="flex flex-col justify-between p-4 leading-normal">
+                  <p id="modalDirector" class="mb-3 font-bold text-black-700"></p>
+                  <p id="modalActor" class="mb-3 font-bold text-black-700"></p>
+                  <p id="modalGenre" class="mb-3 font-bold text-black-700"></p>
+                </div>
               </div>
               <div class="p-4 md:p-5">
                 <ol class="relative border-s border-gray-200 ms-3.5 mb-4 md:mb-5">
@@ -185,7 +203,8 @@
                     </div>
                   </li>
                   <li class="mb-10 ms-8">
-                    <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
+                    <span
+                          class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
                       <svg class="w-2.5 h-2.5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                            fill="none" viewBox="0 0 20 20">
                         <path fill="currentColor"
@@ -235,7 +254,7 @@
                 <form method="post" action="<%=root%>/ticket/refund">
                   <input type="hidden" name="InvoiceID"
                          value="">
-                  <button class="text-white bg-green-600 px-5 py-2.5 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-800 font-medium rounded-lg text-sm inline-flex items-center text-center me-2"
+                  <button class="text-white bg-red-600 px-5 py-2.5 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center text-center me-2"
                           type="submit">YES
                   </button>
                   <button data-modal-hide="refund_modal" type="button"
@@ -278,7 +297,7 @@
               if (standardPrice == "0") {
                 standardPrice = "";
               }
-              
+
               var modalVipSeats = document.getElementById('modalVipSeats');
               modalVipSeats.innerHTML = vipSeat;
 
@@ -286,10 +305,22 @@
               modalStandardSeats.innerHTML = standardSeats;
 
               var modalStandardPrice = document.getElementById('modalStandardPrice');
-              modalStandardPrice.innerHTML = standardPrice;
+              modalStandardPrice.innerHTML = standardPrice + " VND";
 
               var modalVipPrice = document.getElementById('modalVipPrice');
-              modalVipPrice.innerHTML = vipPrice;
+              modalVipPrice.innerHTML = vipPrice + " VND";
+
+              var modalImg = document.getElementById('modalImg');
+              modalImg.src = this.querySelector('input[name="movieImg"]').value;
+
+              var modalDirector = document.getElementById('modalDirector');
+              modalDirector.innerHTML = "Director: " + this.querySelector('input[name="director"]').value;
+
+              var modalActor = document.getElementById('modalActor');
+              modalActor.innerHTML = "Main Actor: " + this.querySelector('input[name="mainActor"]').value;
+
+              var modalGenre = document.getElementById('modalGenre');
+              modalGenre.innerHTML = "Genre: " + this.querySelector('input[name="genre"]').value;
 
             });
           });
