@@ -27,8 +27,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminShowTimeServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-//    Navigate to edit movie page
+      throws ServletException, IOException {
+    // Navigate to edit movie page
     String url = "/admin/showtimes.jsp";
     String action = request.getParameter("action");
 
@@ -37,7 +37,7 @@ public class AdminShowTimeServlet extends HttpServlet {
   }
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/showtimes.jsp";
 
     List<ShowTime> showTimes = ShowTimeDB.selectShowTimes();
@@ -47,10 +47,10 @@ public class AdminShowTimeServlet extends HttpServlet {
 
   // Navigate to add movie page
   protected void add(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String url = "/admin/showtimes.jsp";
 
-    //get value to choose room and movie
+    // get value to choose room and movie
     List<Movie> movies = MovieDB.selectMovies();
     request.setAttribute("movies", movies);
     List<Room> rooms = RoomDB.selectRooms();
@@ -60,16 +60,16 @@ public class AdminShowTimeServlet extends HttpServlet {
     request.getRequestDispatcher(url).forward(request, response);
   }
 
-  //Handle add movie
+  // Handle add movie
   protected void addShowTime(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
-    //get value
+      throws ServletException, IOException {
+    // get value
     String movieID = request.getParameter("movieID");
     int roomNumber = Integer.parseInt(request.getParameter("roomNumber"));
     Date date = Date.valueOf(request.getParameter("date"));
     Time time = Time.valueOf(request.getParameter("time") + ":00");
     int price = Integer.parseInt(request.getParameter("price"));
-    
+
     // set value
     ShowTime showTime = new ShowTime();
     showTime.setPrice(price);
@@ -83,37 +83,37 @@ public class AdminShowTimeServlet extends HttpServlet {
     showTime.setRoom(room);
 
     ShowTimeDB.insert(showTime);
-    //edirect to movies page
+    // edirect to movies page
     String showTimePage = request.getRequestURI();
     response.sendRedirect(showTimePage);
   }
 
-  //Handle update movie
+  // Handle update movie
   protected void updateShowTime(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
-    //edirect to movies page
+    // edirect to movies page
     String showTimePage = request.getRequestURI();
     response.sendRedirect(showTimePage);
   }
 
-  //Handle delete movie
+  // Handle delete movie
   protected void deleteShowTime(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
     String showTimeID = request.getParameter("showTimeID");
-    
-    //handle delete showtime
+
+    // handle delete showtime
     ShowTime showTime = ShowTimeDB.selectShowTime(showTimeID);
     ShowTimeDB.delete(showTime);
 
-    //redirect to movies page
+    // redirect to movies page
     String showTimePage = request.getRequestURI();
     response.sendRedirect(showTimePage);
   }
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
 
     String action = request.getParameter("action");
     if (null == action) {
@@ -132,7 +132,8 @@ public class AdminShowTimeServlet extends HttpServlet {
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
+      throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
     String action = request.getParameter("action");
 
     if (null != action) {
