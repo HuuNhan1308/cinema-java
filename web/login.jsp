@@ -26,7 +26,7 @@
 
     <!--content-->
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-      <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
+      <a class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
         <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
              alt="logo">
         CINEMA
@@ -97,8 +97,7 @@
                   <label for="remember" class="text-gray-500">Remember me</label>
                 </div>
               </div>
-              <a href="#"
-                 class="text-sm font-medium text-primary-600 hover:underline">Forgot
+              <a class="text-sm font-medium text-primary-600 hover:underline">Forgot
                 password?</a>
             </div>
 
@@ -108,7 +107,7 @@
                     lg:py-2.5 mr-2">Sign in</button>
 
             <p class="text-sm font-light text-gray-500">
-              Don?t have an account yet? <a href="#" data-modal-target="default-modal"
+              Don?t have an account yet? <a data-modal-target="default-modal"
                                             data-modal-toggle="default-modal"
                                             class="font-medium text-primary-600 hover:underline">Sign
                 up</a>
