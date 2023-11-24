@@ -41,8 +41,7 @@
 
           <!--if type incorrect input-->
           <c:if test = "${state == 'fail'}">
-            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50
-                dark:bg-gray-800 dark:text-red-400" role="alert">
+            <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
               <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -56,8 +55,7 @@
 
           <!--if register success-->
           <c:if test = "${state == 'register_success'}">
-            <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50
-                dark:bg-gray-800 dark:text-green-400" role="alert">
+            <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
               <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
               </svg>
@@ -124,7 +122,7 @@
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow">
           <button type="button"
-                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                  class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
                   data-modal-hide="default-modal">
             <svg class="w-3 h-3" class="close" data-dismiss="modal" aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" fill="none"
