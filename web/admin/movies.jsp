@@ -154,6 +154,7 @@
                     <th scope="col" class="px-6 py-3">Main actor</th>
                     <th scope="col" class="px-6 py-3">Genre</th>
                     <th scope="col" class="px-2 py-3">Duration</th>
+                    <th scope="col" class="px-2 py-3">Description</th>
                     <th scope="col" class="px-6 py-3"></th>
                     <th scope="col" class="px-6 py-3"></th>
                   </tr>
@@ -171,6 +172,7 @@
                       <td class="px-6 py-2">${movie.getMainActor()}</td>
                       <td class="px-6 py-2">${movie.getGenre()}</td>
                       <td class="px-2 py-2">${movie.getMins()}mins</td>
+                      <td class="px-2 py-2">${movie.getDescription()}</td>
                       <td class="px-6 py-2">
                         <a href="<%=root%>/admin/movies?action=update&movieID=${movie.getMovieID()}" class="font-medium text-blue-500 hover:underline"
                            >Edit</a

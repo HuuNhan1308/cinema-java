@@ -24,8 +24,6 @@
         >
       </div>
     </c:if>
-
-
     <div class="relative z-0 w-full mb-6 group">
       <input
         type="text"
@@ -106,8 +104,7 @@
         <label
           for="duration"
           class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Duration (mins)</label
-        >
+          >Duration (mins)</label>
       </div>
     </div>
     <div class="grid md:grid-cols-2 md:gap-6">
@@ -123,8 +120,22 @@
         <label
           for="img"
           class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-          >Image</label
-        >
+          >Image</label>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <input
+          type="text"
+          name="description"
+          id="description"
+          class="block py-2.5 px-0 w-full text-sm bg-transparent border-0 border-b-2 appearance-none text-white border-white focus:border-blue-500 focus:outline-none focus:ring-0 peer"
+          placeholder=" "
+          value="${movie.getDescription()}"
+          required
+          />
+        <label
+          for="description"
+          class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Description</label>
       </div>
 
     </div>

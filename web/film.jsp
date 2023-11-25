@@ -34,9 +34,9 @@
               <div class="film-wrapper pb-[60px]">
 
                 <!--Show movie-->
-                <div class="bg-gray-800 text-white py-14">
+                <div class="text-white py-14 bg-gradient-to-r from-gray-800 via-black-500 to-gray-500">
                   <div class="film-wrapper-content md:mx-64 mx:-32 flex gap-16">
-                    <div class="film-thumbnail border-2 border-white rounded-lg">
+                    <div class="film-thumbnail border-2 border-white rounded-lg min-w-[260px]">
                       <img
                            src="<%=root%>/assets/images/${movie.getImg()}"
                            alt="film-thumbnail"
@@ -47,20 +47,20 @@
                       </div>
                     </div>
                     <div class="film-detail flex flex-col items-start justify-center gap-4">
-                      <h1 class="film-name xl:text-4xl text-2xl font-bold">
+                      <h1 class="film-name xl:text-4xl text-2xl font-bold font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
                         ${movie.getTitle()}
                       </h1>
                       <div class="film-duration xl:text-lg xl:font-semmibold font-medium">
-                        Duration: ${movie.getDuration()}
+                        ${movie.getDuration()}
                       </div>
                       <div class="film-genres xl:text-lg xl:font-semmibold font-medium">
-                        Genre: ${movie.getGenre()}
+                        ${movie.getGenre()}
                       </div>
                       <div class="film-director xl:text-lg xl:font-semmibold font-medium">
-                        Director: ${movie.getDirector()}
+                        Director: ${movie.getDirector()}, Main Actor: ${movie.getMainActor()}
                       </div>
-                      <div class="film-mainactor xl:text-lg xl:font-semmibold font-medium">
-                        Main Actor: ${movie.getMainActor()}
+                      <div class="film-mainactor xl:text-lg xl:font-normal font-normal">
+                        ${movie.getDescription()}
                       </div>
                     </div>
                   </div>

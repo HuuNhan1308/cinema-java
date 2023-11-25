@@ -7,10 +7,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author Admin
- */
 public class InvoiceDB {
 
   public static void insert(Invoice invoice) {

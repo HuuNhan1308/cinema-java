@@ -38,6 +38,7 @@ public class Movie implements Serializable {
   @Column(name = "main_actor")
   private String mainActor;
   private Time duration;
+  private String description;
   private String img;
 
   public String getImg() {
@@ -90,6 +91,14 @@ public class Movie implements Serializable {
 
   public Time getDuration() {
     return duration;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getDescription() {
+    return description;
   }
 
   public int getMins() {

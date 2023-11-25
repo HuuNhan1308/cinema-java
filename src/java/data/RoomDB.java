@@ -7,10 +7,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
-/**
- *
- * @author Admin
- */
 public class RoomDB {
 
   public static void insert(Room room) {

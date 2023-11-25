@@ -12,10 +12,6 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-/**
- *
- * @author Admin
- */
 public class ShowTimeDB {
 
   public static void insert(ShowTime showtime) {

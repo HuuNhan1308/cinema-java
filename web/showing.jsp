@@ -27,7 +27,7 @@
     <div class="bg-white py-16 px-16">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold mb-8 text-gray-800">Showing Movies</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
 
           <c:forEach var="movie" items="${movies}">
             <div class="max-w-xs bg-white border border-gray-200 rounded-lg shadow">
@@ -41,8 +41,9 @@
                     ${movie.getTitle()}
                   </a>
                 </h5>
-                <p class="mb-3 mt-2 font-medium text-gray-700">Genre: ${movie.getGenre()}</p>
+                <p class="mb-3 mt-2 font-medium text-gray-700">${movie.getGenre()}</p>
                 <p class="mb-3 font-medium text-gray-700">Duration: ${movie.getDuration()}</p>
+                <p class="mb-3 font-medium text-gray-700">${movie.getDescription()}</p>
                 <c:choose>
                   <c:when test="${customer != null}">
                     <a href="<%=root%>/showing/film?movieID=${movie.getMovieID()}"

@@ -48,15 +48,14 @@ public class UserLoginServlet extends HttpServlet {
     CustomerDB.insert(customer);
 
     // send mail
-    String from = "nhanhohuunhan7398@gmail.com";
     String to = email;
-    String subject = "Welcome to Nhan Ho Shop";
-    String body = "Dear " + fullname + ",\n\n"
-        + "Thank you for creating an account with us. Your account is ready for use. "
-        + "You can now start shopping at Nhan Ho Shop.\n\n"
-        + "If you have any questions about our products or services, please feel free to contact us at any time.\n\n"
-        + "Sincerely,\n\n" + "Nhan Ho Shop Team";
-    boolean isBodyHTML = false;
+    String subject = "Thanks for creating an account with us!";
+    String body = "Hi " + fullname + ",\n\n"
+        + "Thank you for registering and booking cinema online with us. We are delighted to have you as our valued customer." + "\n"
+        + "Your username is " +  username + " .Please your information safe and do not share them with anyone. You can use them to log in to your account and manage your bookings, preferences, and rewards." + "\n"
+        + "We hope you enjoy the movie and have a wonderful time with us. If you have any questions or feedback, please feel free to contact us at " + "nhanhohuunhan7398@gmail.com" + ".\n"
+        + "Thank you for choosing us and we look forward to seeing you again soon." + "\n\n"
+        + "Best regards," + "\n";
 
     try {
       MailUtilGmailDB.sendMail(to, subject, body);

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller.admin;
 
 import business.Movie;
@@ -15,10 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.Time;
 import java.time.LocalTime;
 
-/**
- *
- * @author Admin
- */
 public class AdminMovieServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)
@@ -62,6 +54,7 @@ public class AdminMovieServlet extends HttpServlet {
     String mainActor = request.getParameter("mainActor");
     String genre = request.getParameter("genre");
     int mins = Integer.parseInt(request.getParameter("duration"));
+    String description = request.getParameter("description");
     String img = request.getParameter("img");
 
     // handle change min to hh::mm::ss
@@ -75,6 +68,7 @@ public class AdminMovieServlet extends HttpServlet {
     movie.setMainActor(mainActor);
     movie.setImg(img);
     movie.setDuration(duration);
+    movie.setDescription(description);
 
     // commit change
     MovieDB.insert(movie);
@@ -94,6 +88,7 @@ public class AdminMovieServlet extends HttpServlet {
     String mainActor = request.getParameter("mainActor");
     String genre = request.getParameter("genre");
     int mins = Integer.parseInt(request.getParameter("duration"));
+    String description = request.getParameter("description");
     String img = request.getParameter("img");
 
     // handle change min to hh::mm::ss
@@ -107,6 +102,7 @@ public class AdminMovieServlet extends HttpServlet {
     movie.setMainActor(mainActor);
     movie.setImg(img);
     movie.setDuration(duration);
+    movie.setDescription(description);
 
     // commit change
     MovieDB.update(movie);
