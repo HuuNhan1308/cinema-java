@@ -36,11 +36,11 @@
                 <!--Show movie-->
                 <div class="text-white py-14 bg-gradient-to-r from-gray-800 via-black-500 to-gray-500">
                   <div class="film-wrapper-content md:mx-64 mx:-32 flex gap-16">
-                    <div class="film-thumbnail border-2 border-white rounded-lg min-w-[260px]">
+                    <div class="film-thumbnail border-2 border-white rounded-lg min-w-[300px]">
                       <img
                            src="<%=root%>/assets/images/${movie.getImg()}"
                            alt="film-thumbnail"
-                           class="w-64 h-96 rounded-t-lg" />
+                           class="w-96 h-96 rounded-t-lg" />
                       <div
                            class="text-center bg-black text-white border-t-2 py-2 rounded-b-lg">
                         Showing

@@ -40,7 +40,7 @@
                   d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
                   />
                 </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Cinema</span>
+                <span class="flex-1 ms-3 whitespace-nowrap">NTV Cinema</span>
               </a>
             </li>
             <!-- Movies -->
@@ -158,10 +158,10 @@
                 </thead>
                 <tbody>
                   <c:forEach var="room" items="${rooms}">
-                    <tr class="border-b bg-gray-800 border-gray-700">
+                    <tr class="border-b bg-gray-800 border-gray-700 font-medium">
                       <th
                         scope="row"
-                        class="px-6 py-2 font-medium whitespace-nowrap text-white"
+                        class="px-6 py-2 whitespace-nowrap text-white"
                         >
                         ${room.getRoomNumber()}
                       </th>

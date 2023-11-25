@@ -176,10 +176,10 @@
       </div>
 
 
-      <div class="info-film ml-[110px] max-w-[430px] lg:mt-[-5%] md:mx-16 lg:mx-20 xl:mx-16 flex flex-col gap-4">
+      <div class="info-film ml-[110px] max-w-[470px] lg:mt-[-5%] md:mx-16 lg:mx-20 xl:mx-16 flex flex-col gap-4">
         <div class="shadow-2xl p-10 px-20 flex flex-col gap-2">
           <!-- thumbnail -->
-          <div class="image-container h-[450px] w-[calc(450px*0.6)]">
+          <div class="image-container h-[450px] w-[calc(450px*0.7)]">
             <img class="rounded-t-lg h-full" src="/Cinema/assets/images/${showtime.getMovie().getImg()}" alt="">
           </div>
 

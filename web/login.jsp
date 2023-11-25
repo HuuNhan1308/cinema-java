@@ -27,9 +27,9 @@
     <!--content-->
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
-        <img class="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg"
+        <img class="w-8 h-8 mr-2" src="<%=root%>/assets/images/logo.png"
              alt="logo">
-        CINEMA
+        NTV CINEMA
       </a>
       <div
         class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">

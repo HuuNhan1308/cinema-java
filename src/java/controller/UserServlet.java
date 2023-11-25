@@ -54,7 +54,7 @@ public class UserServlet extends HttpServlet {
 
     String url = "/index.jsp";
 
-    List<Movie> movies = MovieDB.selectMovies();
+    List<Movie> movies = MovieDB.selectTop8Movies();
 
     request.setAttribute("movies", movies);
     request.getRequestDispatcher(url).forward(request, response);

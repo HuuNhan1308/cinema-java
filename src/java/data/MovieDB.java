@@ -134,4 +134,21 @@ public class MovieDB {
     }
     return movies;
   }
+
+  public static List<Movie> selectTop8Movies() {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT m FROM Movie m";
+    TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
+    q.setMaxResults(8);
+    List<Movie> movies;
+    try {
+      movies = q.getResultList();
+      if (movies == null || movies.isEmpty()) {
+        movies = null;
+      }
+    } finally {
+      em.close();
+    }
+    return movies;
+  }
 }

@@ -49,13 +49,14 @@ public class UserLoginServlet extends HttpServlet {
 
     // send mail
     String to = email;
-    String subject = "Thanks for creating an account with us!";
+    String subject = "Thanks for creating an account with us! NTV Cinema";
     String body = "Hi " + fullname + ",\n\n"
+        + "Your username is " +  username + ".\n\n"
         + "Thank you for registering and booking cinema online with us. We are delighted to have you as our valued customer." + "\n"
-        + "Your username is " +  username + " .Please your information safe and do not share them with anyone. You can use them to log in to your account and manage your bookings, preferences, and rewards." + "\n"
+        + "Please keep your information safe and do not share them with anyone. You can use them to log in to your account and manage your bookings, preferences, and rewards." + "\n"
         + "We hope you enjoy the movie and have a wonderful time with us. If you have any questions or feedback, please feel free to contact us at " + "nhanhohuunhan7398@gmail.com" + ".\n"
         + "Thank you for choosing us and we look forward to seeing you again soon." + "\n\n"
-        + "Best regards," + "\n";
+        + "Best regards, NTV Cinema" + "\n";
 
     try {
       MailUtilGmailDB.sendMail(to, subject, body);

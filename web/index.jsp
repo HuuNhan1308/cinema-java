@@ -28,7 +28,7 @@
       <div class="pt-14 px-16 mx-auto">
         <div class="rounded-lg text-white py-14 bg-gradient-to-r from-gray-800 via-black-500 to-gray-500 bg-[url('<%=root%>/assets/images/carousel2.png')]">
           <div class="container mx-auto text-center text-white px-4">
-            <h1 class="text-4xl md:text-6xl font-bold">Welcome to Cinema</h1>
+            <h1 class="text-4xl md:text-6xl font-bold">Welcome to NTV Cinema</h1>
             <p class="text-xl mt-4">Experience movies like never before.</p>
             <div class="py-2 px-6 bg-gray-100 text-gray-800 hover:bg-gray-200 rounded-md mt-8 w-40 mx-auto">
               <a href="<%=root%>/showing">Get Started</a>
@@ -56,7 +56,7 @@
 
       <footer class="bg-gray-800 text-white py-8">
         <div class="container mx-auto px-4">
-          <p>&copy; 2023 Cinema</p>
+          <p>&copy; 2023 NTV Cinema</p>
         </div>
       </footer>
       <script src="<%=root%>/tailwind/flowbite.min.js"></script>

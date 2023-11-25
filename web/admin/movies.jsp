@@ -40,7 +40,7 @@
                   d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
                   />
                 </svg>
-                <span class="flex-1 ms-3 whitespace-nowrap">Cinema</span>
+                <span class="flex-1 ms-3 whitespace-nowrap">NTV Cinema</span>
               </a>
             </li>
             <!-- Movies -->
@@ -132,7 +132,7 @@
       </aside>
 
       <!-- Content -->
-      <div class="content ml-64 px-4 h-[100vh] pt-4">
+      <div class="content ml-64 px-4 min-h-[100vh] pt-4">
         <!-- Table -->
 
 
@@ -154,25 +154,25 @@
                     <th scope="col" class="px-6 py-3">Main actor</th>
                     <th scope="col" class="px-6 py-3">Genre</th>
                     <th scope="col" class="px-2 py-3">Duration</th>
-                    <th scope="col" class="px-2 py-3">Description</th>
+                    <th scope="col" class="px-2 py-3 text-center">Description</th>
                     <th scope="col" class="px-6 py-3"></th>
                     <th scope="col" class="px-6 py-3"></th>
                   </tr>
                 </thead>
                 <tbody>
                   <c:forEach var="movie" items="${movies}">
-                    <tr class="border-b bg-gray-800 border-gray-700">
+                    <tr class="border-b bg-gray-800 border-gray-700 font-medium">
                       <th
                         scope="row"
-                        class="px-6 py-2 font-medium whitespace-nowrap text-white"
+                        class="px-6 py-2 text-white"
                         >
                         ${movie.getTitle()}
                       </th>
                       <td class="px-6 py-2">${movie.getDirector()}</td>
                       <td class="px-6 py-2">${movie.getMainActor()}</td>
                       <td class="px-6 py-2">${movie.getGenre()}</td>
-                      <td class="px-2 py-2">${movie.getMins()}mins</td>
-                      <td class="px-2 py-2">${movie.getDescription()}</td>
+                      <td class="px-2 py-2">${movie.getMins()} mins</td>
+                      <td class="px-2 py-2 w-80">${movie.getDescription()}</td>
                       <td class="px-6 py-2">
                         <a href="<%=root%>/admin/movies?action=update&movieID=${movie.getMovieID()}" class="font-medium text-blue-500 hover:underline"
                            >Edit</a
@@ -182,9 +182,6 @@
                         <button data-modal-target="delete_modal" data-movie-ID=${movie.getMovieID()} data-modal-toggle="delete_modal" class="block text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800" type="button">
                           Delete
                         </button>
-<!--                        <a href="<%=root%>/admin/movies?action=delete&movieID=${movie.getMovieID()}" class="font-medium text-blue-500 hover:underline"
-                           >Delete</a
-                        >-->
                       </td>
                     </tr>
                   </c:forEach>
