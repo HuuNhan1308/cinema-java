@@ -124,4 +124,21 @@ public class CustomerDB {
       em.close();
     }
   }
+
+  public static Customer selectCustomerByEmail(String email) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT c FROM Customer c "
+        + "WHERE c.email = :email";
+    TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
+    q.setParameter("email", email);
+
+    try {
+      Customer customer = q.getSingleResult();
+      return customer;
+    } catch (NoResultException e) {
+      return null;
+    } finally {
+      em.close();
+    }
+  }
 }

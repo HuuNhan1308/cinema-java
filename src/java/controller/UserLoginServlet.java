@@ -5,6 +5,7 @@ import data.CustomerDB;
 import data.MailUtilGmailDB;
 
 import java.io.IOException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,10 +52,13 @@ public class UserLoginServlet extends HttpServlet {
     String to = email;
     String subject = "Thanks for creating an account with us! NTV Cinema";
     String body = "Hi " + fullname + ",\n\n"
-        + "Your username is " +  username + ".\n\n"
-        + "Thank you for registering and booking cinema online with us. We are delighted to have you as our valued customer." + "\n"
-        + "Please keep your information safe and do not share them with anyone. You can use them to log in to your account and manage your bookings, preferences, and rewards." + "\n"
-        + "We hope you enjoy the movie and have a wonderful time with us. If you have any questions or feedback, please feel free to contact us at " + "nhanhohuunhan7398@gmail.com" + ".\n"
+        + "Your username is " + username + ".\n\n"
+        + "Thank you for registering and booking cinema online with us. We are delighted to have you as our valued customer."
+        + "\n"
+        + "Please keep your information safe and do not share them with anyone. You can use them to log in to your account and manage your bookings, preferences, and rewards."
+        + "\n"
+        + "We hope you enjoy the movie and have a wonderful time with us. If you have any questions or feedback, please feel free to contact us at "
+        + "nhanhohuunhan7398@gmail.com" + ".\n"
         + "Thank you for choosing us and we look forward to seeing you again soon." + "\n\n"
         + "Best regards, NTV Cinema" + "\n";
 
@@ -105,6 +109,37 @@ public class UserLoginServlet extends HttpServlet {
 
   }
 
+  protected void recoverPassword(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    String url = "/login.jsp";
+    String emailForgot = request.getParameter("emailForgot");
+    request.setAttribute("emailForgot", emailForgot);
+    Customer customer = CustomerDB.selectCustomerByEmail(emailForgot);
+    String newPassword = UUID.randomUUID().toString();
+    if (customer == null) {
+      request.setAttribute("state", "emailNotFound");
+      request.getRequestDispatcher(url).forward(request, response);
+      return;
+    } else {
+      request.setAttribute("state", "emailFound");
+      customer.setPassword(newPassword);
+      CustomerDB.update(customer);
+      String to = emailForgot;
+      String subject = "Password Recovery for Your NTV Cinema Account";
+      String body = "Hi " + customer.getFullname() + ",\n\n"
+          + "You have requested to recover your password.\n\n"
+          + "Your username is " + customer.getUsername() + ".\n\n"
+          + "Your new password is: " + newPassword + ".\n\n"
+          + "Please change this password after logging in for security purposes.\n\n";
+      try {
+        MailUtilGmailDB.sendMail(to, subject, body);
+      } catch (jakarta.mail.MessagingException ex) {
+        Logger.getLogger(UserLoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      request.getRequestDispatcher(url).forward(request, response);
+    }
+  }
+
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -131,6 +166,9 @@ public class UserLoginServlet extends HttpServlet {
         }
         case "login" -> {
           this.login(request, response);
+        }
+        case "recoverPassword" -> {
+          this.recoverPassword(request, response);
         }
         default -> {
         }
