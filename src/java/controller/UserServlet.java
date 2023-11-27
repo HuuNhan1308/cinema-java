@@ -3,6 +3,7 @@ package controller;
 import business.Customer;
 import java.io.IOException;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +61,52 @@ public class UserServlet extends HttpServlet {
     request.getRequestDispatcher(url).forward(request, response);
   }
 
+  protected void addedBalance(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    Customer customer = (Customer) session.getAttribute("customer");
+    int addedBalance = Integer.parseInt(request.getParameter("balance"));
+    customer.setBalance(customer.getBalance() + addedBalance);
+
+    CustomerDB.update(customer);
+
+    response.sendRedirect(request.getContextPath());
+  }
+
+  protected void changePassword(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    Customer customer = (Customer) session.getAttribute("customer");
+    String currentPassword = request.getParameter("currentPassword");
+    String newPassword = request.getParameter("newPassword");
+    String confirmNewPass = request.getParameter("confirmNewPass");
+
+    if (!currentPassword.equals(customer.getPassword())) {
+      session.setAttribute("state", "inCorrectCurrentPassword");
+      response.sendRedirect(request.getHeader("Referer"));
+
+      return;
+    } else if (!newPassword.equals(confirmNewPass)) {
+      session.setAttribute("state", "inCorrectConfirmPassword");
+      response.sendRedirect(request.getHeader("Referer"));
+
+      return;
+    } else if (newPassword.equals(currentPassword)) {
+      session.setAttribute("state", "samePassword");
+      response.sendRedirect(request.getHeader("Referer"));
+
+      return;
+    } else {
+      customer.setPassword(newPassword);
+      session.setAttribute("state", "successChangedPassword");
+
+      CustomerDB.update(customer);
+      response.sendRedirect(request.getHeader("Referer"));
+    }
+
+    // response.sendRedirect(request.getContextPath());
+  }
+
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -86,14 +133,22 @@ public class UserServlet extends HttpServlet {
       throws ServletException, IOException {
 
     // add balance
-    HttpSession session = request.getSession();
-    Customer customer = (Customer) session.getAttribute("customer");
-    int addedBalance = Integer.parseInt(request.getParameter("balance"));
-    customer.setBalance(customer.getBalance() + addedBalance);
 
-    CustomerDB.update(customer);
+    String action = request.getParameter("action");
 
-    response.sendRedirect(request.getContextPath());
+    if (null != action) {
+      switch (action) {
+        case "addBalance" -> {
+          this.addedBalance(request, response);
+        }
+        case "changePassword" -> {
+          this.changePassword(request, response);
+        }
+        default -> {
+
+        }
+      }
+    }
 
   }
 

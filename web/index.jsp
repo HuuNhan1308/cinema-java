@@ -25,7 +25,68 @@
       </jsp:include>
 
       <!--content-->
-      <div class="pt-14 px-16 mx-auto">
+
+      <div class="flex justify-center mt-4">
+        <c:if test="${sessionScope.state == 'successChangedPassword'}">
+                                <div class="flex items-center p-4 mb-4 text-sm text-green-400 rounded bg-gray-800 w-fit" role="alert">
+                                  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                  </svg>
+                                  <div>
+                                    <span class="font-medium">Your password change was successful.
+
+                                    </span>
+                                  </div>
+                                </div>
+                                <c:remove var="state" scope="session" />
+                              </c:if>
+
+                              <c:if test="${sessionScope.state == 'inCorrectCurrentPassword'}">
+                                <div class="flex items-center  p-4 mb-4 text-sm text-red-400 rounded bg-gray-800 w-fit" role="alert">
+                                  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                  </svg>
+                                  <div>
+                                    <span class="font-medium">Current password is incorrect.</span>
+                                  </div>
+                                </div>
+                                <c:remove var="state" scope="session" />
+                              </c:if>
+
+                              <c:if test="${sessionScope.state == 'inCorrectConfirmPassword'}">
+                                <div class="flex items-center  p-4 mb-4 text-sm text-red-400 rounded bg-gray-800 w-fit" role="alert">
+                                  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                  </svg>
+                                  <div>
+                                    <span class="font-medium">Confirm password is incorrect.</span>
+                                  </div>
+                                </div>
+                                <c:remove var="state" scope="session" />
+                              </c:if>
+
+                              <c:if test="${sessionScope.state == 'samePassword'}">
+                                <div class="flex items-center  p-4 mb-4 text-sm text-red-400 rounded bg-gray-800 w-fit" role="alert">
+                                  <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                      fill="currentColor" viewBox="0 0 20 20">
+                                  <path
+                                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                  </svg>
+                                  <div>
+                                    <span class="font-medium">The new password cannot be the same as the current password.</span>
+                                  </div>
+                                </div>
+                                <c:remove var="state" scope="session" />
+                              </c:if>
+      </div>
+      <div class="pt-14 px-8 mx-auto">
+        
         <div class="rounded-lg text-white py-14 bg-gradient-to-r from-gray-800 via-black-500 to-gray-500 bg-[url('<%=root%>/assets/images/carousel2.png')]">
           <div class="container mx-auto text-center text-white px-4">
             <h1 class="text-4xl md:text-6xl font-bold">Welcome to NTV Cinema</h1>
