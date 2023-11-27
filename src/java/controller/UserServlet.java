@@ -99,7 +99,6 @@ public class UserServlet extends HttpServlet {
     } else {
       customer.setPassword(newPassword);
       session.setAttribute("state", "successChangedPassword");
-
       CustomerDB.update(customer);
       response.sendRedirect(request.getHeader("Referer"));
     }
