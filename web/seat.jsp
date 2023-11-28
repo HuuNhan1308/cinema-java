@@ -52,10 +52,9 @@
           </span>
         </div>
 
-        <div class="flex flex-row lg:gap-2 lg:mt-8 mt-[5px] gap-2" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex flex-row lg:gap-2 lg:mt-8 mt-[5px] gap-2">
           <!--Column-->
-          <div
-               class="name-seats flex flex-col gap-[8px] text-black text-center font-bold lg:mt-[3px]">
+          <div class="name-seats flex flex-col gap-[8px] text-black text-center font-bold lg:mt-[3px]"  data-aos="fade-up" data-aos-delay="100">
             <div
                  class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-white border-[1px] h-[42px] text-white lg:border-1 rounded select-none">
               O</div>
@@ -92,9 +91,8 @@
 
           </div>
 
-
           <div class="name-detail-seats h-fit grid grid-cols-10 xl:gap-2 xl:ml-[115px] 2xl:gap-2
-           2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 mt-[3px] text-center">
+           2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 mt-[3px] text-center"  data-aos="fade-up" data-aos-delay="100">
 
             <input type="checkbox" id="A" class="hidden custom-label" name="group-seats" />
             <label for="A" class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1 lg:border-1
@@ -175,9 +173,8 @@
             </c:forEach>
           </div>
 
-
           <div class="info-film ml-[110px] max-w-[470px] lg:mt-[-5%] md:mx-16 lg:mx-20 xl:mx-16 flex flex-col gap-4">
-            <div class="shadow-2xl p-10 px-20 flex flex-col gap-2">
+            <div class="shadow-2xl p-10 px-20 flex flex-col gap-2" data-aos="fade-up">
               <!-- thumbnail -->
               <div class="image-container h-[450px] w-[calc(450px*0.7)]">
                 <img class="rounded-t-lg h-full" src="<%=root%>/assets/images/${showtime.getMovie().getImg()}" alt="">
@@ -234,8 +231,7 @@
               <c:remove var="state" scope="session" />
             </c:if>
 
-            <button
-                    class="bg-red-600 rounded w-full text-center text-white p-3 
+            <button class="bg-red-600 rounded w-full text-center text-white p-3 
           hover:shadow-2xl shadow-black text-lg font-bold uppercase"
                     type="submit"
                     data-modal-target="confirm_buy_ticket"
@@ -245,8 +241,7 @@
             </button>
 
             <!-- Main modal -->
-            <div
-                 id="confirm_buy_ticket"
+            <div id="confirm_buy_ticket"
                  data-modal-backdrop="static" t
                  abindex="-1" aria-hidden="true"
                  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 
@@ -364,8 +359,6 @@
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
