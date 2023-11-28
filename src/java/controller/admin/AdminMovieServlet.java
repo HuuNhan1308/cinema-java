@@ -5,12 +5,14 @@ import data.MovieDB;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Time;
 import java.time.LocalTime;
 
+@WebServlet(name = "AdminMovieServlet", urlPatterns = { "/admin/movies" })
 public class AdminMovieServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)
@@ -129,6 +131,7 @@ public class AdminMovieServlet extends HttpServlet {
       throws ServletException, IOException {
 
     String action = request.getParameter("action");
+
     if (null == action) {
       this.show(request, response);
     } else

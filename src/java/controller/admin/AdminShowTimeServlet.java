@@ -12,10 +12,12 @@ import java.util.List;
 import java.sql.Time;
 import java.sql.Date;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@WebServlet(name = "AdminShowTimeServlet", urlPatterns = { "/admin/showtimes" })
 public class AdminShowTimeServlet extends HttpServlet {
 
   protected void update(HttpServletRequest request, HttpServletResponse response)

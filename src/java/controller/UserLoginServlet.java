@@ -32,7 +32,6 @@ public class UserLoginServlet extends HttpServlet {
     String password = request.getParameter("password");
     String email = request.getParameter("email");
     String phoneNumber = request.getParameter("phoneNumber");
-    System.out.println(fullname);
 
     // set value to new customer object
     Customer customer = new Customer();
@@ -43,7 +42,14 @@ public class UserLoginServlet extends HttpServlet {
     customer.setPhoneNumber(phoneNumber);
     customer.setUsername(username);
 
-    System.out.println(customer.getFullname());
+    Customer checkEmail = CustomerDB.selectCustomerByEmail(email);
+    Customer checkUsername = CustomerDB.selectCustomerByUsername(username);
+
+    if (checkEmail != null || checkUsername != null) {
+      request.setAttribute("state", "existCustomer");
+      request.getRequestDispatcher(url).forward(request, response);
+      return;
+    }
 
     // insert to db
     CustomerDB.insert(customer);
@@ -80,6 +86,11 @@ public class UserLoginServlet extends HttpServlet {
     String username = request.getParameter("username");
     String password = request.getParameter("password");
     String remember = request.getParameter("remember");
+
+    if ("admin".equals(username) && "admin".equals(password)) {
+      response.sendRedirect(request.getContextPath() + "/admin/movies");
+      return;
+    }
 
     // set value to new customer object
     Customer customer = CustomerDB.selectCustomer(username, password);

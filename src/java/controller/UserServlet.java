@@ -34,7 +34,6 @@ public class UserServlet extends HttpServlet {
     // delete all session
     session.invalidate();
 
-    System.out.println("invalidate session");
     response.sendRedirect(request.getContextPath());
   }
 

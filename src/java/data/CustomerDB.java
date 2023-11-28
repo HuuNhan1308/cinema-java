@@ -141,4 +141,20 @@ public class CustomerDB {
       em.close();
     }
   }
+  public static Customer selectCustomerByUsername(String userName) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT c FROM Customer c "
+        + "WHERE c.username = :userName";
+    TypedQuery<Customer> q = em.createQuery(qString, Customer.class);
+    q.setParameter("userName", userName);
+
+    try {
+      Customer customer = q.getSingleResult();
+      return customer;
+    } catch (NoResultException e) {
+      return null;
+    } finally {
+      em.close();
+    }
+  }
 }
