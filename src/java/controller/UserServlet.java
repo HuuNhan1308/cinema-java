@@ -3,7 +3,6 @@ package controller;
 import business.Customer;
 import java.io.IOException;
 
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -113,19 +113,19 @@
                             <div>
 
                               <label for="current-password" class="block mb-2 text-sm font-medium text-black">Current Password</label>
-                              <input type="input" name="currentPassword" id="current-password" class="bg-gray-50 border border-gray-300 
+                              <input type="password" name="currentPassword" id="current-password" class="bg-gray-50 border border-gray-300 
                                          text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                                          block w-full p-2.5">
                             </div>
                             <div>
                               <label for="new-password" class="block mb-2 text-sm font-medium text-black">New Password</label>
-                              <input type="input" name="newPassword" id="new-password" class="bg-gray-50 border border-gray-300 
+                              <input type="password" name="newPassword" id="new-password" class="bg-gray-50 border border-gray-300 
                                          text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                                          block w-full p-2.5">
                             </div>
                             <div>
                               <label for="confirm-new-pass" class="block mb-2 text-sm font-medium text-black">Confirm Password</label>
-                              <input type="input" name="confirmNewPass" id="confirm-new-pass" class="bg-gray-50 border border-gray-300 
+                              <input type="password" name="confirmNewPass" id="confirm-new-pass" class="bg-gray-50 border border-gray-300 
                                          text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                                          block w-full p-2.5">
                             </div>

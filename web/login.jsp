@@ -62,7 +62,7 @@
           </c:if>
           <!--if type correct email recover password-->
           <c:if test = "${state == 'emailFound'}">
-            <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-red-50" role="alert">
+            <div class="flex items-center p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
               <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
@@ -174,38 +174,38 @@
               <div>
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Fullname</label>
-                <input type="text" name="fullname" id="fullname"
+                <input type="text" name="fullname"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       placeholder="Trinh Tran Phuong Tuan" required>
+                       placeholder="Nguyen Van A" required>
               </div>
               <div>
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Username</label>
-                <input type="text" name="username" id="username"
+                <input type="text" name="username"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       placeholder="jackj97" required>
+                       placeholder="nguyenvana" required>
               </div>
               <div>
                 <label for="password"
                        class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                <input type="password" name="password" id="password" placeholder="????????"
+                <input type="password" name="password" placeholder="********"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                        required>
               </div>
               <div>
                 <label for="email"
                        class="block mb-2 text-sm font-medium text-gray-900">Email</label>
-                <input type="email" name="email" id="email"
+                <input type="email" name="email"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       placeholder="jack@j97.com" required>
+                       placeholder="nguyenvana@gmail.com" required>
               </div>
               <div>
                 <label for="text"
                        class="block mb-2 text-sm font-medium text-gray-900">Phone
                   number</label>
-                <input type="text" name="phoneNumber" id="phonenumber" pattern="[0-9]{10}"
+                <input type="text" name="phoneNumber" pattern="[0-9]{10}"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                       placeholder="099112338" required>
+                       placeholder="" required>
               </div>
 
 

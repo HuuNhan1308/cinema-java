@@ -129,7 +129,7 @@ public class UserLoginServlet extends HttpServlet {
       String body = "Hi " + customer.getFullname() + ",\n\n"
           + "You have requested to recover your password.\n\n"
           + "Your username is " + customer.getUsername() + ".\n\n"
-          + "Your new password is: " + newPassword + ".\n\n"
+          + "Your new password is: " + newPassword + "\n\n"
           + "Please change this password after logging in for security purposes.\n\n";
       try {
         MailUtilGmailDB.sendMail(to, subject, body);
