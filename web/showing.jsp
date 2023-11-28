@@ -38,7 +38,7 @@
                   </a>
                   <div class="p-5">
 
-                    <h5 class="text-2xl font-bold tracking-tight text-gray-900">
+                    <h5 class="text-2xl font-bold tracking-tight text-gray-900 line-clamp-1">
                       <a href="<%=root%>/showing/film?movieID=${movie.getMovieID()}" class="py-2">
                         ${movie.getTitle()}
                       </a>

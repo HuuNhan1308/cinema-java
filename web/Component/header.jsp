@@ -11,7 +11,7 @@
       <header>
         <nav class="bg-gray-200 border-gray-200 lg:px-6 py-2.5">
           <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a class="flex items-center">
+            <a class="flex items-center" href="<%=root%>">
               <img src="<%=root%>/assets/images/logo.png" class="mr-3 h-6 sm:h-9" alt="" />
               <span class="self-center text-xl font-semibold whitespace-nowrap">NTV Cinema</span>
             </a>
