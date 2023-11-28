@@ -180,7 +180,7 @@
             <div class="shadow-2xl p-10 px-20 flex flex-col gap-2">
               <!-- thumbnail -->
               <div class="image-container h-[450px] w-[calc(450px*0.7)]">
-                <img class="rounded-t-lg h-full" src="/Cinema/assets/images/${showtime.getMovie().getImg()}" alt="">
+                <img class="rounded-t-lg h-full" src="<%=root%>/assets/images/${showtime.getMovie().getImg()}" alt="">
               </div>
 
               <!-- description -->
