@@ -70,9 +70,7 @@ public class UserTicketServlet extends HttpServlet {
     Invoice invoice = InvoiceDB.selectInvoice(InvoiceID);
 
     if (invoice == null) {
-      request.setAttribute("state", "fail");
-      request.setAttribute("invoices", InvoiceDB.selectInvoices(customer.getCustomerId()));
-      request.getRequestDispatcher("/ticket.jsp").forward(request, response);
+      response.sendRedirect(request.getContextPath() + "/ticket");
       return;
     }
 
