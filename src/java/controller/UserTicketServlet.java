@@ -69,6 +69,13 @@ public class UserTicketServlet extends HttpServlet {
     String InvoiceID = request.getParameter("InvoiceID");
     Invoice invoice = InvoiceDB.selectInvoice(InvoiceID);
 
+    if (invoice == null) {
+      request.setAttribute("state", "fail");
+      request.setAttribute("invoices", InvoiceDB.selectInvoices(customer.getCustomerId()));
+      request.getRequestDispatcher("/ticket.jsp").forward(request, response);
+      return;
+    }
+
     // compare with current date
     Date showtimeDate = invoice.getTickets().get(0).getShowtime().getDate();
 
