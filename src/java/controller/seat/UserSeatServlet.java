@@ -41,7 +41,7 @@ public class UserSeatServlet extends HttpServlet {
 
     // ensure user choose at least seat
     if (numbersString.isEmpty()) {
-      session.setAttribute("state", "book_fail");
+      session.setAttribute("state", "empty_seat");
       response.sendRedirect(request.getHeader("Referer"));
       return;
     }
@@ -118,7 +118,7 @@ public class UserSeatServlet extends HttpServlet {
       // Log the exception
       e.printStackTrace();
 
-      session.setAttribute("state", "book_fail");
+      session.setAttribute("state", "seat_booked");
       // Redirect to home page
       response.sendRedirect(request.getHeader("Referer"));
     }

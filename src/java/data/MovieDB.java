@@ -193,4 +193,20 @@ public class MovieDB {
     }
     return movies;
   }
+  public static int countTotalMovies() {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT m FROM Movie m";
+    TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
+
+    List<Movie> movies;
+    try {
+      movies = q.getResultList();
+      if (movies == null || movies.isEmpty()) {
+        movies = null;
+      }
+    } finally {
+      em.close();
+    }
+    return movies.size();
+  }
 }

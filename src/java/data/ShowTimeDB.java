@@ -7,6 +7,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import business.ShowTime;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
@@ -155,13 +156,30 @@ public class ShowTimeDB {
 
     List<ShowTime> showTimes;
     try {
-        showTimes = q.getResultList();
-        if (showTimes == null || showTimes.isEmpty()) {
-            showTimes = null;
-        }
+      showTimes = q.getResultList();
+      if (showTimes == null || showTimes.isEmpty()) {
+        showTimes = null;
+      }
     } finally {
-        em.close();
+      em.close();
     }
     return showTimes;
-}
+  }
+
+  public static int countTotalShowtimes() {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT s FROM ShowTime s";
+    TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
+
+    List<ShowTime> showtimes;
+    try {
+      showtimes = q.getResultList();
+      if (showtimes == null || showtimes.isEmpty()) {
+        showtimes = null;
+      }
+    } finally {
+      em.close();
+    }
+    return showtimes.size();
+  }
 }

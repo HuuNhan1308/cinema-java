@@ -92,4 +92,42 @@ public class TicketDB {
     return tickets;
   }
 
+  public static int CountTotalTickets() {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT t FROM Ticket t";
+    TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);
+
+    List<Ticket> tickets;
+    try {
+      tickets = q.getResultList();
+      if (tickets == null || tickets.isEmpty()) {
+        tickets = null;
+      }
+    } finally {
+      em.close();
+    }
+    return tickets.size();
+  }
+
+  public static int CountTotalRevenue() {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT t FROM Ticket t";
+    TypedQuery<Ticket> q = em.createQuery(qString, Ticket.class);
+
+    List<Ticket> tickets;
+    try {
+      tickets = q.getResultList();
+      if (tickets == null || tickets.isEmpty()) {
+        tickets = null;
+      }
+    } finally {
+      em.close();
+    }
+    int totalRevenue = 0;
+    for (Ticket ticket : tickets) {
+      totalRevenue += ticket.getShowtime().getPrice();
+    }
+    return totalRevenue;
+  }
+
 }
