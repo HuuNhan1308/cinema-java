@@ -110,7 +110,7 @@
                 <img src="<%=root%>/assets/images/${movie.getImg()}"
                      class="w-full" alt="Movie poster">
                 <div class="p-4">
-                  <h3 class="text-xl font-bold mb-2">${movie.getTitle()}</h3>
+                  <h3 class="text-xl font-bold mb-2 line-clamp-1">${movie.getTitle()}</h3>
                 </div>
               </div>
             </c:forEach>
