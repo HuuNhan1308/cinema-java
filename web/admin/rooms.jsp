@@ -24,7 +24,7 @@
             <!-- Dashboard -->
             <li>
               <a
-                href="<%=root%>"
+                href="<%=root%>/"
                 class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
                 >
                 <svg

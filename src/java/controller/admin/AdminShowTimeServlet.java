@@ -131,17 +131,31 @@ public class AdminShowTimeServlet extends HttpServlet {
     String action = request.getParameter("action");
 
     if (null != action) {
-      switch (action) {
-        case "update" ->
-          this.updateShowTime(request, response);
-        case "delete" ->
-          this.deleteShowTime(request, response);
-        case "add" ->
-          this.addShowTime(request, response);
-        default -> {
+      try {
+        switch (action) {
+          case "update" ->
+            this.updateShowTime(request, response);
+          case "delete" ->
+            this.deleteShowTime(request, response);
+          case "add" ->
+            this.addShowTime(request, response);
+          default -> {
+          }
         }
+      } catch (Exception e) {
+        // Log the exception
+        e.printStackTrace();
+
+        request.setAttribute("state", "fail");
+        String url = "/admin/showtimes.jsp";
+        List<ShowTime> showTimes = ShowTimeDB.selectShowTimes();
+        request.setAttribute("showTimes", showTimes);
+        
+        // Redirect to an error page or back to the form page
+        request.getRequestDispatcher(url).forward(request, response);
       }
     }
+
   }
 
   @Override

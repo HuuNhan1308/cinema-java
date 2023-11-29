@@ -143,7 +143,7 @@
                         <label for="remember" class="text-gray-500">Remember me</label>
                       </div>
                     </div>
-                    <a class="text-sm font-medium text-primary-600 hover:underline hover:cursor-pointer"
+                    <a class="text-sm font-medium text-primary-600 hover:cursor-pointer"
                        data-modal-target="forgot-password-modal" data-modal-toggle="forgot-password-modal">Forgot
                       password?</a>
                   </div>
@@ -156,7 +156,7 @@
                   <p class="text-sm font-light text-gray-500">
                     Don?t have an account yet? <a data-modal-target="default-modal"
                        data-modal-toggle="default-modal"
-                       class="font-medium text-primary-600 hover:underline">Sign
+                       class="font-medium text-primary-600 hover:cursor-pointer">Sign
                       up</a>
                   </p>
                 </form>

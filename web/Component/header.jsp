@@ -11,7 +11,7 @@
       <header>
         <nav class="bg-gray-200 border-gray-200 lg:px-6 py-2.5">
           <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
-            <a class="flex items-center" href="<%=root%>">
+            <a class="flex items-center" href="<%=root%>/">
               <img src="<%=root%>/assets/images/logo.png" class="mr-3 h-6 sm:h-9" alt="" />
               <span class="self-center text-xl font-semibold whitespace-nowrap">NTV Cinema</span>
             </a>
@@ -158,7 +158,7 @@
                     </div>
                   </div>
 
-                  <a href="<%=root%>?action=out"
+                  <a href="<%=root%>/?action=out"
                      class="flex text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium 
                rounded-lg text-sm px-4 lg:px-2 py-2 lg:py-1 mx-2 ">
                     <svg width="22px" height="22px" viewBox="0 0 24 24" fill="white" style="margin-right: 5px;"
@@ -193,7 +193,7 @@
             <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
               <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                 <li>
-                  <a href="<%=root%>"
+                  <a href="<%=root%>/"
                      class="block py-2 pr-4 pl-3 rounded bg-blue-700 lg:bg-transparent
                ${param.activeTab == " home" ? "lg:text-blue-700" : "text-gray-700" } lg:hover:text-blue-700
                      lg:p-0">Home</a>
