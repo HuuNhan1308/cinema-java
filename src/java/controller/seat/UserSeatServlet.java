@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,7 +68,7 @@ public class UserSeatServlet extends HttpServlet {
     // Create invoice
     Invoice invoice = new Invoice();
     invoice.setCustomer(customer);
-    invoice.setboughtDate(Date.valueOf(LocalDate.now()));
+    invoice.setboughtDate(Date.valueOf(LocalDate.now(ZoneId.of("Asia/Ho_Chi_Minh"))));
     invoice.setTickets(new ArrayList<Ticket>());
 
     // Create ticket and add to the new invoice

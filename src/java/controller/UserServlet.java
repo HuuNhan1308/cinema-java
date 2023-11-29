@@ -100,8 +100,6 @@ public class UserServlet extends HttpServlet {
       CustomerDB.update(customer);
       response.sendRedirect(request.getHeader("Referer"));
     }
-
-    // response.sendRedirect(request.getContextPath());
   }
 
   @Override
