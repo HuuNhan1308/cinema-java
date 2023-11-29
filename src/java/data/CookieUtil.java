@@ -14,7 +14,6 @@ public class CookieUtil {
         }
       }
     }
-
     return cookieValue;
   }
 
@@ -25,8 +24,7 @@ public class CookieUtil {
           return cookie;
         }
       }
-    }
-    
+    }   
     return null;
   }
 }

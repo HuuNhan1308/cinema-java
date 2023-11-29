@@ -141,6 +141,7 @@ public class CustomerDB {
       em.close();
     }
   }
+
   public static Customer selectCustomerByUsername(String userName) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT c FROM Customer c "

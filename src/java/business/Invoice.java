@@ -100,7 +100,7 @@ public class Invoice implements Serializable {
     }
     return VipSeat;
   }
-  
+
   public int getStandardTotalPrice() {
     int totalPrice = 0;
     for (Ticket ticket : tickets) {

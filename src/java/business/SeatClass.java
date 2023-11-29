@@ -13,17 +13,11 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class SeatClass implements Serializable {
 
-  @OneToMany(mappedBy = "seatClass", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+  @OneToMany(mappedBy = "seatClass", cascade = { CascadeType.PERSIST, CascadeType.REMOVE })
   private List<Ticket> tickets;
   @Id
-  @GeneratedValue(
-          strategy = GenerationType.SEQUENCE,
-          generator = "seatClassSquenceGenerator"
-  )
-  @SequenceGenerator(
-          name = "seatClassSquenceGenerator",
-          sequenceName = "seat_class_sequence"
-  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seatClassSquenceGenerator")
+  @SequenceGenerator(name = "seatClassSquenceGenerator", sequenceName = "seat_class_sequence")
   private int id;
 
   private String category;
@@ -61,8 +55,7 @@ public class SeatClass implements Serializable {
     this.tickets = tickets;
   }
 
-    public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+  public boolean isEmpty() {
+    throw new UnsupportedOperationException("Not supported yet.");
+  }
 }

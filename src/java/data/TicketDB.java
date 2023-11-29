@@ -129,5 +129,4 @@ public class TicketDB {
     }
     return totalRevenue;
   }
-
 }

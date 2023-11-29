@@ -40,7 +40,7 @@ public class AdminMovieServlet extends HttpServlet {
 
     if (movieName != null) {
       movies = MovieDB.selectMoviesByName(movieName);
-      request.setAttribute("movies", movies);      
+      request.setAttribute("movies", movies);
       request.setAttribute("movieName", movieName);
       request.getRequestDispatcher(url).forward(request, response);
       return;
@@ -133,7 +133,6 @@ public class AdminMovieServlet extends HttpServlet {
 
     String moviesPage = request.getRequestURI();
     response.sendRedirect(moviesPage);
-
   }
 
   @Override
@@ -168,10 +167,4 @@ public class AdminMovieServlet extends HttpServlet {
         }
       }
   }
-
-  @Override
-  public String getServletInfo() {
-    return "Short description";
-  }// </editor-fold>
-
 }

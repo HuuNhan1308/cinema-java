@@ -115,20 +115,15 @@ public class UserServlet extends HttpServlet {
       switch (action) {
         case "out" ->
           this.logOut(request, response);
-        default -> {
-
-        }
+        default -> {}
       }
     }
-
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    // add balance
-
+        
     String action = request.getParameter("action");
 
     if (null != action) {
@@ -144,7 +139,5 @@ public class UserServlet extends HttpServlet {
         }
       }
     }
-
   }
-
 }

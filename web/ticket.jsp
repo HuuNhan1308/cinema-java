@@ -17,7 +17,7 @@
         <link rel="icon" href="<%=root%>/assets/images/logo.png" type="image/gif" sizes="16x16">
         <title>Ticket</title>
         <script src="<%=root%>/tailwind/tailwind.js"></script>
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link href="<%=root%>/assets/css/aos.css" rel="stylesheet">
       </head>
 
       <body>
@@ -136,15 +136,13 @@
                                      value="${invoice.getTickets().get(0).showtime.movie.getGenre()}">
                               <svg width="20px" height="20px" aria-hidden="true" style="margin-right: 5px;"
                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                      d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                               </svg>
                               Detail
                             </button>
                           </td>
                           <td class="px-4">
-                            <button
-                                    class="flex block text-white focus:ring-4 focus:outline-none 
+                            <button class="flex block text-white focus:ring-4 focus:outline-none 
                       font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 
                       hover:bg-blue-700 focus:ring-blue-800"
                                     data-modal-target="refund_modal"
@@ -187,8 +185,8 @@
                       <span class="sr-only">Close modal</span>
                     </button>
                   </div>
-                  <div
-                       class="flex flex-col items-center bg-white border border-gray-200 shadow md:flex-row md:max-w-xl hover:bg-gray-100">
+
+                  <div class="flex flex-col items-center bg-white border border-gray-200 shadow md:flex-row md:max-w-xl hover:bg-gray-100">
                     <img id="modalImg"
                          class="object-cover w-full h-96 md:h-auto md:w-48"
                          src="" alt="">
@@ -202,8 +200,7 @@
                   <div class="p-4 md:p-5">
                     <ol class="relative border-s border-gray-200 ms-3.5 mb-4 md:mb-5">
                       <li class="mb-10 ms-8">
-                        <span
-                              class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
                           <svg class="w-2.5 h-2.5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                fill="none" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -211,8 +208,7 @@
                           </svg>
                         </span>
                         <div class="flex">
-                          <span
-                                class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
+                          <span class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
                             Standard
                           </span>
                           <h3 id="modalStandardSeats" class="flex items-start mb-1 text-lg font-semibold text-gray-900">
@@ -223,8 +219,7 @@
                         </div>
                       </li>
                       <li class="mb-10 ms-8">
-                        <span
-                              class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
+                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
                           <svg class="w-2.5 h-2.5 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                fill="none" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -232,8 +227,7 @@
                           </svg>
                         </span>
                         <div class="flex">
-                          <span
-                                class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
+                          <span class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
                             VIP
                           </span>
                           <h3 id="modalVipSeats" class="flex items-start mb-1 text-lg font-semibold text-gray-900">
@@ -280,12 +274,10 @@
 
                       </button>
 
-                      <button
-                              data-modal-hide="refund_modal" type="button"
+                      <button data-modal-hide="refund_modal" type="button"
                               class="text-white bg-gray-600 px-5 py-2.5 hover:bg-gray-800 focus:ring-4 
                 focus:outline-none focus:ring-gray-800 font-medium rounded-lg text-sm 
                 inline-flex items-center text-center me-2">NO
-
                       </button>
                     </form>
                   </div>
@@ -366,7 +358,7 @@
             });
           });
         </script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="<%=root%>/assets/js/aos.js"></script>
         <script>
           AOS.init();
         </script>

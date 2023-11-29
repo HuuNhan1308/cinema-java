@@ -156,7 +156,5 @@ public class UserSeatServlet extends HttpServlet {
     if ("bookingSeats".equals(action)) {
       this.bookingSeats(request, response);
     }
-
   }
-
 }

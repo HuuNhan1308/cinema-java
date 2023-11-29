@@ -40,13 +40,7 @@ public class AdminStatisticsServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
-    String action = request.getParameter("action");
-    if (null == action) {
-      this.show(request, response);
-    } else {
-
-    }
+    this.show(request, response);
   }
 
   @Override
@@ -54,10 +48,4 @@ public class AdminStatisticsServlet extends HttpServlet {
       throws ServletException, IOException {
 
   }
-
-  @Override
-  public String getServletInfo() {
-    return "Short description";
-  }// </editor-fold>
-
 }

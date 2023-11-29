@@ -71,5 +71,4 @@ public class Ticket implements Serializable {
   public void setSeatNumber(int seatNumber) {
     this.seatNumber = seatNumber;
   }
-
 }

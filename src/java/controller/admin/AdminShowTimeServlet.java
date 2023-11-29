@@ -167,10 +167,4 @@ public class AdminShowTimeServlet extends HttpServlet {
     }
 
   }
-
-  @Override
-  public String getServletInfo() {
-    return "Short description";
-  }// </editor-fold>
-
 }

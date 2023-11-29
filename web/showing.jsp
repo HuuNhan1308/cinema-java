@@ -16,7 +16,7 @@
         <link rel="icon" href="<%=root%>/assets/images/logo.png" type="image/gif" sizes="16x16">
         <title>Showing</title>
         <script src="<%=root%>/tailwind/tailwind.js"></script>
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link href="<%=root%>/assets/css/aos.css" rel="stylesheet">
       </head>
 
       <body>
@@ -105,9 +105,7 @@
                   </div>
                 </div>
               </c:forEach>
-
             </div>
-
           </div>
         </div>
 
@@ -116,11 +114,10 @@
         </jsp:include>
 
         <script src="<%=root%>/tailwind/flowbite.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="<%=root%>/assets/js/aos.js"></script>
         <script>
           AOS.init();
         </script>
         </div>
       </body>
-
       </html>

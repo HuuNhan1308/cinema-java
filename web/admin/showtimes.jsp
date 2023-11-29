@@ -71,7 +71,6 @@
                          height="1em"
                          fill="currentColor"
                          viewBox="0 0 640 512">
-                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                       <path
                             d="M64 64V352H576V64H64zM0 64C0 28.7 28.7 0 64 0H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zM128 448H512c17.7 0 32 14.3 32 32s-14.3 32-32 32H128c-17.7 0-32-14.3-32-32s14.3-32 32-32z" />
                     </svg>
@@ -89,7 +88,6 @@
                          height="1em"
                          fill="currentColor"
                          viewBox="0 0 512 512">
-                      <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                       <path
                             d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM48 368v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V368c0-8.8-7.2-16-16-16H416zM48 240v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zm368-16c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V240c0-8.8-7.2-16-16-16H416zM48 112v32c0 8.8 7.2 16 16 16H96c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H64c-8.8 0-16 7.2-16 16zM416 96c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V112c0-8.8-7.2-16-16-16H416zM160 128v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V128c0-17.7-14.3-32-32-32H192c-17.7 0-32 14.3-32 32zm32 160c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32H320c17.7 0 32-14.3 32-32V320c0-17.7-14.3-32-32-32H192z" />
                     </svg>
@@ -156,9 +154,7 @@
                         <th scope="col" class="px-6 py-3">Price</th>
                         <th scope="col" class="px-6 py-3">Room number</th>
                         <th scope="col" class="px-6 py-3">Tickets</th>
-                        <!--<th scope="col" class="px-6 py-3"></th>-->
                         <th scope="col" class="px-6 py-3"></th>
-
 
                       </tr>
                     </thead>
@@ -175,13 +171,6 @@
                           <td class="px-6 py-2">${showTime.getPrice()}</td>
                           <td class="px-6 py-2">${showTime.getRoom().getRoomNumber()}</td>
                           <td class="px-6 py-2">${showTime.getTickets().size()}/${showTime.getRoom().getMaxSeats()}</td>
-
-
-                          <!--                        <td class="px-6 py-2">
-                                                <a href="<%=root%>/admin/showtimes?action=update&id=${showTime.getShowtimeId()}" class="font-medium text-blue-500 hover:underline"
-                                                   >Edit</a
-                                                >
-                                              </td>-->
                           <td class="px-6 py-2">
                             <button data-modal-target="delete_modal" data-showtime-id="${showTime.getShowtimeId()}"
                                     data-modal-toggle="delete_modal" class="block text-white focus:ring-4
@@ -252,9 +241,6 @@
                 </div>
               </c:otherwise>
             </c:choose>
-
-
-
           </div>
         </div>
 
@@ -278,9 +264,6 @@
               showTimeIDInput.value = showTimeID;
             });
           }
-
-
         </script>
       </body>
-
       </html>

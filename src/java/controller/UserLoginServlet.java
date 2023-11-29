@@ -185,7 +185,5 @@ public class UserLoginServlet extends HttpServlet {
         }
       }
     }
-
   }
-
 }

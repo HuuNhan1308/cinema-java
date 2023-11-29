@@ -17,9 +17,8 @@
         <link rel="icon" href="<%=root%>/assets/images/logo.png" type="image/gif" sizes="16x16">
         <title>Booking Seats</title>
         <script src="<%=root%>/tailwind/tailwind.js"></script>
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link href="<%=root%>/assets/css/aos.css" rel="stylesheet">
       </head>
-
 
       <!-- component header -->
       <jsp:include page="./Component/header.jsp">
@@ -28,7 +27,8 @@
 
       <!--content-->
       <div class="booking-wrapper py-14 2xl:mx-32 xl:mx-16 lg:mx-8">
-        <div class="classify-seat grid 2xl:grid-cols-2 2xl:gap-5 xl:grid-cols-1 grid-cols-1 lg:gap-2 gap-2" data-aos="fade-up">
+        <div class="classify-seat grid 2xl:grid-cols-2 2xl:gap-5 xl:grid-cols-1 grid-cols-1 lg:gap-2 gap-2"
+             data-aos="fade-up">
           <div class="flex items-center gap-7">
             <div class="bg-slate-600 w-12 rounded h-6"></div>
             <span class="font-bold md:text-xl text-sm">Standard</span>
@@ -47,52 +47,52 @@
           </div>
         </div>
         <div class="screen-seats mt-12" data-aos="fade-up">
-          <span
-                class="bg-slate-600 text-center text-white text-xl uppercase font-bold py-2 rounded lg:px-64 lg:mx-40 px-[188px] mx-[70px]">Screen
+          <span class="bg-slate-600 text-center text-white text-xl uppercase font-bold py-2 rounded lg:px-64 lg:mx-40 px-[188px] mx-[70px]">Screen
           </span>
         </div>
 
         <div class="flex flex-row lg:gap-2 lg:mt-8 mt-[5px] gap-2">
           <!--Column-->
-          <div class="name-seats flex flex-col gap-[8px] text-black text-center font-bold lg:mt-[3px]"  data-aos="fade-up" data-aos-delay="100">
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-white border-[1px] h-[42px] text-white lg:border-1 rounded select-none">
-              O</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              A</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              B</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              C</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              D</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              E</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              F</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              G</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              H</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              I</div>
-            <div
-                 class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
-              J</div>
-
+          <div class="name-seats flex flex-col gap-[8px] text-black text-center font-bold lg:mt-[3px]"
+               data-aos="fade-up" data-aos-delay="100">
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-white border-[1px] h-[42px] text-white lg:border-1 rounded select-none">
+              O
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              A
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              B
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              C
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              D
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              E
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              F
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              G
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              H
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              I
+            </div>
+            <div class="lg:w-12 lg:p-4 w-8 lg:py-[8px] py-1 border-gray-500 lg:border-1 border-[1px] h-[42px] rounded select-none">
+              J
+            </div>
           </div>
 
           <div class="name-detail-seats h-fit grid grid-cols-10 xl:gap-2 xl:ml-[115px] 2xl:gap-2
-           2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 mt-[3px] text-center"  data-aos="fade-up" data-aos-delay="100">
+           2xl:ml-28 lg:gap-[20px] lg:ml-[110px] ml-[68px] gap-1 mt-[3px] text-center" data-aos="fade-up"
+               data-aos-delay="100">
 
             <input type="checkbox" id="A" class="hidden custom-label" name="group-seats" />
             <label for="A" class="lg:w-12 lg:p-4 w-8 lg:py-2 lg:ml-[2px] py-1 lg:border-1
@@ -203,6 +203,7 @@
                 </div>
               </div>
             </div>
+
             <c:if test="${sessionScope.state == 'book_success'}">
               <div class="flex items-center p-4 mb-4 text-sm text-green-400 rounded bg-gray-800" role="alert">
                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -230,6 +231,7 @@
               </div>
               <c:remove var="state" scope="session" />
             </c:if>
+
             <c:if test="${sessionScope.state == 'seat_booked'}">
               <div class="flex items-center p-4 mb-4 text-sm text-red-400 rounded bg-gray-800" role="alert">
                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -243,6 +245,7 @@
               </div>
               <c:remove var="state" scope="session" />
             </c:if>
+
             <c:if test="${sessionScope.state == 'empty_seat'}">
               <div class="flex items-center p-4 mb-4 text-sm text-red-400 rounded bg-gray-800" role="alert">
                 <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -281,8 +284,7 @@
                     <h3 class="text-2xl font-semibold text-gray-900">
                       ${showtime.getMovie().getTitle()}
                     </h3>
-                    <button
-                            type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 
                   rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                             data-modal-hide="confirm_buy_ticket">
 
@@ -307,8 +309,7 @@
                       <li class="mb-10 ms-8">
                         <span
                               class="absolute flex items-center justify-center w-6 h-6 bg-gray-100 rounded-full -start-3.5 ring-8 ring-white">
-                          <svg
-                               class="w-2.5 h-2.5 text-gray-500"
+                          <svg class="w-2.5 h-2.5 text-gray-500"
                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                fill="none" viewBox="0 0 20 20">
                             <path fill="currentColor"
@@ -340,8 +341,7 @@
                           </svg>
                         </span>
                         <div class="flex">
-                          <span
-                                class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
+                          <span class="bg-purple-100 text-purple-800 font-bold mr-2 px-2.5 mb-1 rounded flex items-center">
                             VIP
                           </span>
                           <h3 id="modalVipSeats" class="flex items-start mb-1 text-lg font-semibold text-gray-900">
@@ -362,8 +362,7 @@
                     <input type="hidden" name="showtimeId" value="${showtime.getShowtimeId()}">
 
                     <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
-                      <button
-                              data-modal-hide="confirm_buy_ticket"
+                      <button data-modal-hide="confirm_buy_ticket"
                               type="submit"
                               class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 
                     focus:outline-none focus:ring-red-300 font-medium rounded-lg 
@@ -371,8 +370,7 @@
                         Buy
                       </button>
 
-                      <button
-                              data-modal-hide="confirm_buy_ticket"
+                      <button data-modal-hide="confirm_buy_ticket"
                               type="button"
                               class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 
                     focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 
@@ -460,12 +458,14 @@
         }
 
       </script>
+
       <script src="<%=root%>/tailwind/flowbite.min.js"></script>
-      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="<%=root%>/assets/js/aos.js"></script>
+
       <script>
         AOS.init();
       </script>
-      </div>
+
       </body>
 
       </html>

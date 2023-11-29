@@ -11,7 +11,6 @@
              // delete ".jsp"
              String URI=request.getRequestURI();
              URI=URI.substring(0, URI.length() - 4);
-
              %>
 
             <!DOCTYPE html>
@@ -23,7 +22,7 @@
               <title>${movie.getTitle()}</title>
               <link rel="icon" href="<%=root%>/assets/images/logo.png" type="image/gif" sizes="16x16">
               <script src="<%=root%>/tailwind/tailwind.js"></script>
-              <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+              <link href="<%=root%>/assets/css/aos.css" rel="stylesheet">
             </head>
 
             <body>
@@ -108,10 +107,8 @@
                         <c:forEach var="comingDate" items="${comingDates}">
                           <c:set var="dayOfWeek"
                                  value="${comingDate.toLocalDate().getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.getDefault())}" />
-
                           <div>
-                            <input
-                                   type="radio"
+                            <input type="radio"
                                    id="${dayOfWeek}"
                                    name="dayOfWeek"
                                    value="${comingDate}"
@@ -192,10 +189,9 @@
                   });
                 });
               </script>
-              <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+              <script src="<%=root%>/assets/js/aos.js"></script>
               <script>
                 AOS.init();
               </script>
             </body>
-
             </html>

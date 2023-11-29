@@ -58,7 +58,6 @@ public class UserTicketServlet extends HttpServlet {
     request.setAttribute("invoices", invoices);
 
     request.getRequestDispatcher(url).forward(request, response);
-
   }
 
   protected void refund(HttpServletRequest request, HttpServletResponse response)
@@ -111,5 +110,4 @@ public class UserTicketServlet extends HttpServlet {
       throws ServletException, IOException {
     this.refund(request, response);
   }
-
 }
