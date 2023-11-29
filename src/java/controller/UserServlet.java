@@ -34,7 +34,7 @@ public class UserServlet extends HttpServlet {
     // delete all session
     session.invalidate();
 
-    response.sendRedirect(request.getContextPath());
+    response.sendRedirect(request.getContextPath() + "/");
   }
 
   protected void show(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +68,7 @@ public class UserServlet extends HttpServlet {
 
     CustomerDB.update(customer);
 
-    response.sendRedirect(request.getContextPath());
+    response.sendRedirect(request.getContextPath() + "/");
   }
 
   protected void changePassword(HttpServletRequest request, HttpServletResponse response)

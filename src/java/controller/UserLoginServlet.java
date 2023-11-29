@@ -112,7 +112,7 @@ public class UserLoginServlet extends HttpServlet {
         response.addCookie(c);
       }
 
-      response.sendRedirect(request.getContextPath());
+      response.sendRedirect(request.getContextPath() + "/");
     } else {
       request.setAttribute("state", "fail");
       request.getRequestDispatcher(url).forward(request, response);
