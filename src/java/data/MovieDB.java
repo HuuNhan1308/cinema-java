@@ -61,7 +61,7 @@ public class MovieDB {
   public static Movie selectMovie(String movieID) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT m FROM Movie m  "
-            + "WHERE m.movieID = :movieID";
+        + "WHERE m.movieID = :movieID";
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
     q.setParameter("movieID", movieID);
 
@@ -78,7 +78,7 @@ public class MovieDB {
   public static Movie selectMovie_byTitle(String title) {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT m FROM Movie m  "
-            + "WHERE m.title = :title";
+        + "WHERE m.title = :title";
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
     q.setParameter("title", title);
 
@@ -95,12 +95,10 @@ public class MovieDB {
   public static List<Movie> selectComingMovies() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT DISTINCT s.movie FROM ShowTime s "
-            + "WHERE (s.date > :currentDate AND s.date < :nextWeek) "
-            + "OR (s.date = :currentDate AND s.startTime >= :currentTime)";
+        + "WHERE (s.date > :currentDate AND s.date < :nextWeek) "
+        + "OR (s.date = :currentDate AND s.startTime >= :currentTime)";
 
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
-//    q.setParameter("currentDate", new Date(System.currentTimeMillis()));
-//    q.setParameter("currentTime", new Time(System.currentTimeMillis()));
 
     q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
     q.setParameter("nextWeek", Date.valueOf(LocalDate.now().plusWeeks(1)));
@@ -135,11 +133,55 @@ public class MovieDB {
     return movies;
   }
 
+  public static List<Movie> selectMoviesByName(String movieName) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT m FROM Movie m WHERE m.title LIKE :movieName";
+    TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
+    q.setParameter("movieName", "%" + movieName + "%");
+
+    List<Movie> movies;
+    try {
+      movies = q.getResultList();
+      if (movies == null || movies.isEmpty()) {
+        movies = null;
+      }
+    } finally {
+      em.close();
+    }
+    return movies;
+  }
+
   public static List<Movie> selectTop8Movies() {
     EntityManager em = DBUtil.getEmFactory().createEntityManager();
     String qString = "SELECT m FROM Movie m";
     TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
     q.setMaxResults(8);
+    List<Movie> movies;
+    try {
+      movies = q.getResultList();
+      if (movies == null || movies.isEmpty()) {
+        movies = null;
+      }
+    } finally {
+      em.close();
+    }
+    return movies;
+  }
+
+  public static List<Movie> selectComingMoviesByName(String movieName) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT DISTINCT s.movie FROM ShowTime s "
+        + "WHERE ((s.date > :currentDate AND s.date < :nextWeek) "
+        + "OR (s.date = :currentDate AND s.startTime >= :currentTime)) "
+        + "AND LOWER(s.movie.title) LIKE LOWER(:movieName)";
+
+    TypedQuery<Movie> q = em.createQuery(qString, Movie.class);
+
+    q.setParameter("currentDate", Date.valueOf(LocalDate.now()));
+    q.setParameter("nextWeek", Date.valueOf(LocalDate.now().plusWeeks(1)));
+    q.setParameter("currentTime", Time.valueOf(LocalTime.now()));
+    q.setParameter("movieName", "%" + movieName + "%");
+
     List<Movie> movies;
     try {
       movies = q.getResultList();

@@ -20,6 +20,16 @@ public class UserShowingServlet extends HttpServlet {
 
     String url = "/showing.jsp";
 
+    String movieName = request.getParameter("movieName");
+
+    if (movieName != null) {
+      List<Movie> movies = MovieDB.selectComingMoviesByName(movieName);
+      request.setAttribute("movies", movies);      
+      request.setAttribute("movieName", movieName);
+      request.getRequestDispatcher(url).forward(request, response);
+      return;
+    }
+
     List<Movie> movies = MovieDB.selectComingMovies();
 
     request.setAttribute("movies", movies);

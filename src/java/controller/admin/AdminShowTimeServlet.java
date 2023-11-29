@@ -36,6 +36,16 @@ public class AdminShowTimeServlet extends HttpServlet {
 
     List<ShowTime> showTimes = ShowTimeDB.selectShowTimes();
     request.setAttribute("showTimes", showTimes);
+    String movieName = request.getParameter("movieName");
+
+    if (movieName != null) {
+      showTimes = ShowTimeDB.selectShowTimesByName(movieName);
+      request.setAttribute("showTimes", showTimes);      
+      request.setAttribute("movieName", movieName);
+      request.getRequestDispatcher(url).forward(request, response);
+      return;
+    }
+
     request.getRequestDispatcher(url).forward(request, response);
   }
 

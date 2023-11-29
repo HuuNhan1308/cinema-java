@@ -108,7 +108,7 @@
               </a>
             </li>
             <!-- Seatclass -->
-            <li>
+            <!-- <li>
               <a
                 href="<%=root%>/admin/seatclass"
                 class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group"
@@ -127,7 +127,7 @@
 
                 <span class="flex-1 ms-3 whitespace-nowrap">Seat Class</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </aside>

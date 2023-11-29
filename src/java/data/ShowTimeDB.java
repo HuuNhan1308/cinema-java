@@ -146,4 +146,22 @@ public class ShowTimeDB {
     }
     return showTimes;
   }
+
+  public static List<ShowTime> selectShowTimesByName(String movieName) {
+    EntityManager em = DBUtil.getEmFactory().createEntityManager();
+    String qString = "SELECT s FROM ShowTime s JOIN s.movie m WHERE m.title LIKE :movieName";
+    TypedQuery<ShowTime> q = em.createQuery(qString, ShowTime.class);
+    q.setParameter("movieName", "%" + movieName + "%");
+
+    List<ShowTime> showTimes;
+    try {
+        showTimes = q.getResultList();
+        if (showTimes == null || showTimes.isEmpty()) {
+            showTimes = null;
+        }
+    } finally {
+        em.close();
+    }
+    return showTimes;
+}
 }

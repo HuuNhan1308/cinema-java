@@ -35,6 +35,16 @@ public class AdminMovieServlet extends HttpServlet {
 
     List<Movie> movies = MovieDB.selectMovies();
     request.setAttribute("movies", movies);
+
+    String movieName = request.getParameter("movieName");
+
+    if (movieName != null) {
+      movies = MovieDB.selectMoviesByName(movieName);
+      request.setAttribute("movies", movies);      
+      request.setAttribute("movieName", movieName);
+      request.getRequestDispatcher(url).forward(request, response);
+      return;
+    }
     request.getRequestDispatcher(url).forward(request, response);
   }
 
