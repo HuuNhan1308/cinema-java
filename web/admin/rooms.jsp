@@ -133,7 +133,7 @@
       </aside>
 
       <!-- Content -->
-      <div class="content ml-64 px-4 h-[100vh] pt-4">
+      <div class="content ml-64 px-4 min-h-[100vh] pt-4">
         <!-- Table -->
 
 
