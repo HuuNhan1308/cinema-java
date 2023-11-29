@@ -43,8 +43,8 @@
                         ${movie.getTitle()}
                       </a>
                     </h5>
-                    <p class="mb-3 mt-2 font-medium text-gray-700">${movie.getGenre()}</p>
-                    <p class="mb-3 font-medium text-gray-700">Duration: ${movie.getDuration()}</p>
+                    <p class="mb-3 mt-2 font-medium text-gray-700 line-clamp-1">${movie.getGenre()}</p>
+                    <p class="mb-3 font-medium text-gray-700 line-clamp-1">Duration: ${movie.getDuration()}</p>
                     <p class="mb-3 font-normal text-gray-700 line-clamp-3">${movie.getDescription()}</p>
                     <c:choose>
                       <c:when test="${customer != null}">
