@@ -1,7 +1,4 @@
 nbproject/private/
 build/
 dist/
-src/conf
-web/META-INF
-src/java/data/PopulateDatabase.java
 .nb-gradle/
